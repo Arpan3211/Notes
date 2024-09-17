@@ -5,43 +5,43 @@ Polyfills are JavaScript implementations of features that are not natively avail
 ### 1. **Promise**
 
 ```javascript
-if (typeof Promise === 'undefined') {
+if (typeof Promise === "undefined") {
   // Basic implementation of Promise
   (function (global) {
     function Promise(executor) {
-      this._state = 'pending';
+      this._state = "pending";
       this._value = undefined;
       this._callbacks = [];
-      
+
       const resolve = (value) => {
-        if (this._state === 'pending') {
-          this._state = 'fulfilled';
+        if (this._state === "pending") {
+          this._state = "fulfilled";
           this._value = value;
-          this._callbacks.forEach(callback => callback(value));
+          this._callbacks.forEach((callback) => callback(value));
         }
       };
-      
+
       const reject = (reason) => {
-        if (this._state === 'pending') {
-          this._state = 'rejected';
+        if (this._state === "pending") {
+          this._state = "rejected";
           this._value = reason;
-          this._callbacks.forEach(callback => callback(reason));
+          this._callbacks.forEach((callback) => callback(reason));
         }
       };
-      
+
       executor(resolve, reject);
     }
 
-    Promise.prototype.then = function(onFulfilled, onRejected) {
+    Promise.prototype.then = function (onFulfilled, onRejected) {
       return new Promise((resolve, reject) => {
         const handleCallback = () => {
-          if (this._state === 'fulfilled') {
+          if (this._state === "fulfilled") {
             if (onFulfilled) {
               resolve(onFulfilled(this._value));
             } else {
               resolve(this._value);
             }
-          } else if (this._state === 'rejected') {
+          } else if (this._state === "rejected") {
             if (onRejected) {
               reject(onRejected(this._value));
             } else {
@@ -49,19 +49,19 @@ if (typeof Promise === 'undefined') {
             }
           }
         };
-        
-        if (this._state === 'pending') {
+
+        if (this._state === "pending") {
           this._callbacks.push(handleCallback);
         } else {
           handleCallback();
         }
       });
     };
-    
-    Promise.prototype.catch = function(onRejected) {
+
+    Promise.prototype.catch = function (onRejected) {
       return this.then(null, onRejected);
     };
-    
+
     global.Promise = Promise;
   })(this);
 }
@@ -70,14 +70,14 @@ if (typeof Promise === 'undefined') {
 ### 2. **Promise.all**
 
 ```javascript
-if (typeof Promise.all === 'undefined') {
-  Promise.all = function(promises) {
+if (typeof Promise.all === "undefined") {
+  Promise.all = function (promises) {
     return new Promise((resolve, reject) => {
       let results = [];
       let remaining = promises.length;
-      
+
       promises.forEach((promise, index) => {
-        Promise.resolve(promise).then(value => {
+        Promise.resolve(promise).then((value) => {
           results[index] = value;
           remaining--;
           if (remaining === 0) {
@@ -93,22 +93,22 @@ if (typeof Promise.all === 'undefined') {
 ### 3. **Promise.any**
 
 ```javascript
-if (typeof Promise.any === 'undefined') {
-  Promise.any = function(promises) {
+if (typeof Promise.any === "undefined") {
+  Promise.any = function (promises) {
     return new Promise((resolve, reject) => {
       let errors = [];
       let remaining = promises.length;
-      
+
       if (remaining === 0) {
-        return reject(new AggregateError([], 'All promises were rejected'));
+        return reject(new AggregateError([], "All promises were rejected"));
       }
-      
-      promises.forEach(promise => {
-        Promise.resolve(promise).then(resolve, error => {
+
+      promises.forEach((promise) => {
+        Promise.resolve(promise).then(resolve, (error) => {
           errors.push(error);
           remaining--;
           if (remaining === 0) {
-            reject(new AggregateError(errors, 'All promises were rejected'));
+            reject(new AggregateError(errors, "All promises were rejected"));
           }
         });
       });
@@ -120,10 +120,10 @@ if (typeof Promise.any === 'undefined') {
 ### 4. **Promise.race**
 
 ```javascript
-if (typeof Promise.race === 'undefined') {
-  Promise.race = function(promises) {
+if (typeof Promise.race === "undefined") {
+  Promise.race = function (promises) {
     return new Promise((resolve, reject) => {
-      promises.forEach(promise => {
+      promises.forEach((promise) => {
         Promise.resolve(promise).then(resolve, reject);
       });
     });
@@ -134,30 +134,33 @@ if (typeof Promise.race === 'undefined') {
 ### 5. **Promise.allSettled**
 
 ```javascript
-if (typeof Promise.allSettled === 'undefined') {
-  Promise.allSettled = function(promises) {
+if (typeof Promise.allSettled === "undefined") {
+  Promise.allSettled = function (promises) {
     return new Promise((resolve) => {
       let results = [];
       let remaining = promises.length;
-      
+
       if (remaining === 0) {
         return resolve(results);
       }
-      
+
       promises.forEach((promise, index) => {
-        Promise.resolve(promise).then(value => {
-          results[index] = { status: 'fulfilled', value };
-          remaining--;
-          if (remaining === 0) {
-            resolve(results);
+        Promise.resolve(promise).then(
+          (value) => {
+            results[index] = { status: "fulfilled", value };
+            remaining--;
+            if (remaining === 0) {
+              resolve(results);
+            }
+          },
+          (reason) => {
+            results[index] = { status: "rejected", reason };
+            remaining--;
+            if (remaining === 0) {
+              resolve(results);
+            }
           }
-        }, reason => {
-          results[index] = { status: 'rejected', reason };
-          remaining--;
-          if (remaining === 0) {
-            resolve(results);
-          }
-        });
+        );
       });
     });
   };
@@ -168,7 +171,7 @@ if (typeof Promise.allSettled === 'undefined') {
 
 ```javascript
 if (!Function.prototype.call) {
-  Function.prototype.call = function(context) {
+  Function.prototype.call = function (context) {
     context = context || globalThis;
     const args = Array.prototype.slice.call(arguments, 1);
     context.fn = this;
@@ -183,7 +186,7 @@ if (!Function.prototype.call) {
 
 ```javascript
 if (!Function.prototype.apply) {
-  Function.prototype.apply = function(context, args) {
+  Function.prototype.apply = function (context, args) {
     context = context || globalThis;
     context.fn = this;
     const result = context.fn(...(args || []));
@@ -197,11 +200,14 @@ if (!Function.prototype.apply) {
 
 ```javascript
 if (!Function.prototype.bind) {
-  Function.prototype.bind = function(context) {
+  Function.prototype.bind = function (context) {
     const self = this;
     const args = Array.prototype.slice.call(arguments, 1);
-    return function() {
-      return self.apply(context, args.concat(Array.prototype.slice.call(arguments)));
+    return function () {
+      return self.apply(
+        context,
+        args.concat(Array.prototype.slice.call(arguments))
+      );
     };
   };
 }
@@ -211,7 +217,7 @@ if (!Function.prototype.bind) {
 
 ```javascript
 if (!Array.prototype.map) {
-  Array.prototype.map = function(callback, thisArg) {
+  Array.prototype.map = function (callback, thisArg) {
     const array = this;
     const result = [];
     for (let i = 0; i < array.length; i++) {
@@ -228,29 +234,29 @@ if (!Array.prototype.map) {
 
 ```javascript
 if (!Array.prototype.reduce) {
-  Array.prototype.reduce = function(callback, initialValue) {
+  Array.prototype.reduce = function (callback, initialValue) {
     if (this == null) {
-      throw new TypeError('Array.prototype.reduce called on null or undefined');
+      throw new TypeError("Array.prototype.reduce called on null or undefined");
     }
-    if (typeof callback !== 'function') {
-      throw new TypeError(callback + ' is not a function');
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
     }
-    
+
     const array = this;
     let index = 0;
     let value = initialValue;
-    
+
     if (arguments.length < 2) {
       value = array[0];
       index = 1;
     }
-    
+
     for (; index < array.length; index++) {
       if (index in array) {
         value = callback(value, array[index], index, array);
       }
     }
-    
+
     return value;
   };
 }
@@ -260,14 +266,14 @@ if (!Array.prototype.reduce) {
 
 ```javascript
 if (!Array.prototype.filter) {
-  Array.prototype.filter = function(callback, thisArg) {
+  Array.prototype.filter = function (callback, thisArg) {
     if (this == null) {
-      throw new TypeError('Array.prototype.filter called on null or undefined');
+      throw new TypeError("Array.prototype.filter called on null or undefined");
     }
-    if (typeof callback !== 'function') {
-      throw new TypeError(callback + ' is not a function');
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
     }
-    
+
     const array = this;
     const result = [];
     for (let i = 0; i < array.length; i++) {
@@ -278,7 +284,7 @@ if (!Array.prototype.filter) {
         }
       }
     }
-    
+
     return result;
   };
 }
@@ -288,14 +294,16 @@ if (!Array.prototype.filter) {
 
 ```javascript
 if (!Array.prototype.forEach) {
-  Array.prototype.forEach = function(callback, thisArg) {
+  Array.prototype.forEach = function (callback, thisArg) {
     if (this == null) {
-      throw new TypeError('Array.prototype.forEach called on null or undefined');
+      throw new TypeError(
+        "Array.prototype.forEach called on null or undefined"
+      );
     }
-    if (typeof callback !== 'function') {
-      throw new TypeError(callback + ' is not a function');
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
     }
-    
+
     const array = this;
     for (let i = 0; i < array.length; i++) {
       if (i in array) {
@@ -310,13 +318,18 @@ if (!Array.prototype.forEach) {
 
 ```javascript
 if (!Array.prototype.flat) {
-  Array.prototype.flat = function(depth = 1) {
+  Array.prototype.flat = function (depth = 1) {
     const flatten = (arr, d) => {
       if (d < 1) return arr.slice();
-      return arr.reduce((acc, val) => 
-        Array.isArray(val) ? acc.concat(flatten(val, d - 1)) : acc.concat(val), []);
+      return arr.reduce(
+        (acc, val) =>
+          Array.isArray(val)
+            ? acc.concat(flatten(val, d - 1))
+            : acc.concat(val),
+        []
+      );
     };
-    
+
     return flatten(this, depth);
   };
 }
@@ -327,26 +340,26 @@ if (!Array.prototype.flat) {
 ```javascript
 if (!window.fetch) {
   // Polyfill for fetch
-  (function(global) {
+  (function (global) {
     function fetch(url, options) {
       return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
-        xhr.open(options.method || 'GET', url);
-        
-        xhr.onload = function() {
+        xhr.open(options.method || "GET", url);
+
+        xhr.onload = function () {
           resolve({
             ok: xhr.status >= 200 && xhr.status < 300,
             status: xhr.status,
             statusText: xhr.statusText,
             json: () => Promise.resolve(JSON.parse(xhr.responseText)),
-            text: () => Promise.resolve(xhr.responseText)
+            text: () => Promise.resolve(xhr.responseText),
           });
         };
-        
-        xhr.onerror = function() {
-          reject(new TypeError('Network request failed'));
+
+        xhr.onerror = function () {
+          reject(new TypeError("Network request failed"));
         };
-        
+
         xhr.send(options.body || null);
       });
     }
@@ -356,8 +369,35 @@ if (!window.fetch) {
 }
 ```
 
-These polyfills provide basic implementations for these features. Note that for production use, especially for complex polyfills, you might want to rely on well-tested libraries or polyfills to ensure compatibility and performance.
+### 15. **deepCopy with object as a value**
 
+```javascript
+function deepCopy(obj) {
+  // Check if the object is null or not an object (base case)
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
 
+  // Create a new array or object depending on the input
+  const copy = Array.isArray(obj) ? [] : {};
 
-String.prototype.repeat  
+  // Recursively copy each property
+  for (const key in obj) {
+    copy[key] = deepCopy(obj[key]);
+  }
+
+  return copy;
+}
+
+const obj1 = { value: 10 };
+const obj2 = { nested: obj1 };
+const obj3 = { nested: obj1 };
+
+const obj2Copy = deepCopy(obj2);
+const obj3Copy = deepCopy(obj3);
+
+obj2Copy.nested.value = 20; // Doesn't affect obj3Copy.nested.value
+console.log(obj3Copy.nested.value); // Still 10
+```
+
+String.prototype.repeat
