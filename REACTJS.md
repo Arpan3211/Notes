@@ -14,11 +14,9 @@ REST API, or Representational State Transfer Application Programming Interface
 
 ---
 
-- **what is lifting state management**
+# Q1 **what is lifting state management**
 
 Lifting state involves elevating the management of a component's state to a higher-level component in the hierarchy, usually a common ancestor of the components that need access to the shared state.
-
----
 
 - life cycle when we call the API
 - what is the difference between async and await
@@ -56,33 +54,24 @@ Lifting state involves elevating the management of a component's state to a high
     ```
 
   - **Use with Promises:**
-    - **`await`** can be used with any expression that produces a promise. It pauses the execution of the **`async`** function until the promise is resolved, and then it resumes with the resolved value.
 
-- what is arrow function and how it differ from other function with example
-- what are the data types in Js
-- what is prop and props destruction
-- What are the Major Feature of React.JS?
-- Why key parameter is important while using map operation ?
-- How to perform synchronous work flow in setState ?
-- What are Error boundaries?
-- What is difference between Error boundaries and try catch method?
-- How do you convert class component into function component and implement all lifecycle method.
-- What if don't pass the dependency array in useEffect What will happen?
-- How do you make API call from redux?
-- How do you define page not found route in react?
-- How do you prevent browser back action in react?
-- How you navigate programmatically in react?
-- Why can’t browsers read JSX?
+    - **`await`** can be used with any expression that produces a promise. It pauses the execution of the
+
+    - **`async`** function until the promise is resolved, and then it resumes with the resolved value.
 
 ---
 
-- **What is the purpose of render() in React?**
+# Q2 **What is the purpose of render() in React?**
 
-Render() is required for every React component. It returns a single React element that is the native DOM component's representation. If more than one HTML element needs to be rendered, they must all be contained within one enclosing tag, such as <form>, <group>, or <div>. This function must be kept pure, which means it must always return the same result.
+Render() is required for every React component. It returns a single React element that is the native DOM component's representation. If more than one HTML element needs to be rendered, they must all be contained within one enclosing tag, such as `<form>, <group>, or <div>`. This function must be kept pure, which means it must always return the same result.
 
 ---
 
-**PUT vs PATCH**
+# Q3 **PUT vs PATCH**
+
+PUT and PATCH are both HTTP methods used for updating resources on the server. The main difference between them
+is that PUT is used to replace the entire resource with the new data, while PATCH is used to
+update only the parts of the resource that are provided in the request body.
 
 - PUT
   Modifies a resource by sending data that updates the entire resource. PUT can also create a new record if one is not available.
@@ -93,7 +82,7 @@ PUT is best used when updating or replacing existing data on the server. PATCH 
 
 ---
 
-**Status code**
+# Q4 **Status code**
 
 1. **2xx Success:**
    - 200 OK
@@ -119,56 +108,58 @@ PUT is best used when updating or replacing existing data on the server. PATCH 
 
    ***
 
-   **what is children props**
+---
 
-   In React, the **`children`** prop is a special prop that is used to pass components or elements between the opening and closing tags of a component.
+# Q5 **what is children props**
 
-   ```jsx
-   // Card.js
-   import React from 'react';
+In React, the **`children`** prop is a special prop that is used to pass components or elements between the opening and closing tags of a component.
 
-   const Card = ({ title, children }) => {
-     return (
-       <div className="card">
-         <h2>{title}</h2>
-         <div className="card-content">{children}</div>
-       </div>
-     );
-   };
+```jsx
+// Card.js
+import React from 'react';
 
-   export default Card;
-   -----------------------------------------------------
-   // App.js
-   import React from 'react';
-   import Card from './Card';
+const Card = ({ title, children }) => {
+  return (
+    <div className="card">
+      <h2>{title}</h2>
+      <div className="card-content">{children}</div>
+    </div>
+  );
+};
 
-   const App = () => {
-     return (
-       <div>
-         <h1>My React App</h1>
+export default Card;
+-----------------------------------------------------
+// App.js
+import React from 'react';
+import Card from './Card';
 
-         {/* Using the Card component with different content */}
-         <Card title="Card 1">
-           <p>This is the content of Card 1.</p>
-           <button>Click me</button>
-         </Card>
+const App = () => {
+  return (
+    <div>
+      <h1>My React App</h1>
 
-         <Card title="Card 2">
-           <div>
-             <p>Another type of content for Card 2.</p>
-             <img src="example.jpg" alt="Example" />
-           </div>
-         </Card>
-       </div>
-     );
-   };
+      {/* Using the Card component with different content */}
+      <Card title="Card 1">
+        <p>This is the content of Card 1.</p>
+        <button>Click me</button>
+      </Card>
 
-   export default App;
-   ```
+      <Card title="Card 2">
+        <div>
+          <p>Another type of content for Card 2.</p>
+          <img src="example.jpg" alt="Example" />
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+export default App;
+```
 
 ---
 
-**what do you prefer to use functional or class base component**
+# Q6 **what do you prefer to use functional or class base component**
 
 when i started working with react the class based component was out dated so i started working with functional component directly and functional based component are easy to user compare to class based component becouse it’s a normal functions
 
@@ -176,409 +167,174 @@ and if we use class component in the background the code is converted into funct
 
 ---
 
-### Possible Assignments
+# Q7 **MVC**
 
-[10 ReactJS Coding Challenge (💥Coding Interview Prep💥)](https://dev.to/frontendengineer/10-reactjs-coding-exercises-with-codepen-exercise-and-solution--22k7)
+the Model-View-Controller (MVC) pattern and its three main components: Model, View, and Controller.
+Mention that in React, while the terminology may not be exactly the same, the principles of managing state, rendering views, and handling logic still apply.
 
-[30 ReactJS Coding Interview Questions](https://codeinterview.io/blog/reactjs-coding-interview-questions/)
+1. **Model in React:**
+   - Explain that in React, the "Model" is often represented by the state of components.
+   - Components manage their own state using the **`useState`** hook or class state. Mention that for more complex applications, global state management solutions like Redux or React Context might be used for shared state.
+2. **View in React:**
+   - Discuss that React components serve as the "View" in the application.
+   - Components are responsible for rendering the user interface and presenting data to the user.
+   - Explain that React components are reusable and can be composed to build complex UIs.
+3. **Controller/ViewModel in React:**
 
-There is a list of possible tasks which the interviewer might ask to code:
+   - Highlight that React components also handle the responsibilities of the "Controller" or "ViewModel" to some extent.
+   - Business logic, event handling, and user interactions are often implemented within the components.
+   - The **`ItemList`** component manages the state (**`items`** and **`totalItems`**) as the "Model."
+   - The rendering logic is handled within the same component, acting as the "View."
+   - The **`addItem`** and **`removeItem`** functions represent the business logic and user interactions, acting as the "Controller."
 
-- create a counter and increase it by clicking on button
-- fetch data from given API and store it in variable
-- fetch data from API on the first render of the component
-- fetch data from given API when you click a button
-- render fetched data to the page as a string
-- if the data are Books for example, render only name and author of the book to the page
-- transform the properties of a book you have just rendered into separate Book component
-- render Book component to the page
-- create another component which is a collection of books which contains Book component
-- render collection of books component to the page
-- give it some styling so it looks nice (usually here the margins/paddings/color or grid/flex would be enough)
+   ```jsx
+   // Model (Component state)
+   import React, { useState } from "react";
 
-Display this data object and create a checkbox and checkbox should select according to isProgramme and when i click on the check box it should be checked or unchecked
+   const ItemList = () => {
+     const [items, setItems] = useState([]);
+     const [totalItems, setTotalItems] = useState(0);
 
-```jsx
-data = [
-{ name : “arpan”,
-isprogramme : true
-},
-{ name : “ayush”,
-isprogramme : false
-}]
-```
-
-- **MVC**
-  the Model-View-Controller (MVC) pattern and its three main components: Model, View, and Controller.
-  Mention that in React, while the terminology may not be exactly the same, the principles of managing state, rendering views, and handling logic still apply.
-
-  1. **Model in React:**
-     - Explain that in React, the "Model" is often represented by the state of components.
-     - Components manage their own state using the **`useState`** hook or class state. Mention that for more complex applications, global state management solutions like Redux or React Context might be used for shared state.
-  2. **View in React:**
-     - Discuss that React components serve as the "View" in the application.
-     - Components are responsible for rendering the user interface and presenting data to the user.
-     - Explain that React components are reusable and can be composed to build complex UIs.
-  3. **Controller/ViewModel in React:**
-
-     - Highlight that React components also handle the responsibilities of the "Controller" or "ViewModel" to some extent.
-     - Business logic, event handling, and user interactions are often implemented within the components.
-     - The **`ItemList`** component manages the state (**`items`** and **`totalItems`**) as the "Model."
-     - The rendering logic is handled within the same component, acting as the "View."
-     - The **`addItem`** and **`removeItem`** functions represent the business logic and user interactions, acting as the "Controller."
-
-     ```jsx
-     // Model (Component state)
-     import React, { useState } from "react";
-
-     const ItemList = () => {
-       const [items, setItems] = useState([]);
-       const [totalItems, setTotalItems] = useState(0);
-
-       const addItem = () => {
-         setItems([...items, `Item ${items.length + 1}`]);
-         setTotalItems(totalItems + 1);
-       };
-
-       const removeItem = (index) => {
-         const updatedItems = items.filter((_, i) => i !== index);
-         setItems(updatedItems);
-         setTotalItems(totalItems - 1);
-       };
-
-       return (
-         <div>
-           <button onClick={addItem}>Add Item</button>
-           <p>Total Items: {totalItems}</p>
-           <ul>
-             {items.map((item, index) => (
-               <li key={index}>
-                 {item}
-                 <button onClick={() => removeItem(index)}>Remove</button>
-               </li>
-             ))}
-           </ul>
-         </div>
-       );
+     const addItem = () => {
+       setItems([...items, `Item ${items.length + 1}`]);
+       setTotalItems(totalItems + 1);
      };
 
-     export default ItemList;
-     ```
+     const removeItem = (index) => {
+       const updatedItems = items.filter((_, i) => i !== index);
+       setItems(updatedItems);
+       setTotalItems(totalItems - 1);
+     };
 
-- **MVC in redux**
+     return (
+       <div>
+         <button onClick={addItem}>Add Item</button>
+         <p>Total Items: {totalItems}</p>
+         <ul>
+           {items.map((item, index) => (
+             <li key={index}>
+               {item}
+               <button onClick={() => removeItem(index)}>Remove</button>
+             </li>
+           ))}
+         </ul>
+       </div>
+     );
+   };
 
-  ***
+   export default ItemList;
+   ```
 
-  - **Example**
-    **Redux Configuration:**
-    Create the Redux store, reducers, and actions.
-    **actions.js:**
+---
 
-    ```jsx
-    // actions.js
-    export const ADD_TODO = "ADD_TODO";
-    export const REMOVE_TODO = "REMOVE_TODO";
+# Q8 **MVC IN Redux**
 
-    export const addTodo = (text) => ({
-      type: ADD_TODO,
-      payload: text,
-    });
+### **Model in Redux:**
 
-    export const removeTodo = (id) => ({
-      type: REMOVE_TODO,
-      payload: id,
-    });
-    ```
+- In Redux, the global state of the application acts as the "Model."
+- The state represents the data and the current state of the application.
 
-    **reducers.js:**
+### **View in React with Redux:**
 
-    ```jsx
-    // reducers.js
-    import { ADD_TODO, REMOVE_TODO } from "./actions";
+- React components serve as the "View" in the application.
+- Components render UI based on the state they receive as props and trigger actions in response to user interactions.
 
-    const initialState = {
-      todos: [],
-    };
+### **Controller/ViewModel in Redux:**
 
-    const todoReducer = (state = initialState, action) => {
-      switch (action.type) {
-        case ADD_TODO:
-          return {
-            ...state,
-            todos: [...state.todos, { id: Date.now(), text: action.payload }],
-          };
-        case REMOVE_TODO:
-          return {
-            ...state,
-            todos: state.todos.filter((todo) => todo.id !== action.payload),
-          };
-        default:
-          return state;
-      }
-    };
+- Redux itself, along with middleware such as Thunk or Saga, handles the responsibilities of the "Controller" or "ViewModel."
+- Actions, dispatched by components, are intercepted by reducers that specify how the state should change.
 
-    export default todoReducer;
-    ```
+- **Example:**
 
-    **store.js:**
+  **Redux Configuration:**
 
-    ```jsx
-    // store.js
-    import { createStore } from "redux";
-    import todoReducer from "./reducers";
+  Create the Redux store, reducers, and actions.
 
-    const store = createStore(todoReducer);
-
-    export default store;
-    ```
-
-    ### 3. **React Components:**
-
-    Create React components that interact with Redux.
-    **TodoList.js:**
-
-    ```jsx
-    // TodoList.js
-    import React from "react";
-    import { useSelector, useDispatch } from "react-redux";
-    import { addTodo, removeTodo } from "./actions";
-
-    const TodoList = () => {
-      const todos = useSelector((state) => state.todos);
-      const dispatch = useDispatch();
-
-      const handleAddTodo = () => {
-        const text = prompt("Enter a todo:");
-        if (text) {
-          dispatch(addTodo(text));
-        }
-      };
-
-      const handleRemoveTodo = (id) => {
-        dispatch(removeTodo(id));
-      };
-
-      return (
-        <div>
-          <button onClick={handleAddTodo}>Add Todo</button>
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id}>
-                {todo.text}
-                <button onClick={() => handleRemoveTodo(todo.id)}>
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
-    };
-
-    export default TodoList;
-    ```
-
-    **App.js:**
-
-    ```jsx
-    // App.js
-    import React from "react";
-    import { Provider } from "react-redux";
-    import store from "./store";
-    import TodoList from "./TodoList";
-
-    const App = () => {
-      return (
-        <Provider store={store}>
-          <div>
-            <h1>Todo List App</h1>
-            <TodoList />
-          </div>
-        </Provider>
-      );
-    };
-
-    export default App;
-    ```
-
-    ### 4. **Run the Application:**
-
-    In your main file (e.g., `index.js`), render the `App` component and start the application.
-
-    ```jsx
-    // index.js
-    import React from "react";
-    import ReactDOM from "react-dom";
-    import App from "./App";
-
-    ReactDOM.render(<App />, document.getElementById("root"));
-    ```
-
-    Now, you have a simple React application with Redux integration using the latest Redux hooks (`useSelector` and `useDispatch`). The `TodoList` component interacts with the Redux store to manage a list of todos.
-    In this example:
-
-    - `useSelector` is used to access the state from the Redux store.
-    - `useDispatch` is used to dispatch actions to update the state.
-      Remember to adapt the example based on your specific application needs and complexity. This example serves as a starting point for understanding how to integrate Redux with React using hooks.
-
-  ### **Model in Redux:**
-
-  - In Redux, the global state of the application acts as the "Model."
-  - The state represents the data and the current state of the application.
-
-  ### **View in React with Redux:**
-
-  - React components serve as the "View" in the application.
-  - Components render UI based on the state they receive as props and trigger actions in response to user interactions.
-
-  ### **Controller/ViewModel in Redux:**
-
-  - Redux itself, along with middleware such as Thunk or Saga, handles the responsibilities of the "Controller" or "ViewModel."
-  - Actions, dispatched by components, are intercepted by reducers that specify how the state should change.
-
-- **FLUX**
-  Flux is an application architecture pattern introduced by Facebook to handle the flow of data in a React-based web application.
-  It's not a library or a framework but rather a set of principles for managing state and data flow in a predictable way.
-  The primary goal of Flux is to provide a **unidirectional data flow**, making it easier to reason about and debug complex applications.
-
-  ### Core Concepts of Flux:
-
-  1. **Unidirectional Data Flow:**
-     - In Flux, data flows in a single direction, ensuring a clear and predictable flow of information. Actions are dispatched from the user interface, processed by stores, and then update the views.
-  2. **Actions:**
-     - Actions are plain JavaScript objects that describe an event or user interaction. They are the only source of data in the application and carry the information needed to perform a change.
-  3. **Dispatcher:**
-     - The Dispatcher is a central hub that receives actions and dispatches them to the registered stores. It ensures that actions are processed in the order they are received and prevents race conditions.
-  4. **Stores:**
-     - Stores contain the application state and logic for handling actions related to that state. Each store registers with the Dispatcher and updates its state in response to dispatched actions.
-  5. **Views (React Components):**
-     - Views, typically represented by React components, observe the state in stores and update their presentation accordingly. When a store updates its state, views re-render to reflect the changes.
-
-  ### The Flux Data Flow:
-
-  1. **Action Creation:**
-     - User interactions or events trigger the creation of actions. Actions are simple objects with a type and payload.
-  2. **Action Dispatch:**
-     - Actions are dispatched to the central Dispatcher. The Dispatcher ensures that actions are sent to all registered stores.
-  3. **Store Update:**
-     - Stores listen for actions of interest and update their state based on the action's type and payload. Stores emit a change event after updating.
-  4. **View Update:**
-     - Views (React components) register callbacks with the stores and re-render in response to changes in the store's state.
-
-  ### Example Flux Implementation:
-
-  Let's look at a simplified example of a Flux architecture using JavaScript:
-  **ActionTypes.js:**
+  **actions.js:**
 
   ```jsx
-  // ActionTypes.js
+  // actions.js
   export const ADD_TODO = "ADD_TODO";
   export const REMOVE_TODO = "REMOVE_TODO";
-  ```
-
-  **Actions.js:**
-
-  ```jsx
-  // Actions.js
-  import { ADD_TODO, REMOVE_TODO } from "./ActionTypes";
 
   export const addTodo = (text) => ({
     type: ADD_TODO,
-    payload: { text },
+    payload: text,
   });
 
   export const removeTodo = (id) => ({
     type: REMOVE_TODO,
-    payload: { id },
+    payload: id,
   });
   ```
 
-  **Dispatcher.js:**
+  **reducers.js:**
 
   ```jsx
-  // Dispatcher.js
-  import { Dispatcher } from "flux";
+  // reducers.js
+  import { ADD_TODO, REMOVE_TODO } from "./actions";
 
-  const AppDispatcher = new Dispatcher();
+  const initialState = {
+    todos: [],
+  };
 
-  export default AppDispatcher;
-  ```
-
-  **Store.js:**
-
-  ```jsx
-  // Store.js
-  import AppDispatcher from "./Dispatcher";
-  import { ADD_TODO, REMOVE_TODO } from "./ActionTypes";
-  import { EventEmitter } from "events";
-
-  let todos = [];
-
-  class TodoStore extends EventEmitter {
-    getTodos() {
-      return todos;
-    }
-
-    addChangeListener(callback) {
-      this.on("change", callback);
-    }
-
-    removeChangeListener(callback) {
-      this.removeListener("change", callback);
-    }
-  }
-
-  const todoStore = new TodoStore();
-
-  AppDispatcher.register((action) => {
+  const todoReducer = (state = initialState, action) => {
     switch (action.type) {
       case ADD_TODO:
-        todos.push({ id: Date.now(), text: action.payload.text });
-        todoStore.emit("change");
-        break;
+        return {
+          ...state,
+          todos: [...state.todos, { id: Date.now(), text: action.payload }],
+        };
       case REMOVE_TODO:
-        todos = todos.filter((todo) => todo.id !== action.payload.id);
-        todoStore.emit("change");
-        break;
+        return {
+          ...state,
+          todos: state.todos.filter((todo) => todo.id !== action.payload),
+        };
       default:
-      // No default action
+        return state;
     }
-  });
+  };
 
-  export default todoStore;
+  export default todoReducer;
   ```
+
+  **store.js:**
+
+  ```jsx
+  // store.js
+  import { createStore } from "redux";
+  import todoReducer from "./reducers";
+
+  const store = createStore(todoReducer);
+
+  export default store;
+  ```
+
+  ### 3. **React Components:**
+
+  Create React components that interact with Redux.
 
   **TodoList.js:**
 
   ```jsx
   // TodoList.js
-  import React, { useState, useEffect } from "react";
-  import todoStore from "./Store";
-  import { addTodo, removeTodo } from "./Actions";
+  import React from "react";
+  import { useSelector, useDispatch } from "react-redux";
+  import { addTodo, removeTodo } from "./actions";
 
   const TodoList = () => {
-    const [todos, setTodos] = useState(todoStore.getTodos());
-
-    useEffect(() => {
-      todoStore.addChangeListener(handleChange);
-      return () => {
-        todoStore.removeChangeListener(handleChange);
-      };
-    }, []);
-
-    const handleChange = () => {
-      setTodos(todoStore.getTodos());
-    };
+    const todos = useSelector((state) => state.todos);
+    const dispatch = useDispatch();
 
     const handleAddTodo = () => {
       const text = prompt("Enter a todo:");
       if (text) {
-        addTodo(text);
+        dispatch(addTodo(text));
       }
     };
 
     const handleRemoveTodo = (id) => {
-      removeTodo(id);
+      dispatch(removeTodo(id));
     };
 
     return (
@@ -599,13 +355,96 @@ isprogramme : false
   export default TodoList;
   ```
 
+  **App.js:**
+
+  ```jsx
+  // App.js
+  import React from "react";
+  import { Provider } from "react-redux";
+  import store from "./store";
+  import TodoList from "./TodoList";
+
+  const App = () => {
+    return (
+      <Provider store={store}>
+        <div>
+          <h1>Todo List App</h1>
+          <TodoList />
+        </div>
+      </Provider>
+    );
+  };
+
+  export default App;
+  ```
+
+  ### 4. **Run the Application:**
+
+  In your main file (e.g., `index.js`), render the `App` component and start the application.
+
+  ```jsx
+  // index.js
+  import React from "react";
+  import ReactDOM from "react-dom";
+  import App from "./App";
+
+  ReactDOM.render(<App />, document.getElementById("root"));
+  ```
+
+  Now, you have a simple React application with Redux integration using the latest Redux hooks (`useSelector` and `useDispatch`). The `TodoList` component interacts with the Redux store to manage a list of todos.
+
   In this example:
 
-  - `Actions` define the types of actions that can occur in the application.
-  - `Dispatcher` manages the flow of actions to stores.
-  - `Store` holds the application state and updates in response to actions.
-  - `TodoList` is a React component that observes the state changes in the store.
-    This is a simplified Flux implementation. In real-world applications, libraries like Redux might be preferred for a more structured and scalable approach. Flux provides a clear separation of concerns and a unidirectional data flow, making it easier to reason about and maintain large-scale applications.
+  - `useSelector` is used to access the state from the Redux store.
+  - `useDispatch` is used to dispatch actions to update the state.
+
+  Remember to adapt the example based on your specific application needs and complexity. This example serves as a starting point for understanding how to integrate Redux with React using hooks.
+
+# Q9 **FLUX**
+
+Flux is an application architecture pattern introduced by Facebook to handle the flow of data in a React-based web application.
+It's not a library or a framework but rather a set of principles for managing state and data flow in a predictable way.
+The primary goal of Flux is to provide a **unidirectional data flow**, making it easier to reason about and debug complex applications.
+
+### Core Concepts of Flux:
+
+1.  **Unidirectional Data Flow:**
+
+- In Flux, data flows in a single direction, ensuring a clear and predictable flow of information. Actions are dispatched from the user interface, processed by stores, and then update the views.
+
+2.  **Actions:**
+
+- Actions are plain JavaScript objects that describe an event or user interaction. They are the only source of data in the application and carry the information needed to perform a change.
+
+3.  **Dispatcher:**
+
+- The Dispatcher is a central hub that receives actions and dispatches them to the registered stores. It ensures that actions are processed in the order they are received and prevents race conditions.
+
+4.  **Stores:**
+
+- Stores contain the application state and logic for handling actions related to that state. Each store registers with the Dispatcher and updates its state in response to dispatched actions.
+
+5.  **Views (React Components):**
+
+- Views, typically represented by React components, observe the state in stores and update their presentation accordingly. When a store updates its state, views re-render to reflect the changes.
+
+### The Flux Data Flow:
+
+1.  **Action Creation:**
+
+- User interactions or events trigger the creation of actions. Actions are simple objects with a type and payload.
+
+2.  **Action Dispatch:**
+
+- Actions are dispatched to the central Dispatcher. The Dispatcher ensures that actions are sent to all registered stores.
+
+3.  **Store Update:**
+
+- Stores listen for actions of interest and update their state based on the action's type and payload. Stores emit a change event after updating.
+
+4.  **View Update:**
+
+- Views (React components) register callbacks with the stores and re-render in response to changes in the store's state.
 
 ## Hooks
 
@@ -1812,3 +1651,53 @@ tailwind
 styleX
 
 ## Accssability
+
+- what is arrow function and how it differ from other function with example
+- what are the data types in Js
+- what is prop and props destruction
+- What are the Major Feature of React.JS?
+- Why key parameter is important while using map operation ?
+- How to perform synchronous work flow in setState ?
+- What are Error boundaries?
+- What is difference between Error boundaries and try catch method?
+- How do you convert class component into function component and implement all lifecycle method.
+- What if don't pass the dependency array in useEffect What will happen?
+- How do you make API call from redux?
+- How do you define page not found route in react?
+- How do you prevent browser back action in react?
+- How you navigate programmatically in react?
+- Why can’t browsers read JSX?
+
+---
+
+### Possible Assignments
+
+[10 ReactJS Coding Challenge (💥Coding Interview Prep💥)](https://dev.to/frontendengineer/10-reactjs-coding-exercises-with-codepen-exercise-and-solution--22k7)
+
+[30 ReactJS Coding Interview Questions](https://codeinterview.io/blog/reactjs-coding-interview-questions/)
+
+There is a list of possible tasks which the interviewer might ask to code:
+
+- create a counter and increase it by clicking on button
+- fetch data from given API and store it in variable
+- fetch data from API on the first render of the component
+- fetch data from given API when you click a button
+- render fetched data to the page as a string
+- if the data are Books for example, render only name and author of the book to the page
+- transform the properties of a book you have just rendered into separate Book component
+- render Book component to the page
+- create another component which is a collection of books which contains Book component
+- render collection of books component to the page
+- give it some styling so it looks nice (usually here the margins/paddings/color or grid/flex would be enough)
+
+Display this data object and create a checkbox and checkbox should select according to isProgramme and when i click on the check box it should be checked or unchecked
+
+```jsx
+data = [
+{ name : “arpan”,
+isprogramme : true
+},
+{ name : “ayush”,
+isprogramme : false
+}]
+```
