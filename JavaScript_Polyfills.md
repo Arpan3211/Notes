@@ -1,6 +1,15 @@
 [polyfill for map,filter,reducer](https://www.notion.so/polyfill-for-map-filter-reducer-a927ba83e93e401eb00a8fc617e9e252?pvs=21)
 
-Polyfills are JavaScript implementations of features that are not natively available in certain environments. They provide compatibility for older browsers or environments that don't support newer JavaScript features. Below are polyfills for various JavaScript features:
+min,
+max,
+largest,
+filterData,
+sum,
+anagrams
+map,
+forEach,
+findIndex,
+charAt
 
 ### 1. **Promise**
 
