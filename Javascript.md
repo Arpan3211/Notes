@@ -260,15 +260,20 @@ varScopeExample();
 
 **Understanding the Difference Between let, const, and var in JavaScript!**
 
-**var**  
+#### **var**
+
 **Scope**: Function-scoped.  
 **Hoisting**: Variables declared with var are hoisted to the top of their scope, but not initialized.  
-**Usage**: Generally considered outdated due to its tendency to cause bugs. Use with caution!  
-**let**  
+**Usage**: Generally considered outdated due to its tendency to cause bugs. Use with caution!
+
+#### **let**
+
 **Scope**: Block-scoped.  
 **Hoisting**: Variables declared with let are hoisted to the top of their block scope, but are not initialized.  
-**Usage**: Ideal for variables that will be reassigned or have limited block scope.  
-**const**  
+**Usage**: Ideal for variables that will be reassigned or have limited block scope.
+
+#### **const**
+
 **Scope**: Block-scoped.  
 **Hoisting**: Similar to let, const is also block-scoped and not initialized during hoisting.  
 **Usage**: Best for variables that will not be reassigned (though their properties can still be mutated).  
@@ -427,7 +432,7 @@ myClosure(); // Output: "I am from the outer scope"
 
 **Explanation:**
 
-- In Javascript we declare the variable using ( var , let and const ) , and we accessing the varibles or function after the decletation but in case of var and normal functions we can access the variables before decleration
+In Javascript we declare the variable using ( var , let and const ) , and we accessing the varibles or function after the decletation but in case of var and normal functions we can access the variables before decleration
 
 ```jsx
 //------**Variable Hoisting: -----
@@ -631,7 +636,7 @@ console.log(divideFunction(100, 5)); // 20
 - In JavaScript, functions are treated as first-class citizens, which means they can be assigned to variables, passed as arguments, and returned from other functions. This enables the usage of callbacks.
 - In programming languages, including JavaScript, first-class functions refer to the concept of treating functions as values, allowing them to be assigned to variables, passed as arguments to other functions, and returned from functions.
 
-1. Functions can be assigned to variables:
+#### Functions can be assigned to variables:
 
 ```jsx
 var add = function (a, b) {
@@ -641,7 +646,7 @@ var add = function (a, b) {
 console.log(add(2, 3)); // Output: 5
 ```
 
-1. Functions can be returned from other functions:
+#### Functions can be returned from other functions:
 
 ```jsx
 function multiplier(factor) {
@@ -654,7 +659,7 @@ var multiplyByTwo = multiplier(2);
 console.log(multiplyByTwo(5)); // Output: 10
 ```
 
-1. Functions can be passed as arguments to other functions:
+#### Functions can be passed as arguments to other functions:
 
 ```jsx
 function greet(name) {
@@ -668,7 +673,7 @@ function sayHello(callback) {
 sayHello(greet); // Output: Hello, John!
 ```
 
-1. Functions can be stored in data structures:
+#### Functions can be stored in data structures:
 
 ```jsx
 var mathOperations = {
@@ -700,7 +705,7 @@ The concept of first-class functions is powerful as it enables higher-order func
 - **Call Stack:** The call stack keeps track of function calls and maintains the order of execution. When a function is called, it is added to the top of the call stack. When a function finishes executing, it is removed from the stack.
 - **Task Queue:** The task queue holds tasks or events that are ready to be processed. When an asynchronous operation completes or an event occurs, the corresponding task or event is placed in the task queue. and there is two types of task queue **[ microtack queue and macrotask queue ]**
 
-#### _Microtask Queue_
+#### Microtask Queue
 
 Microtasks are tasks that need to be executed immediately after the currently executing script (the current JavaScript call stack) has completed and before any other macrotasks. They are prioritized over macrotasks and are typically used for small and urgent tasks that must be executed as soon as possible.
 **Common examples of microtasks:**
@@ -714,7 +719,7 @@ Microtasks are tasks that need to be executed immediately after the currently ex
 - Microtasks are executed after the current call stack is empty but before the event loop moves to the next macrotask.
 - All microtasks in the microtask queue are executed continuously until the queue is empty, **before** any macrotasks are executed.
 
-#### _Macrotask Queue_
+#### Macrotask Queue
 
 Macrotasks are tasks that are scheduled to be executed after the current execution context (the current JavaScript code execution) is complete and the microtask queue is empty. They represent tasks that are less urgent and can be scheduled at a lower priority.
 
