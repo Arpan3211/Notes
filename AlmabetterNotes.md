@@ -2,15 +2,27 @@
 
 Full Stack technology refers to the entire depth of a computer system application, and full stack web developers are those who are capable of developing both the frontend and the backend of web applications.
 
+---
+
+---
+
 > **What do you understand by "MERN stack" and why it is so popular ?**
 
 MERN stack is a JavaScript stack that is used for easier and faster deployment of full-stack web applications. MERN stack comprises of 4 technologies namely: MongoDB, Express, React and Node.js.
 
 It is so popular because it is designed to make the development process smoother and easier as we don't need to learn different languages for frontend and backend, all the language is in JavaScript environment only.
 
+---
+
+---
+
 > **What is the main difference between a web developer and a software developer ?**
 
 The primary difference between web developers and software developers has to do with the programs they work with and what they're trying to create. Web developers are mainly concerned with the websites and web applications that run on internet browsers, while software developers are more focused on computer programs for desktop and mobile devices.
+
+---
+
+---
 
 > **Describe the Difference Between Var vs Let vs Const**
 
@@ -35,6 +47,10 @@ The primary difference between web developers and software developers has to do 
 3. Value cannot be updated
 4. Hoisted BUT error if we try to access before declaration.
 
+---
+
+---
+
 > **Given a string, reverse each word in the sentence**
 
 ```jsx
@@ -53,6 +69,10 @@ var reversedString = reversedWords.join(" ");
 
 console.log(reversedString); // emocleW ot siht tpircsavaJ !ediuG
 ```
+
+---
+
+---
 
 > **What’s the spread operator?**
 
@@ -79,6 +99,10 @@ console.log(baz);
 
 Then `baz` would be `[1, 2, 3, 3, 4, 5]` since we combined the entries of the `foo` and `bar` arrays into the `baz` array.
 
+---
+
+---
+
 > **How can you double elements of an array using reduce? Please note that you cannot create additional variables.**
 
 ```jsx
@@ -91,6 +115,10 @@ var doubledArr = arr.reduce(function (acc, curr) {
 
 console.log(doubledArr); // [2, 4, 6, 8]
 ```
+
+---
+
+---
 
 > **Can you describe the main difference between a .forEach loop and a .map() loop and why you would pick one versus the other?**
 
@@ -127,6 +155,10 @@ The main difference between `.forEach` and `.map()` is that `.map()` retur
 
 ---
 
+---
+
+---
+
 > **How to access keys in an object?**
 
 ```jsx
@@ -140,6 +172,10 @@ for (let key in user) {
   alert(user[key]); // Piyush, 24
 }
 ```
+
+---
+
+---
 
 > **What's the output of the following code snippet?**
 
@@ -186,6 +222,10 @@ let result =
 console.log(result);
 ```
 
+---
+
+---
+
 > **What will be the output of following code?**
 
 ```
@@ -197,6 +237,10 @@ console.log(`The number is ${result}.`);
 ```
 The number is positive.
 ```
+
+---
+
+---
 
 > **How does the continue directive (statement) work in a loop? Does it stop the whole loop?**
 
@@ -212,6 +256,10 @@ for (let i = 0; i < 10; i++) {
 
 ```
 
+---
+
+---
+
 > **Is it possible to skip or omit parts of the for-loop settings?**
 
 Yes, it is possible to omit parts or all the for-loop settings. If you remove all the parts, it results in an endless loop. Please note that the two semicolons (;) must be present, and otherwise, there would be a syntax error.
@@ -225,6 +273,10 @@ for (; i < 3; i++) {
 }
 
 ```
+
+---
+
+---
 
 > **Name and explain with example types of functions is JS**
 
@@ -252,6 +304,10 @@ display();
 
 ```
 
+---
+
+---
+
 > **Explain Hoisting in javaScript**
 
 Hoisting is the default behavior of JavaScript where all the variable and function declarations are moved on top.
@@ -269,11 +325,19 @@ var hoistedVariable;
 
 ```
 
+---
+
+---
+
 > **What do you mean by Self Invoking Functions?**
 
 Without being requested, a self-invoking expression is automatically invoked (initiated). If a function expression is followed by (), it will execute automatically. A function declaration cannot be invoked by itself.
 
 Normally, we declare a function and call it, however, anonymous functions may be used to run a function automatically when it is described and will not be called again. And there is no name for these kinds of functions.
+
+---
+
+---
 
 > **What is currying in JavaScript?**
 
@@ -291,6 +355,10 @@ function add (a) {
 add(3)(4)
 
 ```
+
+---
+
+---
 
 > **Explain Closures in JavaScript**Closures are an ability of a function to remember the variables and functions that are declared in its outer scope.
 
@@ -311,9 +379,17 @@ console.log(add5(3)); // output: 8
 console.log(add5(7)); // output: 12
 ```
 
+---
+
+---
+
 > **What is your understanding of the Event Loop concept in JavaScript?**
 
 The Event Loop is a mechanism used by JavaScript to handle asynchronous events. It is a continuous loop that checks for events and then processes them accordingly. This allows JavaScript to handle multiple events at the same time and makes it possible for things like animations and user input to be processed without blocking the main thread of execution.
+
+---
+
+---
 
 > **What will the following code output?**
 
@@ -347,6 +423,10 @@ for (var i = 0; i < 3; i++) {
 ```
 
 We pass the variable i into the outer function as a local variable named i_local, where we then return a function that will alert the i_local for us. This should now correctly alert the numbers 0, 1, and 2 in the correct order.
+
+---
+
+---
 
 > **Explain call(), apply() and, bind() methods.**
 
@@ -418,6 +498,10 @@ We pass the variable i into the outer function as a local variable named i_local
   // Returns Vivek, bike details: TS0452, Thunderbird
   ```
 
+---
+
+---
+
 > **What are object prototypes?**
 
 All JavaScript objects inherit properties from a prototype. For example,
@@ -433,6 +517,10 @@ All JavaScript objects inherit properties from a prototype. For example,
 Programmers build objects, which are representations of real-time entities, in traditional OO programming. Classes and objects are the two sorts of abstractions. A class is a generalization of an object, whereas an object is an abstraction of an actual thing. A Vehicle, for example, is a specialization of a Car. As a result, automobiles (class) are descended from vehicles (object).
 
 Classical inheritance differs from prototypal inheritance in that classical inheritance is confined to classes that inherit from those remaining classes, but prototypal inheritance allows any object to be cloned via an object linking method. Despite going into too many specifics, a prototype essentially serves as a template for those other objects, whether they extend the parent object or not.
+
+---
+
+---
 
 > **Explain Higher Order Functions in JavaScript.**
 
@@ -460,6 +548,10 @@ x()   // Returns "Do something"
 
 ```
 
+---
+
+---
+
 > **What is functional programming?**
 
 Functional programming is a paradigm in which programs are built in a declarative manner using pure functions that avoid shared state and mutable data. Functions that always return the same value for the same input and don't produce side effects are the pillar of functional programming. Many programmers consider this to be the best approach to software development as it reduces bugs and cognitive load.
@@ -469,12 +561,20 @@ Functional programming is a paradigm in which programs are built in a declarativ
 - Features of JavaScript that enable functional programming (`.map`, `.reduce` etc.)
 - JavaScript is multi-paradigm programming language (Object-Oriented Programming and Functional Programming live in harmony)
 
+---
+
+---
+
 > **What is a pure function?**
 
 A **pure function** is a function which:
 
 - Given the same inputs, always returns the same output, and
 - Has no side-effects
+
+---
+
+---
 
 > **What do you mean by strict mode in JavaScript and characteristics of JavaScript strict-mode?**
 
@@ -486,6 +586,10 @@ Characteristics of strict mode in JavaScript
 2. In strict mode, you won't be able to use the JavaScript keyword as a parameter or function name.
 3. The 'use strict' keyword is used to define strict mode at the start of the script. Strict mode is supported by all browsers.
 4. Engineers will not be allowed to create global variables in 'Strict Mode.
+
+---
+
+---
 
 > **What are Imports and Exports in JavaScript?**
 
@@ -521,6 +625,10 @@ console.log(diag(4, 3)); // 5
 
 Therefore, here we import those functions and pass input to those functions to calculate square and diagonal.
 
+---
+
+---
+
 > **What are the tools or techniques used for debugging JavaScript code**
 
 ou can use below tools or techniques for debugging JavaScript
@@ -528,6 +636,10 @@ ou can use below tools or techniques for debugging JavaScript
 1. Chrome Devtools
 2. debugger statement
 3. Good old console.log statement
+
+---
+
+---
 
 > **What is a debugger statement**
 
@@ -542,9 +654,17 @@ function getProfile() {
 
 ```
 
+---
+
+---
+
 > **What is the purpose of breakpoints in debugging**
 
 You can set breakpoints in the JavaScript code once the debugger statement is executed and the debugger window pops up. At each breakpoint, JavaScript will stop executing, and let you examine the JavaScript values. After examining values, you can resume the execution of code using the play button.
+
+---
+
+---
 
 > **How do you search a string for a pattern**
 
@@ -556,6 +676,10 @@ console.log(pattern.test("How are you?")); //true
 
 ```
 
+---
+
+---
+
 > **What is a RegExp object**
 
 RegExp object is a regular expression object with predefined properties and methods. Let's see the simple usage of RegExp object,
@@ -566,6 +690,10 @@ console.log(regexp);
 // expected output: /\w+/
 
 ```
+
+---
+
+---
 
 > **What are regular expression patterns**
 
@@ -589,272 +717,366 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 
    ***
 
-   - **What is Recursion?**
+---
 
-   Recursion is a method of program design where you break apart a problem into smaller repeatable subtasks. The program will complete each subtask later combined to achieve a solution.
+---
 
-   - **What is the difference between Recursion and Iteration?**
+- **What is Recursion?**
 
-   Recursive solutions use self-calling methods and run until their base case is reached. Iterative solutions do not call themselves and instead are repeated until a certain number of loops are reached or until a condition is met (`i==10`, for example).
+Recursion is a method of program design where you break apart a problem into smaller repeatable subtasks. The program will complete each subtask later combined to achieve a solution.
 
-   Iterative solutions have the upper hand in memory usage and speed (usually).
+---
 
-   These two benefits are actually derived from the same quality; while recursive methods add a new call to the call stack with each recurrence, iterative methods add only one call for the whole loop! This means less methods are stored and called, meaning the program uses less memory and usually creates a faster run-time.
+---
 
-   - **What is Base Case?**
+- **What is the difference between Recursion and Iteration?**
 
-   The base case (or base condition) is the state where the program’s solution has been reached. An achievable base case is essential to avoid an infinite loop. Recursive methods are built with two paths: the method first checks if the base state has been reached, if yes, the method ends and returns the current data, if not the method instead goes the other path and executes the recursive case, altering the input and calling the method again.
+Recursive solutions use self-calling methods and run until their base case is reached. Iterative solutions do not call themselves and instead are repeated until a certain number of loops are reached or until a condition is met (`i==10`, for example).
 
-   ***
+Iterative solutions have the upper hand in memory usage and speed (usually).
 
-   ***
+These two benefits are actually derived from the same quality; while recursive methods add a new call to the call stack with each recurrence, iterative methods add only one call for the whole loop! This means less methods are stored and called, meaning the program uses less memory and usually creates a faster run-time.
 
-   Frontend Module
+- **What is Base Case?**
 
-   > **What is HTML?**
+The base case (or base condition) is the state where the program’s solution has been reached. An achievable base case is essential to avoid an infinite loop. Recursive methods are built with two paths: the method first checks if the base state has been reached, if yes, the method ends and returns the current data, if not the method instead goes the other path and executes the recursive case, altering the input and calling the method again.
 
-   HTML or Hypertext Markup Language was created by Berners-Lee in 1991. It is a markup language used to create and structure website templates or web pages to present the content on the World Wide Web. It consists of a series of elements and the HTML elements tell the browser how to display the content. HTML helps in making the text more interactive and dynamic. You can save an HTML page by adding .html or .html in web page name.
+---
 
-   > **What is the difference between HTML elements and tags?**
+---
 
-   | HTML Elements                                                                                                                                                   | Tags                                                                                                   |
-   | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-   | 1. The element is an individual component of the HTML web page or document that consists of a start tag, its attributes, an end tag, and everything in between. | 1. HTML tag (either opening or closing) is used to mark the start or end of an element.                |
-   | 2. They usually consist of a start tag, content, and an end tag.                                                                                                | 2. They begin with < symbol and end with > symbol. Whatever is written inside < and > are called tags. |
-   | 3. HTML Elements hold the content.                                                                                                                              | 3. HTML Tags hold the HTML element.                                                                    |
-   | 4. They specify the general content.                                                                                                                            | 4. HTML tags are like keywords. Each tag has a unique meaning.                                         |
-   | 5. For example, <p>This is an example of a paragraph.</p>                                                                                                       | 5. For example, <a> is an opening anchor tag and </a> is a closing anchor tag.                         |
+Frontend Module
 
-   > **What are HTML Attributes?**
+---
 
-   HTML attributes provide additional information about HTML elements. They are defined directly after the tag name. They only appear in opening tags and not in closing tags.
+---
 
-   HTML attributes usually consist of name/value pairs like name=”value”. The Attribute values should always be enclosed in quotation marks. The name parameter takes the name of the property that is to be assigned to the element. The value takes the property value or extent of the property names that can be aligned over the element.
+> **What is HTML?**
 
-   Some commonly used HTML attributes include src Attribute, alt Attribute, id Attribute, and href Attribute.
+HTML or Hypertext Markup Language was created by Berners-Lee in 1991. It is a markup language used to create and structure website templates or web pages to present the content on the World Wide Web. It consists of a series of elements and the HTML elements tell the browser how to display the content. HTML helps in making the text more interactive and dynamic. You can save an HTML page by adding .html or .html in web page name.
 
-   > **How can CSS be integrated into an HTML page?**
+---
 
-   There are three ways of integrating CSS into HTML: using style tags in the head section, using inline-styling, writing CSS in a separate file, and linking into the HTML page by the link tag.
+---
 
-   > **What is meant by RGB stream?**
+> **What is the difference between HTML elements and tags?**
 
-   RGB represents colors in CSS. The three streams are namely Red, Green, and Blue. The intensity of colors is represented using numbers 0 to 256. This allows CSS to have a spectrum of visible colors.
+| HTML Elements                                                                                                                                                   | Tags                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| 1. The element is an individual component of the HTML web page or document that consists of a start tag, its attributes, an end tag, and everything in between. | 1. HTML tag (either opening or closing) is used to mark the start or end of an element.                |
+| 2. They usually consist of a start tag, content, and an end tag.                                                                                                | 2. They begin with < symbol and end with > symbol. Whatever is written inside < and > are called tags. |
+| 3. HTML Elements hold the content.                                                                                                                              | 3. HTML Tags hold the HTML element.                                                                    |
+| 4. They specify the general content.                                                                                                                            | 4. HTML tags are like keywords. Each tag has a unique meaning.                                         |
+| 5. For example, <p>This is an example of a paragraph.</p>                                                                                                       | 5. For example, <a> is an opening anchor tag and </a> is a closing anchor tag.                         |
 
-   > **What is the difference between a class and an ID?**
+---
 
-   Class is a way of using HTML elements for styling. They are not unique and have multiple elements. Whereas ID is unique and it can be assigned to a single element.
+---
 
-   > **What is the Box model in CSS? Which CSS properties are a part of it?**
+> **What are HTML Attributes?**
 
-   A rectangle box is wrapped around every HTML element. The box model is used to determine the height and width of the rectangular box. The CSS Box consists of Width and height (or in the absence of that, default values and the content inside), padding, borders, margin.
+HTML attributes provide additional information about HTML elements. They are defined directly after the tag name. They only appear in opening tags and not in closing tags.
 
-   - **Content:** Actual Content of the box where the text or image is placed.
-   - **Padding:** Area surrounding the content (Space between the border and content).
-   - **Border:** Area surrounding the padding.
-   - **Margin:** Area surrounding the border.
+HTML attributes usually consist of name/value pairs like name=”value”. The Attribute values should always be enclosed in quotation marks. The name parameter takes the name of the property that is to be assigned to the element. The value takes the property value or extent of the property names that can be aligned over the element.
 
-   > **What is the difference between inline, inline-block, and block?**
+Some commonly used HTML attributes include src Attribute, alt Attribute, id Attribute, and href Attribute.
 
-   **Block Element:** The block elements always start on a new line. They will also take space for an entire row or width. List of block elements are <div>, <p>.
+> **How can CSS be integrated into an HTML page?**
 
-   **Inline Elements:** Inline elements don't start on a new line, they appear on the same line as the content and tags beside them. Some examples of inline elements are <a>, <span> , <strong>, and <img> tags.
+There are three ways of integrating CSS into HTML: using style tags in the head section, using inline-styling, writing CSS in a separate file, and linking into the HTML page by the link tag.
 
-   **Inline Block Elements:** Inline-block elements are similar to inline elements, except they can have padding and margins and set height and width values.
+---
 
-   > **What property is used for changing the font face?**
+---
 
-   We can use the font-family property for achieving this. The font-family  property is used for specifying what font needs to be applied on the targetted DOM element. It can hold several font names as part of “fallback” mechanism in case the browser does not support the fonts.
+> **What is meant by RGB stream?**
 
-   > **How is border-box different from content-box?**
+RGB represents colors in CSS. The three streams are namely Red, Green, and Blue. The intensity of colors is represented using numbers 0 to 256. This allows CSS to have a spectrum of visible colors.
 
-   `content-box` is the default value box-sizing property. The height and the width properties consist only of the content by excluding the border and padding.
+---
 
-   The `border-box` property includes the content, padding and border in the height and width properties.
+---
 
-   > **Difference between CSS grid vs flexbox?**
+> **What is the difference between a class and an ID?**
 
-   1. CSS Grid Layout is a two-dimensional system along with rows and columns. It is used for large-sized layouts.
-   2. Flexbox is a Grid layout with a one-dimensional system either within a row or a column. It is used for the components of an application.
+Class is a way of using HTML elements for styling. They are not unique and have multiple elements. Whereas ID is unique and it can be assigned to a single element.
 
-   > **How does absolute positioning work?**
+---
 
-   Absolute positioning is used to place the element which is then removed from the HTML document from the normal workflow without creating any space for the element in the HTML page layout. The element can be positioned respectively to the closest positioned ancestor; otherwise, if the ancestor is not found, the element is placed with respect to the initial container box. The values provided to the top, right, left and bottom determine the final position of the element.
+---
 
-   > **What are the properties of flexbox?**
+> **What is the Box model in CSS? Which CSS properties are a part of it?**
 
-   The properties of flexbox are flex-direction, wrap, flow, content, and align-items, and content.
+A rectangle box is wrapped around every HTML element. The box model is used to determine the height and width of the rectangular box. The CSS Box consists of Width and height (or in the absence of that, default values and the content inside), padding, borders, margin.
 
-   > **What are the advantages of Bootstrap?**
+- **Content:** Actual Content of the box where the text or image is placed.
+- **Padding:** Area surrounding the content (Space between the border and content).
+- **Border:** Area surrounding the padding.
+- **Margin:** Area surrounding the border.
 
-   The following are some advantages of Bootstrap:
+> **What is the difference between inline, inline-block, and block?**
 
-   - Bootstrap is simple to use and anyone with a basic understanding of HTML and CSS can get started.
-   - Features that adapt to phones, tablets, and desktops: Bootstrap's responsive CSS adapts to phones, tablets, and desktops.
-   - A mobile-first strategy: Mobile-first styles are built into the Bootstrap framework.
-   - Bootstrap 4 is compatible with all modern browsers, including Chrome, Firefox, Internet Explorer 10+, Edge, Safari, and Opera
+**Block Element:** The block elements always start on a new line. They will also take space for an entire row or width. List of block elements are <div>, <p>.
 
-   > **What is a Bootstrap Container, and how does it work?**
+**Inline Elements:** Inline elements don't start on a new line, they appear on the same line as the content and tags beside them. Some examples of inline elements are <a>, <span> , <strong>, and <img> tags.
 
-   A bootstrap container is a handy class that generates a central region on the page where we can put our site content. The bootstrap .container has the advantage of being responsive and containing all of our other HTML code. Containers are used to pad the content within them, and there are two types of containers:
+**Inline Block Elements:** Inline-block elements are similar to inline elements, except they can have padding and margins and set height and width values.
 
-   - The .container class creates a fixed-width container that is responsive.
-   - The .container-fluid class creates a full-width container that spans the entire viewport width.
+> **What property is used for changing the font face?**
 
-   > **What do you know about the Bootstrap Grid System?**
+We can use the font-family property for achieving this. The font-family  property is used for specifying what font needs to be applied on the targetted DOM element. It can hold several font names as part of “fallback” mechanism in case the browser does not support the fonts.
 
-   The Bootstrap Grid System is a mobile-first, responsive grid system that scales up to 12 columns as the device or viewport size grows. Predefined classes for quick layout options and powerful mix-ins for creating successful semantic layouts are included in the system.
+---
 
-   There are five classes in the Bootstrap 4 grid system:
+---
 
-   - .col- for extra small devices, whose screen width is less than 576px.
-   - .col-sm- small devices, whose screen width is equal to or greater than 576px.
-   - .col-md- medium devices, whose screen width is equal to or greater than 768px.
-   - .col-lg- large devices, whose screen width is equal to or greater than 992px.
-   - .col-xl- extra large devices, whose screen width is equal to or greater than 1200px.
+> **How is border-box different from content-box?**
 
-   The classes listed above can be combined to build layouts that are more dynamic and adaptable.
+`content-box` is the default value box-sizing property. The height and the width properties consist only of the content by excluding the border and padding.
 
-   > **In Bootstrap 4, what is flexbox?**
+The `border-box` property includes the content, padding and border in the height and width properties.
 
-   Flexbox is a layout module for flexible boxes. Without using float or positioning, you can quickly create a flexible layout design with flexbox
+> **Difference between CSS grid vs flexbox?**
 
-   > **Explain the concept of creating a basic form in Bootstrap.**
+1.  CSS Grid Layout is a two-dimensional system along with rows and columns. It is used for large-sized layouts.
+2.  Flexbox is a Grid layout with a one-dimensional system either within a row or a column. It is used for the components of an application.
 
-   First, add a <form> element. Then, inside the form element, wrap labels and controls in a <div> element with the .form-group class. Next, the .form-control class to text input elements like <input>, <textarea> and <select> elements.
+> **How does absolute positioning work?**
 
-   > **What are the HTML DOM methods involved?**
+Absolute positioning is used to place the element which is then removed from the HTML document from the normal workflow without creating any space for the element in the HTML page layout. The element can be positioned respectively to the closest positioned ancestor; otherwise, if the ancestor is not found, the element is placed with respect to the initial container box. The values provided to the top, right, left and bottom determine the final position of the element.
 
-   The following are HTML DOM methods that are mostly used.
+---
 
-   - **getElementById(idName) – this method allows you to access or find an element associated with id name defined in parenthesis().**
-     Example –
-     document.getElementById(“demo”)
-   - **getElementsByClassName(className) – this method allows you to access or find elements associated with className defined in parenthesis().**
-     Example –
-     document.getElementsByClassName(“main”)
-   - **getElementsByTagName(tagName) – this method allows you to access or find elements associated with tagName defined in parenthesis().**
-     Example –
-     document.getElementsByTagName(“p”)
-   - **appendChild(element) – this method allows you to add a new element(node) in DOM(Document Object Model) tree structure as the last child of a node.**
-     Example –
-     document.appendChild(**_element_**)
-   - **removeChild(element) – this method allows you to remove a child element(node) in DOM(Document Object Model) tree structure.**
-     Example –
-     document.appendChild(**_element_**)
-   - **createChild(element) – this method allows you to create an element(node) in DOM(Document Object Model) tree structure.**
-     Example –
-     document.createElement(**_element_**)
-   - **replaceChild(new, old) – this method allows you to replace an old element with a new element in DOM(Document Object Model) tree structure.**
-     Example –
-     document.replaceChild(**_new, old_**)
+---
 
-   > **How can I find the number of elements (length) in the HTML collection?**
+> **What are the properties of flexbox?**
 
-   To find the number of elements in HTML collection, we have to use length properties.
+The properties of flexbox are flex-direction, wrap, flow, content, and align-items, and content.
 
-   ```
+---
 
-   <body>
+---
 
-   <p>This is paragraph one. </p>
+> **What are the advantages of Bootstrap?**
 
-   <p>  This is paragraph two. </p>
+The following are some advantages of Bootstrap:
 
-   <p>  This is paragraph three. </p>
+- Bootstrap is simple to use and anyone with a basic understanding of HTML and CSS can get started.
+- Features that adapt to phones, tablets, and desktops: Bootstrap's responsive CSS adapts to phones, tablets, and desktops.
+- A mobile-first strategy: Mobile-first styles are built into the Bootstrap framework.
+- Bootstrap 4 is compatible with all modern browsers, including Chrome, Firefox, Internet Explorer 10+, Edge, Safari, and Opera
 
-   <p id=”demo”></p>
+---
 
-   <script>
+---
 
-   var x = document.getElementsByTagName(“p”);
+> **What is a Bootstrap Container, and how does it work?**
 
-   document.getElementById(“demo”).innerHTML = x.length;
+A bootstrap container is a handy class that generates a central region on the page where we can put our site content. The bootstrap .container has the advantage of being responsive and containing all of our other HTML code. Containers are used to pad the content within them, and there are two types of containers:
 
-   </script>
+- The .container class creates a fixed-width container that is responsive.
+- The .container-fluid class creates a full-width container that spans the entire viewport width.
 
-   </body>
+---
 
-   ```
+---
 
-   The output will be –
+> **What do you know about the Bootstrap Grid System?**
 
-   4
+The Bootstrap Grid System is a mobile-first, responsive grid system that scales up to 12 columns as the device or viewport size grows. Predefined classes for quick layout options and powerful mix-ins for creating successful semantic layouts are included in the system.
 
-   > **Can you explain how to create custom HTML attributes, then get their values?**
+There are five classes in the Bootstrap 4 grid system:
 
-   You can create custom HTML attributes by using the setAttribute() method. Once you have created a custom attribute, you can then get its value by using the getAttribute() method.
+- .col- for extra small devices, whose screen width is less than 576px.
+- .col-sm- small devices, whose screen width is equal to or greater than 576px.
+- .col-md- medium devices, whose screen width is equal to or greater than 768px.
+- .col-lg- large devices, whose screen width is equal to or greater than 992px.
+- .col-xl- extra large devices, whose screen width is equal to or greater than 1200px.
 
-   > **How can we toggle between hiding and showing content using JavaScript?**
+The classes listed above can be combined to build layouts that are more dynamic and adaptable.
 
-   There are a few different ways to toggle between hiding and showing content using JavaScript. One way would be to use the CSS style property “display” and set it to “none” to hide the content, and then set it back to “block” to show it again. Another way would be to use the “visibility” style property and set it to “hidden” to hide the content, and then set it back to “visible” to show it again.
+---
 
-   > **How can you change styles of a particular element using JavaScript?**
+---
 
-   You can change styles of a particular element using JavaScript by accessing the element’s style property. This property is an object that contains all of the element’s style information. To change a specific style, you would simply set the appropriate property of the style object to the new value. For example, if you wanted to change the color of an element, you would do the following:
+> **In Bootstrap 4, what is flexbox?**
 
-   element.style.color = “new color”;
+Flexbox is a layout module for flexible boxes. Without using float or positioning, you can quickly create a flexible layout design with flexbox
 
-   > **What are the effects methods used in jQuery?**
+---
 
-   These are some effects methods used in jQuery:
+---
 
-   - show() - It displays or shows the selected elements.
-   - hide() - It hides the matched or selected elements.
-   - toggle() - It shows or hides the matched elements. In other words, it toggles between the hide() and shows() methods.
-   - fadeIn() - It shows the matched elements by fading it to opaque. In other words, it fades in the selected elements.
-   - fadeOut() - It shows the matched elements by fading it to transparent. In other words, it fades out the selected elements.
+> **Explain the concept of creating a basic form in Bootstrap.**
 
-   > **What is the use of css() method in JQuery?**
+First, add a <form> element. Then, inside the form element, wrap labels and controls in a <div> element with the .form-group class. Next, the .form-control class to text input elements like <input>, <textarea> and <select> elements.
 
-   The jQuery CSS() method is used to get (return)or set style properties or values for selected elements. It facilitates you to get one or more style properties. The jQuery CSS() provides two ways:
+---
 
-   **Return a CSS property**
+---
 
-   It is used to get the value of a specified CSS property.
+> **What are the HTML DOM methods involved?**
 
-   ```
-   $(document).ready(function(){
-       $("button").click(function(){
-           alert("Background color = " + $("p").css("background-color"));
-       });
-   });
+The following are HTML DOM methods that are mostly used.
 
-   ```
+- **getElementById(idName) – this method allows you to access or find an element associated with id name defined in parenthesis().**
+  Example –
+  document.getElementById(“demo”)
+- **getElementsByClassName(className) – this method allows you to access or find elements associated with className defined in parenthesis().**
+  Example –
+  document.getElementsByClassName(“main”)
+- **getElementsByTagName(tagName) – this method allows you to access or find elements associated with tagName defined in parenthesis().**
+  Example –
+  document.getElementsByTagName(“p”)
+- **appendChild(element) – this method allows you to add a new element(node) in DOM(Document Object Model) tree structure as the last child of a node.**
+  Example –
+  document.appendChild(**_element_**)
+- **removeChild(element) – this method allows you to remove a child element(node) in DOM(Document Object Model) tree structure.**
+  Example –
+  document.appendChild(**_element_**)
+- **createChild(element) – this method allows you to create an element(node) in DOM(Document Object Model) tree structure.**
+  Example –
+  document.createElement(**_element_**)
+- **replaceChild(new, old) – this method allows you to replace an old element with a new element in DOM(Document Object Model) tree structure.**
+  Example –
+  document.replaceChild(**_new, old_**)
 
-   **Set a CSS property**
+> **How can I find the number of elements (length) in the HTML collection?**
 
-   This property is used to set a specific value for all matched element.
+To find the number of elements in HTML collection, we have to use length properties.
 
-   ```
-   $(document).ready(function(){
-       $("button").click(function(){
-           $("p").css("background-color", "violet");
-       });
-   });
+```
 
-   ```
+<body>
 
-   > **What is the use of delay() method in JQuery?**
+<p>This is paragraph one. </p>
 
-   The jQuery delay() method is used to delay the execution of functions in the queue. It is the best method to make a delay between the queued jQuery effects. The jQUery delay () method sets a timer to delay the execution of the next item in the queue.
+<p>  This is paragraph two. </p>
 
-   ```
-   $(selector).delay (speed, queueName)
+<p>  This is paragraph three. </p>
 
-   ```
+<p id=”demo”></p>
 
-   **speed:** It is an optional parameter. It specifies the speed of the delay. Its possible values are slow, fast and milliseconds.
+<script>
 
-   **queueName:** It is also an optional parameter. It specifies the name of the queue. Its default value is "fx" the standard queue effect.
+var x = document.getElementsByTagName(“p”);
 
-   > **What is your understanding of the Event Loop concept in JavaScript?**
+document.getElementById(“demo”).innerHTML = x.length;
 
-   The Event Loop is a mechanism used by JavaScript to handle asynchronous events. It is a continuous loop that checks for events and then processes them accordingly. This allows JavaScript to handle multiple events at the same time and makes it possible for things like animations and user input to be processed without blocking the main thread of execution.
+</script>
 
-   ***
+</body>
 
-   ***
+```
+
+The output will be –
+
+4
+
+---
+
+---
+
+> **Can you explain how to create custom HTML attributes, then get their values?**
+
+You can create custom HTML attributes by using the setAttribute() method. Once you have created a custom attribute, you can then get its value by using the getAttribute() method.
+
+---
+
+---
+
+> **How can we toggle between hiding and showing content using JavaScript?**
+
+There are a few different ways to toggle between hiding and showing content using JavaScript. One way would be to use the CSS style property “display” and set it to “none” to hide the content, and then set it back to “block” to show it again. Another way would be to use the “visibility” style property and set it to “hidden” to hide the content, and then set it back to “visible” to show it again.
+
+---
+
+---
+
+> **How can you change styles of a particular element using JavaScript?**
+
+You can change styles of a particular element using JavaScript by accessing the element’s style property. This property is an object that contains all of the element’s style information. To change a specific style, you would simply set the appropriate property of the style object to the new value. For example, if you wanted to change the color of an element, you would do the following:
+
+element.style.color = “new color”;
+
+---
+
+---
+
+> **What are the effects methods used in jQuery?**
+
+These are some effects methods used in jQuery:
+
+- show() - It displays or shows the selected elements.
+- hide() - It hides the matched or selected elements.
+- toggle() - It shows or hides the matched elements. In other words, it toggles between the hide() and shows() methods.
+- fadeIn() - It shows the matched elements by fading it to opaque. In other words, it fades in the selected elements.
+- fadeOut() - It shows the matched elements by fading it to transparent. In other words, it fades out the selected elements.
+
+---
+
+---
+
+> **What is the use of css() method in JQuery?**
+
+The jQuery CSS() method is used to get (return)or set style properties or values for selected elements. It facilitates you to get one or more style properties. The jQuery CSS() provides two ways:
+
+**Return a CSS property**
+
+It is used to get the value of a specified CSS property.
+
+```
+$(document).ready(function(){
+    $("button").click(function(){
+        alert("Background color = " + $("p").css("background-color"));
+    });
+});
+
+```
+
+**Set a CSS property**
+
+This property is used to set a specific value for all matched element.
+
+```
+$(document).ready(function(){
+    $("button").click(function(){
+        $("p").css("background-color", "violet");
+    });
+});
+
+```
+
+---
+
+---
+
+> **What is the use of delay() method in JQuery?**
+
+The jQuery delay() method is used to delay the execution of functions in the queue. It is the best method to make a delay between the queued jQuery effects. The jQUery delay () method sets a timer to delay the execution of the next item in the queue.
+
+```
+$(selector).delay (speed, queueName)
+
+```
+
+**speed:** It is an optional parameter. It specifies the speed of the delay. Its possible values are slow, fast and milliseconds.
+
+**queueName:** It is also an optional parameter. It specifies the name of the queue. Its default value is "fx" the standard queue effect.
+
+> **What is your understanding of the Event Loop concept in JavaScript?**
+
+The Event Loop is a mechanism used by JavaScript to handle asynchronous events. It is a continuous loop that checks for events and then processes them accordingly. This allows JavaScript to handle multiple events at the same time and makes it possible for things like animations and user input to be processed without blocking the main thread of execution.
+
+---
+
+---
+
+---
+
+---
+
+---
 
 # Backend module
 
@@ -862,9 +1084,17 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 
 > DBMS is a collection of programs that facilitates users to create and maintain a database. In other words, DBMS provides us an interface or tool for performing different operations such as the creation of a database, inserting data into it, deleting data from it, updating the data, etc. DBMS is a software in which data is stored in a more secure way as compared to the file-based system.
 
+---
+
+---
+
 ### **What is RDBMS?**
 
 > RDBMS stands for Relational Database Management Systems. It is used to maintain the data records and indices in tables. RDBMS is the form of DBMS which uses the structure to identify and access data concerning the other piece of data in the database. RDBMS is the system that enables you to perform different operations such as- update, insert, delete, manipulate and administer a relational database with minimal difficulties. Most of the time RDBMS use SQL language because it is easily understandable and is used for often.
+
+---
+
+---
 
 ### **What are NoSQL Databases?**
 
@@ -881,6 +1111,10 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 - Wide Column Databases.
 - Key-value Databases.
 
+---
+
+---
+
 ### **How do you create a database in MySQL?**
 
 > Use the following command to create a new database called ‘books’:
@@ -889,6 +1123,10 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 `CREATE DATABASE books;`
 
 ```
+
+---
+
+---
 
 ### **How do you create a table using MySQL?**
 
