@@ -54,8 +54,6 @@ var reversedString = reversedWords.join(" ");
 console.log(reversedString); // emocleW ot siht tpircsavaJ !ediuG
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **What’s the spread operator?**
 
 The spread operator is also indicated by the `...` operator. It’ll spread an object’s property into another object and spread the array entries into another array.
@@ -68,8 +66,6 @@ const bar = [...foo];
 console.log(bar);
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 Then we get `[1, 2, 3]` as the value of `bar` since we made a copy of `foo` and assigned it to `bar` with the spread operator.
 
 It’s also useful for merging arrays. For instance, if we have:
@@ -80,8 +76,6 @@ const bar = [3, 4, 5];
 const baz = [...foo, ...bar];
 console.log(baz);
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 Then `baz` would be `[1, 2, 3, 3, 4, 5]` since we combined the entries of the `foo` and `bar` arrays into the `baz` array.
 
@@ -97,8 +91,6 @@ var doubledArr = arr.reduce(function (acc, curr) {
 
 console.log(doubledArr); // [2, 4, 6, 8]
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **Can you describe the main difference between a .forEach loop and a .map() loop and why you would pick one versus the other?**
 
@@ -117,8 +109,6 @@ const doubled = a.forEach((num, index) => {
 // doubled = undefined
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 **`map`**
 
 - Iterates through the elements in an array.
@@ -132,8 +122,6 @@ const doubled = a.map(num => {
 
 // doubled = [2, 4, 6]
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 The main difference between `.forEach` and `.map()` is that `.map()` returns a new array. If you need the result, but do not wish to mutate the original array, `.map()` is the clear choice. If you simply need to iterate over an array, `forEach` is a fine choice.
 
@@ -153,8 +141,6 @@ for (let key in user) {
 }
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **What's the output of the following code snippet?**
 
 ```jsx
@@ -167,8 +153,6 @@ const settings = {
 const data = JSON.stringify(settings, ["level", "health"]);
 console.log(data); // "{"level":19, "health":90}"
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 The second argument of **`JSON.stringify`** is the **_replacer_**. The replacer can either be a function or an array, and lets you control what and how the values should be stringified.
 
@@ -194,8 +178,6 @@ if (age >= 18) {
 console.log(result);
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 ```
 
 let age = 15;
@@ -203,8 +185,6 @@ let result =
     (age >= 18) ? "You are eligible to vote." : "You are not eligible to vote yet";
 console.log(result);
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **What will be the output of following code?**
 
@@ -214,13 +194,9 @@ let result = (a >= 0) ? (a == 0 ? "zero" : "positive") : "negative";
 console.log(`The number is ${result}.`);
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 ```
 The number is positive.
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **How does the continue directive (statement) work in a loop? Does it stop the whole loop?**
 
@@ -236,8 +212,6 @@ for (let i = 0; i < 10; i++) {
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **Is it possible to skip or omit parts of the for-loop settings?**
 
 Yes, it is possible to omit parts or all the for-loop settings. If you remove all the parts, it results in an endless loop. Please note that the two semicolons (;) must be present, and otherwise, there would be a syntax error.
@@ -252,13 +226,12 @@ for (; i < 3; i++) {
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **Name and explain with example types of functions is JS**
 
 The types of function are:
 
 - Named - These type of functions contains name at the time of definition. For Example:
+
   ```
   function display()
   {
@@ -267,7 +240,7 @@ The types of function are:
   display();
 
   ```
-  [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 - Anonymous - These type of functions doesn't contain any name. They are declared dynamically at runtime.
 
 ```
@@ -278,8 +251,6 @@ var display=function()
 display();
 
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **Explain Hoisting in javaScript**
 
@@ -297,8 +268,6 @@ console.log(hoistedVariable); // outputs 3 even when the variable is declared af
 var hoistedVariable;
 
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **What do you mean by Self Invoking Functions?**
 
@@ -323,11 +292,7 @@ add(3)(4)
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **Explain Closures in JavaScript**Closures are an ability of a function to remember the variables and functions that are declared in its outer scope.
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 Closures are an important concept in JavaScript that allow functions to retain access to variables and parameters from their outer (enclosing) scope, even after that scope has closed. A closure is created when a function is defined inside another function, and the inner function retains access to the outer function's variables and parameters.
 
@@ -346,8 +311,6 @@ console.log(add5(3)); // output: 8
 console.log(add5(7)); // output: 12
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **What is your understanding of the Event Loop concept in JavaScript?**
 
 The Event Loop is a mechanism used by JavaScript to handle asynchronous events. It is a continuous loop that checks for events and then processes them accordingly. This allows JavaScript to handle multiple events at the same time and makes it possible for things like animations and user input to be processed without blocking the main thread of execution.
@@ -361,8 +324,6 @@ for (var i = 0; i < 3; i++) {
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 **Answer**
 
 The goal of the code above is to alert the numbers 0, 1, and 2 each after 1, 1.1, and 1.2 seconds, respectively. The problem though, is that if you run the above code in your console, you actually get the number **3** alerted 3 times after 1, 1.1, and 1.2 seconds. This is because of an issue with JavaScript closures
@@ -373,8 +334,6 @@ A JavaScript **closure** is when an inner function has access to its outer enc
 setTimeout(function() { alert(i); }, 1000 + i);
 
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 uses a variable i which is declared outside of itself. The variable i is actually declared within the for loop and the inner function accesses it. So when the for loop is done running, each of the inner functions refers to the same variable i, which at the end of the loop is equal to 3. Our goal is for each inner function to maintain its reference to the variable i without the value of it being altered. We'll solve this using an [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression) , or an immediately-invoked function expression.
 
@@ -387,8 +346,6 @@ for (var i = 0; i < 3; i++) {
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 We pass the variable i into the outer function as a local variable named i_local, where we then return a function that will alert the i_local for us. This should now correctly alert the numbers 0, 1, and 2 in the correct order.
 
 > **Explain call(), apply() and, bind() methods.**
@@ -398,6 +355,7 @@ We pass the variable i into the outer function as a local variable named i_local
 - It’s a predefined method in javascript.
 - This method invokes a method (function) by specifying the owner object.
 - Example 1:
+
   ```
   function sayHello(){
     return "Hello " + this.name;
@@ -410,7 +368,7 @@ We pass the variable i into the outer function as a local variable named i_local
   // Returns "Hello Sandy"
 
   ```
-  [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 - call() method allows an object to use the method (function) of another object.
 
   2.**apply()**
@@ -427,12 +385,11 @@ We pass the variable i into the outer function as a local variable named i_local
 
       ```
 
-      [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
   3.**bind():**
 
 - This method returns a new function, where the value of **“this”** keyword will be bound to the owner object, which is provided as a parameter.
 - Example with arguments:
+
   ```jsx
   var bikeDetails = {
     displayDetails: function (registrationNumber, brandName) {
@@ -460,7 +417,6 @@ We pass the variable i into the outer function as a local variable named i_local
   detailsOfPerson1();
   // Returns Vivek, bike details: TS0452, Thunderbird
   ```
-  [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **What are object prototypes?**
 
@@ -493,8 +449,6 @@ higherOrder(function() { console.log("Hello world") });
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 ```
 function higherOrder2() {
   return function() {
@@ -505,8 +459,6 @@ var x = higherOrder2();
 x()   // Returns "Do something"
 
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **What is functional programming?**
 
@@ -556,8 +508,6 @@ export function diag(x, y) {
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 This file exports two functions that calculate the squares and diagonal of the input respectively.
 
 ```
@@ -568,8 +518,6 @@ console.log(square(4)); // 16
 console.log(diag(4, 3)); // 5
 
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 Therefore, here we import those functions and pass input to those functions to calculate square and diagonal.
 
@@ -594,8 +542,6 @@ function getProfile() {
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **What is the purpose of breakpoints in debugging**
 
 You can set breakpoints in the JavaScript code once the debugger statement is executed and the debugger window pops up. At each breakpoint, JavaScript will stop executing, and let you examine the JavaScript values. After examining values, you can resume the execution of code using the play button.
@@ -610,8 +556,6 @@ console.log(pattern.test("How are you?")); //true
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 > **What is a RegExp object**
 
 RegExp object is a regular expression object with predefined properties and methods. Let's see the simple usage of RegExp object,
@@ -622,8 +566,6 @@ console.log(regexp);
 // expected output: /\w+/
 
 ```
-
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
 > **What are regular expression patterns**
 
@@ -835,8 +777,6 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 
    ```
 
-   [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
    The output will be –
 
    4
@@ -882,8 +822,6 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 
    ```
 
-   [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
    **Set a CSS property**
 
    This property is used to set a specific value for all matched element.
@@ -897,8 +835,6 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 
    ```
 
-   [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
    > **What is the use of delay() method in JQuery?**
 
    The jQuery delay() method is used to delay the execution of functions in the queue. It is the best method to make a delay between the queued jQuery effects. The jQUery delay () method sets a timer to delay the execution of the next item in the queue.
@@ -907,8 +843,6 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
    $(selector).delay (speed, queueName)
 
    ```
-
-   [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
 
    **speed:** It is an optional parameter. It specifies the speed of the delay. Its possible values are slow, fast and milliseconds.
 
@@ -956,8 +890,6 @@ Regular Expressions provide a group of patterns in order to match characters. Ba
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
-
 ### **How do you create a table using MySQL?**
 
 ````
@@ -973,7 +905,7 @@ year CHAR(4)) ENGINE InnoDB;
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
 ###How do you Insert Data Into MySQL?
 
@@ -990,7 +922,7 @@ If we want to add values for all the columns of the table, we do not need to spe
 
 ```
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
 ```
 
@@ -999,7 +931,7 @@ VALUES (value1, value2, value3, ...);
 
 ````
 
-[data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
 - **What are the types of `JOIN` operators supported by MySQL?**
     - Inner Join
@@ -1046,7 +978,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     > **List out the important features of MongoDB.**
     >
@@ -1063,7 +995,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     > **Explain the term “Indexing” in MongoDB.**
     >
@@ -1081,7 +1013,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     > **What is the Aggregation Framework in MongoDB? -**
     >
@@ -1150,7 +1082,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     **Where:**
 
@@ -1168,7 +1100,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     > **How you can serve static files in Express.js?**
     >
@@ -1181,7 +1113,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     > **What are some Express.js key features**
     >
@@ -1233,7 +1165,7 @@ VALUES (value1, value2, value3, ...);
 
     ```
 
-    [data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAaElEQVRYhe2VQQoAIQwDq/j/L+vZBdHGlriQOSromJZqJgSZsljviWdP1ICLrmib/aNXfHCl93wCCK7UPAIpjfnLEoQ2Jj0BCUhAAjuBbjETEBZIZzUJkWkHQU+ALoB8RqFNSU9ACDoDZdAHNxLk2qgAAAAASUVORK5CYII=)
+
 
     > **Name some of the Template Engines supported by Express.**
     >
