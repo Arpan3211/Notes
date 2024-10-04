@@ -184,7 +184,11 @@ const memoizedCallback = useCallback(() => {
 
 They are both useful in optimizing performance by avoiding unnecessary recalculations or re-creations in React components.
 
-## Q5 why arrow function don't have this
+---
+
+---
+
+## Q5 why arrow function don't have `this`
 
 Arrow functions in JavaScript don’t have their own `this` because they are designed to inherit the `this` value from their surrounding context (or lexical scope). This is a key difference from regular functions, which define their own `this` based on how they are invoked. Here’s a breakdown of why and how arrow functions behave this way:
 

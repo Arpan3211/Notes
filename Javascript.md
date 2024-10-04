@@ -1033,7 +1033,8 @@ const evenNumbers = numbers.filter(function (number) {
 console.log(evenNumbers); // Output: [2, 4, 6]
 ```
 
-- **forEach**:
+##### forEach:
+
 - forEach does not create a new array based on given array . It’s return undefined.
 - forEach function is performed a operation on each element of array.
 - forEach skip the empty element and does not return in result also.
@@ -1280,12 +1281,14 @@ Promise.race([promise1, promise2, promise3])
 Event flow in JavaScript can be understood as the order in which events (like clicks or keyboard presses) are handled by different parts of a web page. There are two main phases: capturing and bubbling.
 
 - Event flow, also known as the event propagation model.
-- **`element**.**addEventListener( eventType, eventHandler, useCapture )**`
+- **`element`**:**addEventListener( eventType, eventHandler, useCapture )**`
 - **`eventType`**: The type of the event (e.g., "click", "mouseover").
 - **`eventHandler`**: The function to be executed when the event occurs.
 - **`useCapture`**: A boolean value indicating whether to use the capturing phase (**`true`**) or the bubbling phase (**`false`**). The default is **`false`**.
 - `element.addEventListener("click", eventHandler, true[capturing] or false[bubbling] );`
-- **Capturing Phase**:
+
+#### **Capturing Phase**:
+
 - Think of it like a top-down approach. Events start from the highest level in the web page's structure (like the whole page itself) and go down to the specific element where the event happened.
 - During the capturing phase, event handlers registered on ancestor elements are triggered before the event reaches the target element.
 
@@ -1312,7 +1315,8 @@ Event flow in JavaScript can be understood as the order in which events (like cl
 </html>
 ```
 
-- **Bubbling Phase**:
+#### **Bubbling Phase**:
+
 - Think of it as the opposite, a bottom-up approach. Events start from the specific element where the event occurred and then go up through the hierarchy to the highest level (like the whole page).
 - During the bubbling phase, event handlers registered on the target element or any of its ancestor elements are triggered in order, starting from the target element and moving up.
 
@@ -1395,8 +1399,6 @@ console.log(false && "World"); // Output: false (Right operand is skipped becaus
 ```
 
 In the first example, both operands are evaluated, and we get "Hello" because both are truthy. In the second example, the left operand is **`false`**, so JavaScript doesn't need to check the right operand, and the result is **`false`**
-
----
 
 Certainly! The **`||`** operator is often used for "or" conditions. If the left operand is **`true`**, the result is guaranteed to be **`true`**, so JavaScript skips evaluating the right operand. Here's an example:
 
@@ -1571,7 +1573,7 @@ greet(); // Output: "Hello, Guest!" (default parameter used)
 
 ---
 
-### <u>** Q37 Explains undefined , null , isFinite function in JavaScript.**</u>
+### <u>**Q37 Explains undefined , null , isFinite function in JavaScript.**</u>
 
 **Explanation**:
 
@@ -1620,7 +1622,7 @@ console.log(matches); // Outputs: ["john@example.com", "mary@example.org"]
 
 ---
 
-### <u>** Q39 what is raw string**</u>
+### <u>**Q39 what is raw string**</u>
 
 **Explanation**:
 
@@ -1688,7 +1690,7 @@ console.log(page);
 
 **Explanation**:
 
-- JavaScript is single-threaded because it has a single call stack and one thread of execution. This means it can execute one operation at a time, and it waits for one task to complete before moving on to the next. Here are some key advantages of JavaScript being single-threaded:
+JavaScript is single-threaded because it has a single call stack and one thread of execution. This means it can execute one operation at a time, and it waits for one task to complete before moving on to the next. Here are some key advantages of JavaScript being single-threaded:
 
 1. **Simplicity:** It simplifies programming and avoids the complexities of dealing with concurrent threads, preventing race conditions and deadlocks.
 2. **Predictability:** Code execution is ordered and deterministic, making it easier to reason about and debug.
@@ -1897,7 +1899,7 @@ The term **"Prototypal"** in JavaScript refers to the concept of using a **proto
 2. **Prototypal Inheritance**: This is a form of object-oriented inheritance where objects can inherit directly from other objects. In JavaScript, objects have an internal link (often referred to as `[[Prototype]]` or `__proto__`) that points to their prototype. When you try to access a property or method on an object, JavaScript first looks for it on that object. If it does not find it, it looks at the object's prototype, and so on, up the prototype chain.
 3. **Prototypal**: The adjective "prototypal" is derived from the noun "prototype." It describes anything related to or based on the concept of prototypes. Thus, "prototypal inheritance" refers to the inheritance of properties and methods in JavaScript based on prototypes.
 
-##### Why "Prototypal"?
+#### Why "Prototypal"?
 
 JavaScript is designed around a flexible, prototype-based model for objects rather than the classical class-based model found in languages like Java or C++.
 
@@ -2003,7 +2005,11 @@ In JavaScript, every object has an internal property called `[[Prototype]]` (oft
 | **Error on Access** | No                                                 | No                                         | Yes (`ReferenceError`)                        |
 | **Example**         | `let a;`                                           | `let a = null;`                            | `console.log(b); // ReferenceError`           |
 
-#### Common Scenarios for Employing Anonymous Functions
+---
+
+---
+
+### Q Common Scenarios for Employing Anonymous Functions
 
 **Anonymous functions** in JavaScript are functions that do not have a name. They are often used when you want to define a function for immediate use or when you do not need to reuse the function elsewhere. Here are some common scenarios where anonymous functions are typically employed:
 
@@ -2187,7 +2193,11 @@ JavaScript objects can be broadly categorized into two types: **Host Objects** a
 
 Understanding the distinction between host objects and native objects helps developers write more environment-aware code and better understand the capabilities and limitations of JavaScript in different contexts.
 
-#### Clarify the distinctions among 'function User(){}', 'var user = User()', and 'var user = new User()'
+---
+
+---
+
+### Q Clarify the distinctions among 'function User(){}', 'var user = User()', and 'var user = new User()'
 
 Let's clarify the distinctions between the three different ways of using functions in JavaScript:
 
@@ -2382,7 +2392,7 @@ Strict Mode can be enabled in two ways:
 
 In JavaScript, there are several ways to clone an object. Here are some common methods:
 
-##### 1. Using the Spread Operator
+#### 1. Using the Spread Operator
 
 The spread operator (`...`) creates a shallow copy of an object.
 
@@ -2391,7 +2401,7 @@ const original = { a: 1, b: 2 };
 const copy = { ...original };
 ```
 
-##### 2. Using `Object.assign()`
+#### 2. Using `Object.assign()`
 
 `Object.assign()` also creates a shallow copy of an object.
 
@@ -2400,7 +2410,7 @@ const original = { a: 1, b: 2 };
 const copy = Object.assign({}, original);
 ```
 
-##### 3. Using `JSON.parse()` and `JSON.stringify()`
+#### 3. Using `JSON.parse()` and `JSON.stringify()`
 
 For deep cloning (copying nested objects), you can use `JSON.parse()` and `JSON.stringify()`. Note that this method has limitations, such as not supporting functions, `undefined`, or special objects like `Date`.
 
@@ -2409,7 +2419,7 @@ const original = { a: 1, b: { c: 2 } };
 const copy = JSON.parse(JSON.stringify(original));
 ```
 
-##### 4. Using a Utility Library
+#### 4. Using a Utility Library
 
 Libraries like Lodash provide utility functions for deep cloning. For example, with Lodash:
 
@@ -2498,22 +2508,22 @@ window.addEventListener("scroll", throttledScroll);
 
 ---
 
-### <u>**Q52 Temporal Dead Zone **</u>
+### <u>**Q52 Temporal Dead Zone**</u>
 
 The Temporal Dead Zone (TDZ) is a concept in JavaScript related to how variables are handled when using `let` and `const` declarations. It refers to the time between the entering of a block scope (like inside a function or a block) and the actual declaration of a variable within that block. During this period, the variable is in a "dead zone" and cannot be accessed.
 
 Here's a simplified explanation:
 
-##### What is TDZ?
+#### What is TDZ?
 
 - **Before Declaration**: If you try to access a variable declared with `let` or `const` before its declaration in its block scope, you'll get a `ReferenceError`. This is because the variable is in the TDZ.
 - **After Declaration**: Once the declaration has been encountered in the code, the variable can be used as normal.
 
-##### Why Does TDZ Exist?
+#### Why Does TDZ Exist?
 
 The TDZ exists to prevent the use of variables before they are properly initialized. It helps avoid bugs that could arise from accessing variables before they are set.
 
-##### Example of TDZ
+#### Example of TDZ
 
 Here’s an example to illustrate TDZ:
 
@@ -2531,7 +2541,7 @@ In this example:
 - The variable `a` is declared with `let` but is accessed before its declaration.
 - This results in a `ReferenceError` because `a` is in the TDZ.
 
-##### TDZ with `const`
+#### TDZ with `const`
 
 The same rules apply to variables declared with `const`, but since `const` also requires initialization at the time of declaration, the TDZ ensures that the variable cannot be accessed until it's initialized.
 
@@ -2544,12 +2554,12 @@ function example() {
 example();
 ```
 
-##### How to Avoid TDZ Errors
+#### How to Avoid TDZ Errors
 
 - **Declare Variables Early**: Declare variables at the beginning of your block scope to avoid accessing them before they are initialized.
 - **Initialize Variables**: Make sure variables declared with `let` and `const` are initialized before use.
 
-##### Summary
+#### Summary
 
 The Temporal Dead Zone is a period during which variables declared with `let` and `const` are inaccessible. It starts at the beginning of the block and ends when the variable is declared and initialized. This concept helps prevent errors related to the use of variables before they are ready.
 
@@ -2561,7 +2571,7 @@ The Temporal Dead Zone is a period during which variables declared with `let` an
 
 In JavaScript, data types can be categorized into mutable and immutable. Understanding these concepts is crucial for effective programming and managing state.
 
-##### Immutable Data Types
+#### Immutable Data Types
 
 **Definition:** Immutable data types are those whose values cannot be changed once they are created. When you modify an immutable value, a new value is created instead of modifying the original one.
 
@@ -2587,7 +2597,7 @@ In JavaScript, data types can be categorized into mutable and immutable. Underst
     console.log(bool); // true (original boolean remains unchanged)
     ```
 
-##### Mutable Data Types
+#### Mutable Data Types
 
 **Definition:** Mutable data types are those whose values can be changed after they are created. Modifying a mutable value will affect the original value.
 
@@ -2606,7 +2616,7 @@ In JavaScript, data types can be categorized into mutable and immutable. Underst
   console.log(numbers); // [1, 2, 3, 4]
   ```
 
-##### Key Differences
+#### Key Differences
 
 1. **Modification:**
 
@@ -2622,7 +2632,7 @@ In JavaScript, data types can be categorized into mutable and immutable. Underst
    - **Immutable:** Useful in functional programming, state management (e.g., Redux in React), and to ensure data integrity.
    - **Mutable:** Useful in scenarios where data changes frequently and the overhead of creating new instances is undesirable.
 
-##### Summary
+#### Summary
 
 - **Immutable Data Types**: Primitive types in JavaScript (e.g., `string`, `number`, `boolean`). They cannot be changed once created.
 - **Mutable Data Types**: Objects and arrays. Their values can be changed, which affects the original data structure.

@@ -112,3 +112,76 @@
 // 30. ** Write a function that checks if parentheses in a string are balanced ** (valid parentheses problem).
 
 // These questions test your understanding of JavaScript fundamentals and problem - solving abilities.Practicing these coding problems will prepare you for machine coding rounds.
+
+
+// Program to find longest word in a given sentence ?
+
+// const findLongestWord = (sentance) => {
+//     let wordsArr = sentance.split(" ").reduce((longest, currentWord) => {
+//         return longest.length > currentWord.length ? longest : currentWord;
+//     });
+
+//     return wordsArr;
+// }
+
+// console.log(findLongestWord("My name is Arpan Waddewar"))
+
+
+// How to check whether a string is palindrome or not ?
+
+
+// const FindPalindrome = (str) => {
+//     let currentLowerCaseStr = str.toLowerCase();
+//     let reverserdLowerCaseStr = currentLowerCaseStr.split("").reverse().join("");
+//     if (currentLowerCaseStr === reverserdLowerCaseStr) {
+//         return true;
+//     } else {
+
+//         return false
+//     }
+//     return [currentLowerCaseStr, reverserdLowerCaseStr]
+// }
+
+// let str = "madam"
+// let str1 = "racecar"
+// let str2 = "arpan"
+// console.log(FindPalindrome(str))
+// console.log(FindPalindrome(str1))
+// console.log(FindPalindrome(str2))
+
+// Write a program to remove duplicates from an array ?
+
+// const removeDuplicates = (arr) => {
+
+//     // label: 1;
+//     // let obj = {};
+
+//     // for (let i = 0; i < arr.length; i++) {
+//     //     if (obj[arr[i]]) {
+//     //         obj[arr[i]] = obj[arr[i]] + 1;
+//     //     }
+//     //     obj[arr[i]] = 1;
+//     // }
+//     // return Object.keys(obj);
+
+//     label: 2;
+//     let result = [];
+
+//     for (let i = 0; i < arr.length; i++) {
+//         let add = true;
+//         for (let j = 0; j < result.length; j++) {
+//             if (arr[i] === result[j]) {
+//                 add = false;
+//                 break;
+//             }
+//         }
+
+//         if (add) {
+//             result.push(arr[i])
+//         }
+//     }
+//     return result;
+// }
+
+// let arr = [4, 2, 5, 2, 4, 2, 4, 5, 5, 4, 3, 5, 2, 9, 0, 6, 7, 5, 3, 6, 1]
+// console.log(removeDuplicates(arr))
