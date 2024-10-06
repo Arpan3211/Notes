@@ -16,7 +16,6 @@
 // console.log(arr, typeof (arr))
 // console.log(obj, typeof (obj))
 
-
 // function Counter() {
 //     let count = 0;
 
@@ -37,7 +36,6 @@
 // counter.increment();
 // counter.decrement();
 // console.log(counter.getCount())
-
 
 // const vovelsCounter = (str, vovels) => {
 //     let count = 0;
@@ -67,7 +65,6 @@
 // let str = "Arpan Ramesh Waddewar";
 // let vovels = ["a", "e", "i", "o", "u"];
 // console.log(vovelsCounter(str, vovels));
-
 
 // Here are ** 30 JavaScript coding interview questions ** focused on machine coding rounds for entry - level to 1 + years of experience:
 
@@ -113,7 +110,6 @@
 
 // These questions test your understanding of JavaScript fundamentals and problem - solving abilities.Practicing these coding problems will prepare you for machine coding rounds.
 
-
 // Program to find longest word in a given sentence ?
 
 // const findLongestWord = (sentance) => {
@@ -126,9 +122,7 @@
 
 // console.log(findLongestWord("My name is Arpan Waddewar"))
 
-
 // How to check whether a string is palindrome or not ?
-
 
 // const FindPalindrome = (str) => {
 //     let currentLowerCaseStr = str.toLowerCase();
@@ -185,3 +179,189 @@
 
 // let arr = [4, 2, 5, 2, 4, 2, 4, 5, 5, 4, 3, 5, 2, 9, 0, 6, 7, 5, 3, 6, 1]
 // console.log(removeDuplicates(arr))
+
+// Find the missing number in an array of size n where elements are from 1 to n.
+// const FindMissingNum = (arr) => {
+//     const numsSet = new Set(arr);
+//     const maxNum = arr[arr.length - 1]; // Assuming the last element is the largest number
+//     const missings = [];
+
+//     console.log(" >> ", numsSet, typeof numsSet)
+
+//     for (let i = 1; i <= maxNum; i++) {
+//         if (!numsSet.has(i)) {
+//             missings.push(i);
+//         }
+//     }
+//     return missings;
+// };
+
+// console.log(FindMissingNum([1, 2, 4, 6, 7, 9, 10, 12, 15])); // [3, 5, 8, 11, 13, 14]
+// console.log(FindMissingNum([1, 2, 3, 6, 8, 9, 10, 12, 14])); // [4, 5, 7, 11, 13]
+
+// const FlatiningTheArr = (arr, result = []) => {
+//     for (let i = 0; i < arr.length; i++) {
+//         if (Array.isArray(arr[i])) {
+//             FlatiningTheArr(arr[i], result)
+//         } else {
+//             result.push(arr[i])
+//         }
+//     }
+//     return result;
+// }
+// let nestedArray = [
+//     1,
+//     [2, 3],
+//     [
+//         4,
+//         [5, 6],
+//         [
+//             7,
+//             [8, 9],
+//             [
+//                 10,
+//                 [11, 12, [13, 14, [15, 16]]]
+//             ]
+//         ]
+//     ]
+// ];
+
+// console.log(FlatiningTheArr(nestedArray))
+
+// generator
+
+// function* NumGenerator() {
+//     yield 1;
+//     yield 2;
+//     yield 3;
+//     yield 4;
+// }
+
+// let Gen = NumGenerator()
+// console.log(Gen.next())
+// console.log(Gen.next())
+// console.log(Gen.next())
+// console.log(Gen.next())
+// console.log(Gen.next())
+
+// function curring1(a) {
+//     return function (b) {
+//         if (!b) return a
+//         return curring1(a + b)
+//     }
+// }
+
+// console.log(curring1(1)(2)(4)(5)(6)())
+// console.log(curring1(3)(4)())
+
+// const NumberSum = (arr) => {
+//     return arr.reduce((acc, crr) => {
+//         return acc + crr;
+//     })
+// }
+
+// console.log(NumberSum([1, 4, 5, 4, 2, 5, 2, 4, 5, 2, 4, 5]))
+
+// const FruitBasket = (arr) => {
+//     return arr.reduce((acc, crr) => {
+//         for (let fruit in crr) {
+//             if (acc[fruit]) {
+//                 acc[fruit] = acc[fruit] + crr[fruit]
+//             } else {
+//                 acc[fruit] = crr[fruit];
+//             }
+//         }
+
+//         return acc;
+//     })
+// }
+
+// console.log(FruitBasket([
+//     { apple: 2, orange: 3, banana: 4, grapes: 3 },
+//     { apple: 1, orange: 9, banana: 3 },
+//     { apple: 5, orange: 4, banana: 2, grapes: 7 },
+//     { apple: 5, banana: 8, grapes: 6 },
+// ]))
+
+// const BaseBollScore = (arr) => {
+//     return arr.reduce((acc, { sr, score }) => {
+//         if (!acc[sr]) {
+//             acc[sr] = { sr, score };
+//         } else {
+//             acc[sr].score += score;
+//         }
+
+//         return acc;
+//     }, {});
+// };
+
+// console.log(
+//     BaseBollScore([
+//         { sr: 1, score: 20 },
+//         { sr: 1, score: 10 },
+//         { sr: 2, score: 60 },
+//         { sr: 2, score: 70 },
+//         { sr: 3, score: 40 },
+//         { sr: 3, score: 60 },
+//     ])
+// );
+
+// output : [ { sr: 1, score: 30 },
+// { sr: 2, score: 130 },
+// { sr: 3, score: 100 },
+
+// function deepClone(obj, hash = new WeakMap()) {
+//     // Handle null, undefined, non-objects (primitive types)
+//     if (obj === null || typeof obj !== "object") {
+//         return obj;
+//     }
+
+//     // Handle circular references
+//     if (hash.has(obj)) {
+//         return hash.get(obj);
+//     }
+
+//     // Handle special cases like Date and RegExp
+//     if (obj instanceof Date) {
+//         return new Date(obj);
+//     }
+
+//     if (obj instanceof RegExp) {
+//         return new RegExp(obj);
+//     }
+
+//     // Handle arrays
+//     if (Array.isArray(obj)) {
+//         const arrClone = [];
+//         hash.set(obj, arrClone); // Track for circular references
+//         obj.forEach((item, i) => {
+//             arrClone[i] = deepClone(item, hash);
+//         });
+//         return arrClone;
+//     }
+
+//     // Handle normal objects
+//     const clonedObj = {};
+//     hash.set(obj, clonedObj); // Track for circular references
+
+//     Object.keys(obj).forEach(key => {
+//         clonedObj[key] = deepClone(obj[key], hash);
+//     });
+
+//     return clonedObj;
+// }
+
+// let obj = {
+//     name: "Bob",  // 'Alice' overwritten by 'Bob'
+//     address: { city: 'Los Angeles', zip: 90001 },
+//     hobbies: ['reading', 'swimming'],
+//     id: 2,  // '1' overwritten by '2'
+//     startDate: new Date(),  // 'startDate' is just a reference, not a new date instance
+//     pattern: /test/i,  // This is also a shallow copy
+//     fn: function () { return "Hello"; },  // Same function reference
+//     value: undefined
+// }
+// let deep = deepClone(obj)
+
+// console.log(deep)
+// console.log(obj.address === deep.address)
