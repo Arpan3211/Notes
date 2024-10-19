@@ -365,3 +365,215 @@
 
 // console.log(deep)
 // console.log(obj.address === deep.address)
+
+// const obj = {
+//     num: 0,
+//     add(value) {
+//         this.num += value;
+//         return this;
+//     },
+//     mult(value) {
+//         this.num *= value;
+//         return this;
+//     },
+//     sub(value) {
+//         this.num -= value;
+//         return this;
+//     },
+//     div(value) {
+//         this.num /= value;
+//         return this;
+//     },
+
+// }
+
+// let result = obj.add(10).mult(4).sub(12).div(5).add(10)
+// console.log(result.num)
+
+// const memoize = (fun, context) => {
+//     let cache = {}
+//     return function (...args) {
+//         let key = JSON.stringify(args);
+//         if (cache[key]) {
+//             console.log(this)
+//             console.log(cache)
+//             return cache[key];
+//         }
+//         let result = fun.apply(context || this, args);
+//         cache[key] = result;
+//         console.log(this)
+//         console.log(cache)
+//         return result;
+//     }
+// }
+
+// const Computation = (num1, num2) => {
+//     let sum = 0;
+//     for (let i = 0; i < num1; i++) {
+//         sum += i;
+//     }
+//     return sum * num2;
+// }
+
+// let MemoizeComputation = memoize(Computation)
+
+// console.time("Execution Time");
+// console.log(MemoizeComputation(45245245, 2313));
+// console.timeEnd("Execution Time");
+
+// console.time("2 Execution Time");
+// console.log(MemoizeComputation(45245245, 2313));
+// console.timeEnd("2 Execution Time");
+
+// const obj = {
+//     num: 10,
+//     multiply(factor) {
+//         return this.num * factor;
+//     }
+// };
+
+// console.log(obj.multiply(5));  // Output: 50
+
+// const memoizedMultiply = memoize(obj.multiply, obj);
+
+// console.time("3 Execution Time");
+// console.log(memoizedMultiply(5));  // Output: 50
+// console.timeEnd("3 Execution Time");
+
+// document.querySelector("#fruits").addEventListener("click", (event) => {
+
+//     if (event.target && event.target.tagName === "LI") {
+//         window.location.hash = event.target.textContent;
+//     }
+// })
+
+// Array.prototype.myMap = function (callback) {
+//     let result = []
+//     for (let i = 0; i < this.length; i++) {
+//         let value = callback(this[i], i, this);
+//         result.push(value);
+//     }
+//     return result;
+// }
+
+// let arr = [2, 4, 6, 2, 3, 4, 1, 4, 5, 3]
+
+// let newArr = arr.myMap((arr) => {
+//     return arr * arr;
+// })
+
+// console.log(newArr)
+
+// Array.prototype.myReduce = function (callback, initialvalue) {
+
+//     if (this === undefined || this === null) {
+//         throw error("Cannot read the property of numm or undefined");
+//     }
+
+//     if (typeof callback !== 'function') {
+//         throw new TypeError(callback + ' is not a function');
+//     }
+
+//     let accumulator = initialvalue !== undefined ? initialvalue : this[0];
+
+//     for (let i = 1; i < this.length; i++) {
+//         accumulator = callback(accumulator, this[i], i, this)
+//     }
+//     return accumulator;
+// }
+
+// let arr = [2, 4, 6, 2, 3, 4, 1, 4, 5, 3]
+
+// let newArr = arr.myReduce((acc, crr) => {
+//     return acc + crr;
+// })
+
+// console.log(newArr)
+
+// const PromiseALL = (promises) => {
+//     return new Promise((resolve, reject) => {
+//         if (!Array.isArray(promises)) {
+//             return reject(new TypeError("INput must be an array of promises"))
+//         }
+
+//         const result = [];
+//         let completedCount = 0;
+
+//         promises.forEach((promise, index) => {
+//             Promise.resolve(promise).then((value) => {
+//                 result[index] = value;
+//                 completedCount++;
+
+//                 if (completedCount === promises.length) {
+//                     resolve(result)
+//                 }
+//             }).catch((error) => {
+//                 reject(error)
+//             })
+//         })
+//         if (promises.length === 0) {
+//             resolve(results);
+//         }
+//     })
+// };
+
+// const Promise_1 = Promise.resolve(1);
+// const Promise_2 = Promise.resolve(2);
+// const Promise_3 = Promise.resolve(3);
+
+// PromiseALL([Promise_1, Promise_2, Promise_3])
+//     .then((value) => {
+//         console.log(value);
+//     })
+//     .catch((error) => {
+//         console.error(error);
+//     });
+
+
+// let a = {
+//     test1: "strng1",
+//     test2: "strng2",
+// }
+
+// let b = { ...a };
+
+// b.test1 = "string111"
+
+// console.log(b)
+// console.log(a)
+
+
+let obj = [
+    { name: "A", age: 22 },
+    { name: "H", age: 22 },
+    { name: "C", age: 23 },
+    { name: "D", age: 23 },
+    { name: "AB", age: 24 },
+]
+
+//OUTPUT : {
+// 22:["A","H"],
+// 23:["C","D"],
+// 24:"AB",
+// }
+
+let arr = [3, a, a, a, a, 4, 3, 2, a, 4, 5, a, 1, 2, 4, a, a];
+
+// OUTPUT COUNT OF a
+
+let obj1 = [
+    { name: "abc", age: 2 },
+    { name: "bcd", age: 1 },
+    { name: "abc", age: 2 },
+    { name: "hij", age: 4 },
+    { name: "klm", age: 3 },
+    { name: "klm", age: 3 },
+]
+
+// output sort according to id and remove duplicates
+// {
+//     { name: "bcd", age: 1 },
+//     { name: "abc", age: 2 },
+//     { name: "klm", age: 3 },
+//     { name: "hij", age: 4 },
+// }
