@@ -1,26 +1,174 @@
 ## Q1 What are the different lifecycle methods?
 
-1. **componentWillMount (deprecated)**: Used for initial setup before the component mounts. Avoid using it in new code, as it's being phased out.
+React's component lifecycle methods are categorized into **three main phases**:
 
-2. **componentDidMount**: This method is called after the component is mounted. It's a great place for making API calls, setting up subscriptions, or adding event listeners.
+1. **Mounting** (when a component is added to the DOM)
+2. **Updating** (when a component is updated due to state/props changes)
+3. **Unmounting** (when a component is removed from the DOM)
 
-3. **componentWillReceiveProps (deprecated)**: This was used to react to prop changes. It has been replaced by `getDerivedStateFromProps` and is not recommended for new code.
+With the introduction of React Hooks, many lifecycle functionalities can now be handled using `useEffect` and other hooks, but lifecycle methods are still relevant for class components.
 
-4. **shouldComponentUpdate**: This method allows you to optimize performance by preventing unnecessary re-renders. It receives new props and state and should return `true` or `false` based on whether the component should update.
+---
 
-5. **componentWillUpdate (deprecated)**: This method was called just before rendering when new props or state were being received. It’s rarely used and has been deprecated in favor of `getSnapshotBeforeUpdate`.
+### **1. Mounting**
+These methods are called in order when a component is being added to the DOM.
 
-6. **componentDidUpdate**: Called after the component has updated. You can use this for DOM manipulation or to perform side effects based on state or prop changes.
+- **`constructor()`**
+  - Initializes the state and binds event handlers.
+  - Rarely used; modern React encourages the use of `state` as a class property.
+  - Do not call `setState()` directly here.
 
-7. **componentWillUnmount**: This method is used for cleanup before the component is removed from the DOM, such as canceling network requests or removing event listeners.
+- **`static getDerivedStateFromProps(props, state)`**
+  - Invoked before rendering, both during the initial mount and subsequent updates.
+  - Updates the state based on changes in props.
+  - Should return an object to update the state or `null` to make no changes.
 
-### New Lifecycle Methods (React 16.3+)
+- **`render()`**
+  - Required method that defines the structure of the component’s UI.
+  - Should be a pure function of props and state.
 
-In addition to the deprecated methods, React introduced some new lifecycle methods:
+- **`componentDidMount()`**
+  - Invoked after the component is inserted into the DOM.
+  - Commonly used for:
+    - Fetching data from APIs.
+    - Subscribing to events.
+    - Starting timers.
 
-- **getDerivedStateFromProps**: A static method that allows you to update the state based on props. It runs before rendering, both on the initial mount and on subsequent updates.
+---
 
-- **getSnapshotBeforeUpdate**: Allows you to capture some information (like scroll position) from the DOM right before changes are applied.
+### **2. Updating**
+These methods are called when a component’s props or state changes.
+
+- **`static getDerivedStateFromProps(props, state)`**
+  - Same as in the mounting phase.
+  - Updates the state based on props changes before re-rendering.
+
+- **`shouldComponentUpdate(nextProps, nextState)`**
+  - Controls whether the component should re-render.
+  - Returns `true` (default) or `false`.
+  - Useful for optimizing performance and preventing unnecessary renders.
+
+- **`render()`**
+  - Same as in the mounting phase, but re-invoked during updates.
+
+- **`getSnapshotBeforeUpdate(prevProps, prevState)`**
+  - Called before the changes from the virtual DOM are applied to the real DOM.
+  - Returns a snapshot object or `null` that can be used in `componentDidUpdate`.
+
+- **`componentDidUpdate(prevProps, prevState, snapshot)`**
+  - Invoked after the component has been updated.
+  - Commonly used for:
+    - Fetching updated data.
+    - Reacting to DOM changes based on the previous state or props.
+    - Using the snapshot returned from `getSnapshotBeforeUpdate`.
+
+---
+
+### **3. Unmounting**
+This method is called when the component is removed from the DOM.
+
+- **`componentWillUnmount()`**
+  - Perform cleanup tasks like:
+    - Clearing timers.
+    - Unsubscribing from events.
+    - Cancelling network requests.
+
+---
+
+### **Legacy Lifecycle Methods (Avoid Using)**
+These are deprecated and should be avoided in modern React:
+- `componentWillMount` (use `constructor` or `componentDidMount` instead)
+- `componentWillReceiveProps` (use `static getDerivedStateFromProps` instead)
+- `componentWillUpdate` (use `getSnapshotBeforeUpdate` instead)
+
+---
+
+### Example of Lifecycle Methods
+```jsx
+import React, { Component } from 'react';
+
+class LifecycleExample extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    console.log('Constructor');
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps');
+    return null; // No state update
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate');
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('getSnapshotBeforeUpdate');
+    return null; // No snapshot data
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('componentDidUpdate');
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
+  render() {
+    console.log('Render');
+    return (
+      <div>
+        <h1>Count: {this.state.count}</h1>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Increment
+        </button>
+      </div>
+    );
+  }
+}
+
+export default LifecycleExample;
+```
+
+---
+
+### React Hooks Equivalent
+With hooks, lifecycle functionalities are replaced by the `useEffect` hook:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function HooksExample() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('Component Mounted');
+    return () => {
+      console.log('Component Unmounted');
+    };
+  }, []); // Run only on mount and unmount
+
+  useEffect(() => {
+    console.log('Count updated:', count);
+  }, [count]); // Run on count change
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+
+export default HooksExample;
+``` 
 
 ### Note on Functional Components
 
