@@ -76,6 +76,16 @@ function InsertElement(arr, K, I) {
 **Description:**  
 Given an array and an index `i`, delete the element at index `i` and shift the remaining elements to the left.  
 
+```javascript
+function DeleteElement(arr, index) {
+    arr.splice(index,1);
+    return arr
+}
+
+console.log(DeleteElement([4, 8, 15, 16, 23, 42], 2))
+console.log(DeleteElement([1], 0))
+console.log(DeleteElement([99, 5, 7, 12], 3))
+```
 **Test Cases:**  
 1. **Input:** `arr = [4, 8, 15, 16, 23, 42], i = 2` → **Output:** `[4, 8, 16, 23, 42]`  
 2. **Input:** `arr = [1], i = 0` → **Output:** `[]`  
@@ -87,6 +97,19 @@ Given an array and an index `i`, delete the element at index `i` and shift the r
 **Description:**  
 Given an array and a target number, find the index of the number. Return `-1` if not found.  
 
+```javascript
+function SearchElement(arr, target) {
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === target) return i;
+    }
+    return -1;
+}
+
+console.log(SearchElement([10, 20, 30, 40], 30))
+console.log(SearchElement([5, 1, 9, 7], 15))
+console.log(SearchElement([99, 100, 101], 99))
+```
+
 **Test Cases:**  
 1. **Input:** `arr = [10, 20, 30, 40], target = 30` → **Output:** `2`  
 2. **Input:** `arr = [5, 1, 9, 7], target = 15` → **Output:** `-1`  
@@ -97,6 +120,18 @@ Given an array and a target number, find the index of the number. Return `-1` if
 ### 🟢 **5. Reverse an Array**  
 **Description:**  
 Write a function to reverse a given array in-place without using any extra space.  
+
+
+```javascript
+function reverseArray(arr) {
+    let result = arr.reverse()
+    return result;
+}
+
+console.log(reverseArray([1, 2, 3, 4, 5]))
+console.log(reverseArray([7, 9, 11]))
+console.log(reverseArray([10]))
+```
 
 **Test Cases:**  
 1. **Input:** `arr = [1, 2, 3, 4, 5]` → **Output:** `[5, 4, 3, 2, 1]`  

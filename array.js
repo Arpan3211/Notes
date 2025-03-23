@@ -1,21 +1,19 @@
-// Insert an Element at a Specific Position
+// Reverse an Array
 // Description:
-// Given an array and a number k, insert the number at the given index i. Ensure the size of the array increases by one.
+// Write a function to reverse a given 
+// array in-place without using any extra space.
 
 // Test Cases:
 
-// Input: arr = [1, 2, 3, 4], k = 99, i = 2 → Output: [1, 2, 99, 3, 4]
+// Input: arr = [1, 2, 3, 4, 5] → Output: [5, 4, 3, 2, 1]
+// Input: arr = [7, 9, 11] → Output: [11, 9, 7]
+// Input: arr = [10] → Output: [10]
 
-// Input: arr = [5, 10], k = 7, i = 0 → Output: [7, 5, 10]
-
-// Input: arr = [3, 8, 12], k = 15, i = 3 → Output: [3, 8, 12, 15]
-
-
-function InsertElement(arr, K, I) {
-    arr.splice(I, 0, K)
-   return arr
+function reverseArray(arr) {
+    let result = arr.reverse()
+    return result;
 }
 
-console.log(InsertElement([1, 2, 3, 4], 99, 2))
-console.log(InsertElement([5, 10], 7, 0))
-console.log(InsertElement([3, 8, 12], 15, 3))
+console.log(reverseArray([1, 2, 3, 4, 5]))
+console.log(reverseArray([7, 9, 11]))
+console.log(reverseArray([10]))
