@@ -543,13 +543,13 @@
 // console.log(a)
 
 
-let obj = [
-    { name: "A", age: 22 },
-    { name: "H", age: 22 },
-    { name: "C", age: 23 },
-    { name: "D", age: 23 },
-    { name: "AB", age: 24 },
-]
+// let obj = [
+//     { name: "A", age: 22 },
+//     { name: "H", age: 22 },
+//     { name: "C", age: 23 },
+//     { name: "D", age: 23 },
+//     { name: "AB", age: 24 },
+// ]
 
 //OUTPUT : {
 // 22:["A","H"],
@@ -557,18 +557,18 @@ let obj = [
 // 24:"AB",
 // }
 
-let arr = [3, a, a, a, a, 4, 3, 2, a, 4, 5, a, 1, 2, 4, a, a];
+// let arr = [3, a, a, a, a, 4, 3, 2, a, 4, 5, a, 1, 2, 4, a, a];
 
 // OUTPUT COUNT OF a
 
-let obj1 = [
-    { name: "abc", age: 2 },
-    { name: "bcd", age: 1 },
-    { name: "abc", age: 2 },
-    { name: "hij", age: 4 },
-    { name: "klm", age: 3 },
-    { name: "klm", age: 3 },
-]
+// let obj1 = [
+//     { name: "abc", age: 2 },
+//     { name: "bcd", age: 1 },
+//     { name: "abc", age: 2 },
+//     { name: "hij", age: 4 },
+//     { name: "klm", age: 3 },
+//     { name: "klm", age: 3 },
+// ]
 
 // output sort according to id and remove duplicates
 // {
@@ -577,3 +577,37 @@ let obj1 = [
 //     { name: "klm", age: 3 },
 //     { name: "hij", age: 4 },
 // }
+
+
+// function makeCounter(initialValue = 0) {
+//     let count = initialValue;
+
+//     return {
+//       increment: ()=>{
+//         return count = count + 1;
+//       },
+//       decrement:()=>{
+//         return count = count - 1;
+//       },
+//       reset:()=>{
+//         return count = initialValue
+//       }
+//     }
+//  }
+
+//  const counter = makeCounter(10);
+//  console.log(counter.increment())
+//  console.log(counter.increment())
+//  console.log(counter.increment())
+//  console.log(counter.decrement())
+//  console.log(counter.reset())
+
+
+function curring(a){
+  return function (b){
+    if(!b) return a
+    return curring(a+b);
+  }
+}
+
+console.log(curring(2)(3)(2)(3)())

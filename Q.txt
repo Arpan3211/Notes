@@ -1,0 +1,27 @@
+error types in javascript?
+check in browser source debugger apnnel "this" object for arrow function
+
+https://github.com/alok722/namaste-javascript-notes?tab=readme-ov-file
+
+
+uses of closures:
+ Module design pattern
+ Curring
+ Functions like ones
+ memorize
+ maintaining states in async world 
+ setTimeouts
+ Iterators
+ 
+
+ AST in javascript 
+
+ javascript is interpretter or compiler laanguage
+
+ memory heap javascript 
+
+ what is mark & sweep algo in garbage collector in js
+
+ what is inlining, copy elision, inline caching in js compilition
+
+ read v8 engine blog
