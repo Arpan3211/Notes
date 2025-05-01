@@ -603,11 +603,49 @@
 //  console.log(counter.reset())
 
 
-function curring(a){
-  return function (b){
-    if(!b) return a
-    return curring(a+b);
+// function curring(a){
+//   return function (b){
+//     if(!b) return a
+//     return curring(a+b);
+//   }
+// }
+
+// console.log(curring(2)(3)(2)(3)())
+
+
+// function validateString(str) {
+//     let splitStr = str.split("").filter((char) => {
+//         return char.match(/[a-zA-Z0-9]/)
+//     }).join('').toLowerCase();
+//     return splitStr;
+// }
+// function validatePalindrome(str) {
+//     let strateStr = validateString(str);
+//     let reverseStr = validateString(str).split("").reverse().join('');
+//     return reverseStr === strateStr
+// }
+
+// console.log(validatePalindrome("A man, a plan, a canal: Panama"))
+// console.log(validatePalindrome("race a car"))
+// console.log(validatePalindrome(" "))
+// console.log(validatePalindrome("1234"))
+// console.log(validatePalindrome("pen man s nam nep"))
+
+// function isEven(num){
+//   return num % 2 === 0;
+// }
+
+
+function flatten (arr,result=[]){
+
+  for(let i = 0; i < arr.length; i++){
+    if(Array.isArray(arr[i])){
+      flatten(arr[i],result)
+    }else{
+      result.push(arr[i])
+    }
   }
+  return result
 }
 
-console.log(curring(2)(3)(2)(3)())
+console.log(flatten([1, [2, [3, [4]]]]))

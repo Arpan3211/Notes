@@ -3,7 +3,6 @@ check in browser source debugger apnnel "this" object for arrow function
 
 https://github.com/alok722/namaste-javascript-notes?tab=readme-ov-file
 
-
 uses of closures:
  Module design pattern
  Curring
@@ -25,3 +24,231 @@ uses of closures:
  what is inlining, copy elision, inline caching in js compilition
 
  read v8 engine blog
+
+ https://medium.com/@sanchit0496/machine-coding-interview-questions-35-vanilla-js-questions-with-solutions-88ecc2cb9a77
+
+ https://www.freecodecamp.org/news/the-javascript-dom-manipulation-handbook/
+
+
+ ----------------------------
+
+ Create a traffic light component with green, yellow, and red lights. On clicking a button, the light should change. Initially, it should show green. After 2 minutes, it should automatically switch to red for 30 seconds, then yellow for 10 seconds, and repeat this cycle continuously.
+ 
+ 1. What are the key differences between functional components and class-based components in React?
+2. How do lifecycle methods work in React, and how are they implemented in functional components using Hooks?
+3. Given an array of objects, how would you dynamically render specific properties (e.g., name and city) in the UI?
+4. What are the best practices and techniques to optimize performance in large-scale React applications?
+5. How do **useCallback** and **useMemo** differ, and when should each be used?
+6. What are the roles of Redux and the Context API in state management, and how do they differ in usage and scalability?
+7. Compare Redux Thunk and Redux Saga for handling side effects and asynchronous operations.
+8. How does lazy loading improve performance in React, and how do React.lazy() and Suspense enable component-level code splitting?
+
+1. What are semantic HTML tags, and why are they important for accessibility and SEO?
+2. What is the significance of the DOCTYPE declaration, and what are the implications of omitting it?
+3. What is the difference between a <div> and a <span>, and when should each be used?
+4. What are meta tags in HTML, and how do they affect page behavior and SEO?
+🎨 CSS Questions:
+1. What is the difference between pseudo-classes and pseudo-elements in CSS?
+2. What are the different types of positioning in CSS (static, relative, absolute, fixed, sticky), and when should each be applied?
+3. How do you center a child element within a parent container using CSS?
+4. What is Flexbox, and how do media queries enable responsive design?
+
+Can you describe the project you last worked on?
+ (Discussed architecture, key features, tech stack, and challenges.)
+2. What are Higher-Order Components (HOCs)?
+ (Explained how HOCs are functions that take a component and return a new component with additional props or logic.)
+3. Suppose there are 20 APIs in your application — how would you add headers inside the component?
+ (Talked about using Axios interceptors or a centralized API service to manage headers globally.)
+4. What is the difference between the Virtual DOM and the Real DOM?
+ (Explained how Virtual DOM improves performance by reducing direct DOM manipulations through diffing algorithms.)
+5. What is Variable Hoisting?
+ (Discussed how JavaScript hoists variable and function declarations during the compilation phase.)
+6. What is the difference between let, var, and const?
+ (Covered scope, redeclaration rules, and mutability.)
+7. What is the difference between a Single Page Application (SPA) and a Traditional Multi-Page Application?
+ (Explained how SPAs improve user experience by avoiding full-page reloads.)
+8. What is the difference between Class-Based and Functional Components in React?
+ (Mentioned state and lifecycle handling differences, and how functional components are more concise with hooks.)
+9. Explain all the lifecycle methods of a Class-Based Component.
+ (Walked through mounting, updating, and unmounting phases.)
+10. How can we achieve lifecycle methods in Functional Components?
+ (Described the use of useEffect and other hooks to replicate lifecycle behaviors.)
+
+ . What is Hoisting in JavaScript, and how does it work under the hood?
+- Discuss how JavaScript handles variable and function declarations during compilation.
+
+3. Can you explain what Closures are, and what are their advantages in JavaScript?
+- Talk about lexical scoping, how closures retain access to outer scope variables, and their real-world use cases.
+
+4. What are the key features of React, and how do they improve the development experience?
+- Provide an in-depth overview of the core features that make React powerful and developer-friendly.
+
+5. What is Dual Binding, and how does it compare with the data flow in React?
+- Explain the concept of two-way data binding, where it’s typically used, and how React handles data flow differently.
+
+6. What are React Hooks, why were they introduced, and which ones have you worked with?
+- Discuss the motivation behind Hooks, their role in functional components, and the common ones you've implemented in projects.
+
+7. What is useMemo, and in what scenarios would you use it?
+- Explore how React optimizes performance using memoization, and when to apply it in a component lifecycle.
+
+8. Given an API endpoint, how would you fetch data and ensure the UI is responsive across devices?
+- Walk through your approach to data fetching in React, state management, error handling, and building mobile-friendly UIs.
+
+
+
+1️⃣ Difference between forEach() and map() in JavaScript
+ → map() returns a new array, forEach() doesn’t. map() is often used for transformations, while forEach() is used for iteration without returning anything.
+
+2️⃣ Count the Occurrences of Each Element in an Array
+Input: ['a', 'b', 'a', 'c', 'b', 'a']
+Output: { a: 3, b: 2, c: 1 }
+
+3️⃣ Output-Based Question
+setTimeout(() => console.log('1'), 0);
+Promise.resolve().then(() => console.log('2'));
+console.log('3');
+
+// Output: 3 2 1
+
+4️⃣ Debounce Function in JavaScript
+Implement a debounce that delays execution until 2000ms after the last function call.
+
+5️⃣ Flatten a Deeply Nested Array
+Input: [1, [2, [3, [4]]]]
+Output: [1, 2, 3, 4]
+
+6️⃣ Promise Execution Order
+console.log('Start');
+
+setTimeout(() => {
+ console.log('Timeout');
+}, 0);
+
+Promise.resolve().then(() => {
+ console.log('Promise');
+});
+
+console.log('End');
+
+// Output: Start → End → Promise → Timeout
+
+7️⃣ typeof null
+console.log(typeof null); // Output: 'object'
+
+🧠 Additional Questions Asked
+ 🔹 Explain how JavaScript handles the event loop and microtask queue
+ 🔹 What's the difference between == and ===?
+ 🔹 How do you handle immutability in JavaScript (especially with objects and arrays)?
+🔹 How to deep clone an object in JavaScript?
+🔹 Explain hoisting with an example.
+ 🔹 What is event bubbling and capturing in the DOM?
+🔹 What are arrow functions and how do they handle this?
+
+
+.What is a REST API and which HTTP methods have you used?
+2. What are semantic HTML tags and how do they enhance accessibility?
+3. Explain the difference between relative, absolute, fixed, and sticky positioning in CSS.
+4. What are Single Page Applications (SPA)?
+5. REST vs GraphQL — what are the key differences?
+6. What is CORS and how do you handle it?
+7. What web performance optimization techniques do you use?
+8. What is lazy loading and how have you implemented it?
+9. Difference between localStorage, sessionStorage, and cookies.
+
+🔹 JavaScript Concepts
+1. What are closures in JavaScript? Real-world examples and drawbacks?
+2. Synchronous vs Asynchronous JavaScript — what's the difference?
+3. How does the JavaScript event loop work?
+4. Debouncing vs Throttling — when and why to use them?
+5. What is event delegation and where have you applied it?
+6. What is function currying and its use cases?
+7. Difference between Promise.all and Promise.race.
+
+🔹 ReactJS-Specific Questions
+1. Functional vs Class components in React.
+2. Purpose and usage of useState and useEffect hooks.
+3. Virtual DOM vs Real DOM — key differences.
+4. What is state lifting and when should you apply it?
+5. Controlled vs Uncontrolled components — explain with examples.
+6. Why are keys important in React lists?
+
+ What's the difference between display: block and display: inline-block in CSS?
+ → When and why would you choose one over the other in layout design?
+2. How do you ensure your web application is fully responsive across devices and screen sizes?
+3. Can you explain the difference between CSS pseudo-classes and pseudo-elements with real-world examples?
+4. Flexbox vs Grid: Which layout system do you prefer and in which scenarios?
+5. What’s the difference between async and defer attributes in the <​script> tag?
+ → How do they affect the parsing and rendering of a web page?
+6. How do you implement web accessibility (a11y) in modern web applications?
+7. What are ARIA attributes and how do they improve accessibility for screen readers?
+8. Explain Hoisting and the Temporal Dead Zone in JavaScript.
+ → How does this affect variables declared with var, let, and const?
+9. What is function currying in JavaScript? Why is it useful, and can you share a code example?
+10. What are callbacks in JavaScript? What is “callback hell,” and how can it be avoided?
+11. How do you fetch data from an API in JavaScript? What are the differences between fetch and axios?
+12. What are stateless and stateful components in React?
+ → How do they differ in behavior, lifecycle, and usage?
+13. Explain controlled vs uncontrolled components in React with an example using uncontrolled form inputs.
+14. How do you create a custom hook for input handling in React?
+15. You have 10+ images on a page – how would you implement lazy loading for performance optimization?
+ → Bonus: Mention loading="lazy", Intersection Observer API, or third-party libraries.
+16. Explain the Redux data lifecycle. How does state flow from action to reducer to component?
+17. How do you fetch data from an API using Redux middleware like Thunk or Saga?
+18. Is Node.js really single-threaded? If so, how does it handle asynchronous I/O and concurrency?
+ → Discuss the event loop and non-blocking architecture.
+19. What’s the difference between Node.js, AJAX, and jQuery in terms of use and capability?
+20. How do you create a custom middleware in Express.js?
+ → Walk through a practical example (e.g., logging, authentication, error handling).
+
+
+
+1.What is the difference between useContext and Redux?
+2.Can we create multiple contexts inside useContext, and why is it not considered ideal for large-scale applications?
+3.What is the difference between the Virtual DOM and the Real DOM?
+4.What is the difference between State and Props?
+5.What are Controlled and Uncontrolled Components? Write an example of an Uncontrolled Component.
+6.What is useRef? Create a counter with Increment and Decrement functionality using useRef.
+7.What is JSX? Why does the browser not understand JSX, and how does it increase efficiency?
+8.What is Webpack and what is Bundling?
+
+Coding Question:
+1.Create a traffic light component with green, yellow, and red lights. On clicking a button, the light should change. Initially, it should show green. After 2 minutes, it should automatically switch to red for 30 seconds, then yellow for 10 seconds, and repeat this cycle continuously.
+
+ Coding Round:
+I was asked to fetch an API that returns a list of product IDs. For each of these product IDs, I had to fetch additional details using another API and display the complete product information on the UI using React.
+🔹 2. React Hooks:
+What are the different types of React Hooks you’ve used?
+Can you explain your experience and use cases with hooks like useState, useEffect, useContext, useMemo, and useCallback?
+🔹 3. Virtual DOM vs Real DOM:
+What is the difference between the Virtual DOM and the Real DOM?
+How does React leverage the Virtual DOM to enhance performance?
+🔹 4. React Efficiency:
+Why is building a web app using React considered efficient?
+🔹 5. useCallback vs useMemo:
+What are the differences between useCallback and useMemo?
+When should we use one over the other?
+🔹 6. Lifecycle Methods in Functional Components:
+How can lifecycle behavior (similar to class components) be implemented in functional components?
+🔹 7. useContext vs Redux:
+What is the difference between using useContext and Redux for state management?
+In which scenarios would you prefer one over the other?
+🔹 8. Event Handling:
+What is Event Bubbling?
+What is the difference between a callback and an event?
+🔹 9. React Query:
+What is React Query and what problem does it solve?
+🔹 10. TypeScript:
+Basic TypeScript-related questions regarding typing, interfaces, and integrating TypeScript with React.
+🔹 11. REST API:
+What is a REST API?
+What are the common HTTP methods used and their purposes?
+🔹 12. GraphQL:
+Have you worked with GraphQL? What are the key differences between REST and GraphQL?
+🔹13.Performance Optimization:
+How can we optimize performance in the React Application.
+🔹14.React Router
+How we can achieve Routing in React?
+Concepts of React Router DOM?
+Write the code to perform the routes using React Router
+
