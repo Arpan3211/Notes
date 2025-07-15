@@ -541,6 +541,17 @@
 
 // // console.log(b)
 // // console.log(a)
+// let a = {
+//     test1: "strng1",
+//     test2: "strng2",
+// }
+
+// let b = { ...a };
+
+// b.test1 = "string111"
+
+// console.log(b)
+// console.log(a)
 
 
 // let obj = [
@@ -563,6 +574,27 @@
 
 // let obj1 = [
 //     { name: "abc", age: 2 },
+//OUTPUT : {
+// 22:["A","H"],
+// 23:["C","D"],
+// 24:"AB",
+// }
+
+// let arr = [3, a, a, a, a, 4, 3, 2, a, 4, 5, a, 1, 2, 4, a, a];
+
+// OUTPUT COUNT OF a
+
+// let obj1 = [
+//     { name: "abc", age: 2 },
+//     { name: "bcd", age: 1 },
+//     { name: "abc", age: 2 },
+//     { name: "hij", age: 4 },
+//     { name: "klm", age: 3 },
+//     { name: "klm", age: 3 },
+// ]
+
+// output sort according to id and remove duplicates
+// {
 //     { name: "bcd", age: 1 },
 //     { name: "abc", age: 2 },
 //     { name: "hij", age: 4 },
@@ -592,3 +624,76 @@
 // const add3 = makeAdder(3);
 
 
+// }
+
+
+// function makeCounter(initialValue = 0) {
+//     let count = initialValue;
+
+//     return {
+//       increment: ()=>{
+//         return count = count + 1;
+//       },
+//       decrement:()=>{
+//         return count = count - 1;
+//       },
+//       reset:()=>{
+//         return count = initialValue
+//       }
+//     }
+//  }
+
+//  const counter = makeCounter(10);
+//  console.log(counter.increment())
+//  console.log(counter.increment())
+//  console.log(counter.increment())
+//  console.log(counter.decrement())
+//  console.log(counter.reset())
+
+
+// function curring(a){
+//   return function (b){
+//     if(!b) return a
+//     return curring(a+b);
+//   }
+// }
+
+// console.log(curring(2)(3)(2)(3)())
+
+
+// function validateString(str) {
+//     let splitStr = str.split("").filter((char) => {
+//         return char.match(/[a-zA-Z0-9]/)
+//     }).join('').toLowerCase();
+//     return splitStr;
+// }
+// function validatePalindrome(str) {
+//     let strateStr = validateString(str);
+//     let reverseStr = validateString(str).split("").reverse().join('');
+//     return reverseStr === strateStr
+// }
+
+// console.log(validatePalindrome("A man, a plan, a canal: Panama"))
+// console.log(validatePalindrome("race a car"))
+// console.log(validatePalindrome(" "))
+// console.log(validatePalindrome("1234"))
+// console.log(validatePalindrome("pen man s nam nep"))
+
+// function isEven(num){
+//   return num % 2 === 0;
+// }
+
+
+function flatten (arr,result=[]){
+
+  for(let i = 0; i < arr.length; i++){
+    if(Array.isArray(arr[i])){
+      flatten(arr[i],result)
+    }else{
+      result.push(arr[i])
+    }
+  }
+  return result
+}
+
+console.log(flatten([1, [2, [3, [4]]]]))
