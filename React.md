@@ -257,3 +257,71 @@ module.exports = {
   mode: "development", // or 'production'
 };
 ```
+---
+
+
+
+### 11. **Error Boundaries are not natively supported in functional components**
+
+ because React's `componentDidCatch` and `getDerivedStateFromError` lifecycle methods — which power error boundaries — are only available in **class components**.
+
+---
+
+### 🧠 Why is that?
+
+React error boundaries **rely on lifecycle methods** like:
+
+```js
+class MyErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true }; // update state to show fallback UI
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("Error caught:", error, errorInfo); // log the error
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>; // fallback UI
+    }
+    return this.props.children;
+  }
+}
+```
+
+These lifecycle methods **don't exist in functional components**. That's why **you cannot create error boundaries directly with functional components**.
+
+---
+
+### ⚙️ But wait… can you simulate Error Boundaries in functional components?
+
+Yes! But **only by wrapping them** with a class-based error boundary. You can create a **reusable class component** and use it in your functional tree like this:
+
+```jsx
+function App() {
+  return (
+    <ErrorBoundary>
+      <YourFunctionalComponent />
+    </ErrorBoundary>
+  );
+}
+```
+
+You can also use packages like [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) by Brian Vaughn, which **provides a hook-based wrapper** to integrate cleanly with functional components.
+
+---
+
+### 📌 Summary:
+
+| Feature                    | Class Component | Functional Component |
+| -------------------------- | --------------- | -------------------- |
+| `componentDidCatch`        | ✅ Supported     | ❌ Not available      |
+| `getDerivedStateFromError` | ✅ Supported     | ❌ Not available      |
+| Can be an error boundary?  | ✅ Yes           | ❌ Not directly       |
+
+To use error boundaries in a **fully functional-component-based app**, wrap your components inside a **class-based boundary** or use third-party utilities.
+
+Want me to show you how to create a reusable `ErrorBoundary` wrapper and use it in your functional app?
