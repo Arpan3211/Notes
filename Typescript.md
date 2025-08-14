@@ -751,7 +751,7 @@ ts-node --esm hello.ts
 
 ---
 
-## **1️⃣ Install TypeScript globally**
+#### **Install TypeScript globally**
 
 Run:
 
@@ -773,7 +773,7 @@ Version 5.x.x
 
 ---
 
-## **2️⃣ Or install locally (project-based)**
+#### **Or install locally (project-based)**
 
 If you’re inside a project:
 
@@ -791,7 +791,7 @@ npx tsc --version
 
 ---
 
-## **3️⃣ If still not recognized**
+#### **If still not recognized**
 
 - Make sure **Node.js** is installed (check with `node -v` and `npm -v`).
 - If you installed globally but still see the error, add npm’s global bin folder to your PATH:
