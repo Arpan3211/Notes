@@ -1859,6 +1859,8 @@ the value of `this` can be tricky because it depends on the context in which a f
 
 1. **Arrow Functions (`=>`)**: Arrow functions were introduced in ES6 to make handling `this` more intuitive. Unlike traditional functions, arrow functions do not have their own `this`.Instead, they capture `this` from their lexical (surrounding) scope. This means that the value of `this` inside an arrow function is always equal to the value of `this` in the scope where the arrow function is defined.
 2. **No Rebinding of `this`**: Arrow functions are particularly useful for writing concise callback functions, like those used with array methods (`map`, `filter`, `reduce`), because they maintain the context of `this` from the enclosing scope.
+3. Arrow functions do not bind their own this.
+Instead, this is **lexically inherited from the surrounding scope where the arrow function is defined, not where it is used.
 
 - **Shorter Syntax**: Arrow functions provide a more concise way to write functions, often reducing the boilerplate code required.
 
