@@ -531,4 +531,116 @@ For a **React + Node mixed project**, a good starting point is:
 
 ---
 
+#### **1. React-based Project Example**
+
+**Goal:** Modern React app with JSX, strict typing, source maps for debugging, and full editor support.
+
+**`tsconfig.json`**
+
+```json
+{
+  "compilerOptions": {
+    /* Output & Structure */
+    "target": "ESNext", // Latest JS features
+    "module": "ESNext", // For ES module imports
+    "lib": ["DOM", "ESNext"], // Include DOM & latest JS APIs
+    "outDir": "./dist", // Compiled output folder
+    "rootDir": "./src", // Root folder for source files
+
+    /* React Specific */
+    "jsx": "react-jsx", // Use new JSX transform (React 17+)
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    /* Type Checking */
+    "strict": true, // Enable all strict checks
+    "noImplicitAny": true, // No implicit `any`
+    "strictNullChecks": true, // Must check for null/undefined
+    "forceConsistentCasingInFileNames": true, // Avoid file path case issues
+
+    /* Debugging & Build Performance */
+    "sourceMap": true, // Generate source maps for debugging
+    "skipLibCheck": true, // Skip type checking .d.ts files for speed
+    "incremental": true // Faster builds
+  },
+  "include": ["src/**/*"], // All TS/TSX files in src
+  "exclude": ["node_modules", "dist"] // Ignore node_modules & build output
+}
+```
+
+**Example Project Structure:**
+
+```
+my-react-app/
+ ├── src/
+ │    ├── App.tsx
+ │    ├── index.tsx
+ │    └── components/
+ │         └── Button.tsx
+ ├── tsconfig.json
+ ├── package.json
+ └── node_modules/
+```
+
 ---
+
+#### **2. Normal JS Files + Type Checking Example**
+
+**Goal:** Pure JavaScript project with JSDoc-based type checking. Useful for gradual migration from JS → TS.
+
+**`tsconfig.json`**
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020", // Modern JS output
+    "module": "CommonJS", // For Node.js environment
+    "checkJs": true, // Enable type checking for JS files
+    "allowJs": true, // Allow JS files in compilation
+    "outDir": "./dist", // Compiled output
+    "rootDir": "./src", // Root source folder
+    "strict": true, // Enable all strict checks
+    "noEmitOnError": true, // Don’t emit files if errors
+    "esModuleInterop": true, // For importing CommonJS modules
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+**Example JS File with Type Checking (`src/math.js`):**
+
+```js
+// @ts-check
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @returns {number}
+ */
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(5, 10)); // ✅ Works
+console.log(add("5", 10)); // ❌ Type error in editor
+```
+
+**Project Structure:**
+
+```
+my-js-project/
+ ├── src/
+ │    └── math.js
+ ├── tsconfig.json
+ ├── package.json
+ └── node_modules/
+```
+
+---
+
+---
+ 
+ 
