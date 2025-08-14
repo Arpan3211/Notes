@@ -746,3 +746,162 @@ ts-node --esm hello.ts
 ---
 
 ---
+
+## Ways to run the Typescript code
+
+---
+
+## **1️⃣ Install TypeScript globally**
+
+Run:
+
+```bash
+npm install -g typescript
+```
+
+Then check:
+
+```bash
+tsc --version
+```
+
+You should see something like:
+
+```
+Version 5.x.x
+```
+
+---
+
+## **2️⃣ Or install locally (project-based)**
+
+If you’re inside a project:
+
+```bash
+npm install typescript --save-dev
+```
+
+Now, you can run:
+
+```bash
+npx tsc --version
+```
+
+(`npx` will run the local `tsc` without adding it to PATH globally.)
+
+---
+
+## **3️⃣ If still not recognized**
+
+- Make sure **Node.js** is installed (check with `node -v` and `npm -v`).
+- If you installed globally but still see the error, add npm’s global bin folder to your PATH:
+
+  - On Windows:
+
+    1. Run `npm root -g` — note the path.
+    2. Add the corresponding `bin` folder to your PATH via **Environment Variables**.
+
+---
+
+💡 If you want to run TypeScript without setting up `tsc` at all, you can just:
+
+```bash
+npx ts-node file.ts
+```
+
+---
+
+#### **1. Compile to JavaScript, then run**
+
+This is the most common method.
+
+```bash
+# Compile
+tsc file.ts
+
+# Run with Node
+node file.js
+```
+
+- Pros: Works anywhere Node.js runs.
+- Cons: Requires a separate compile step.
+
+---
+
+#### **2. Run directly using `ts-node`**
+
+`ts-node` combines **TypeScript compilation + Node execution** in one step.
+
+```bash
+npx ts-node file.ts
+```
+
+- Pros: No manual compile step.
+- Cons: Slightly slower startup, not recommended for production.
+
+---
+
+#### **3. Run in the Browser**
+
+- **With `<script type="module">` and bundler** like Vite, Webpack, Parcel, or esbuild.
+- Example using Vite:
+
+```bash
+npm create vite@latest my-app -- --template react-ts
+npm run dev
+```
+
+The bundler compiles TypeScript to JavaScript in the background.
+
+---
+
+#### **4. Run with `ts-node-dev`**
+
+Automatically restarts when files change (good for development).
+
+```bash
+npx ts-node-dev file.ts
+```
+
+---
+
+#### **5. Using Deno** (TypeScript built-in support)
+
+Deno runs `.ts` files natively without extra setup.
+
+```bash
+deno run file.ts
+```
+
+---
+
+#### **6. Using Bun** (TypeScript support without config)
+
+```bash
+bun run file.ts
+```
+
+---
+
+#### **7. Inside Online Editors**
+
+- **Playgrounds**:
+
+  - [TypeScript Playground](https://www.typescriptlang.org/play)
+  - StackBlitz, CodeSandbox
+
+- Runs directly in the browser via in-memory compilation.
+
+---
+
+✅ **Quick Summary Table**
+
+| Method            | Tool Needed  | Compile Step | Best For            |
+| ----------------- | ------------ | ------------ | ------------------- |
+| tsc + node        | Node.js, tsc | Manual       | Production-ready    |
+| ts-node           | ts-node      | Automatic    | Quick scripts       |
+| Browser bundler   | Vite/Webpack | Automatic    | Frontend apps       |
+| ts-node-dev       | ts-node-dev  | Automatic    | Dev with hot reload |
+| Deno              | Deno         | None         | Secure, modern apps |
+| Bun               | Bun          | None         | Fast execution      |
+| Online playground | Browser      | None         | Experimenting       |
