@@ -153,7 +153,7 @@ id = "admin";
 
 ---
 
-### **2.6 Tuples**
+#### **2.6 Tuples**
 
 ```js
 /** @type {[string, number]} */
@@ -162,7 +162,7 @@ let pair = ["Arpan", 22];
 
 ---
 
-### **2.7 Type Aliases**
+#### **2.7 Type Aliases**
 
 ```js
 /**
@@ -177,7 +177,7 @@ let u1 = { name: "Arpan", age: 22 };
 
 ---
 
-### **2.8 Generics**
+#### **2.8 Generics**
 
 ```js
 /**
@@ -195,7 +195,7 @@ firstElement(["a", "b"]); // string
 
 ---
 
-### **2.9 Importing Types from `.d.ts` Files**
+#### **2.9 Importing Types from `.d.ts` Files**
 
 If types are too complex, create a `.d.ts` declaration file:
 
@@ -213,7 +213,7 @@ let p = { id: 1, name: "Book", price: 20 };
 
 ---
 
-### **2.10 Importing Types from Packages**
+#### **2.10 Importing Types from Packages**
 
 ```js
 /** @type {import("express").Request} */
@@ -222,7 +222,7 @@ function handler(req, res) {}
 
 ---
 
-### **2.11 Enums (via JSDoc)**
+#### **2.11 Enums (via JSDoc)**
 
 JS has no native enums, but you can simulate:
 
@@ -240,7 +240,7 @@ let currentStatus = Status.SUCCESS;
 
 ---
 
-### **2.12 `any` and `unknown`**
+#### **2.12 `any` and `unknown`**
 
 ```js
 /** @type {any} */ // disables type checking for this variable
@@ -252,7 +252,7 @@ let maybe;
 
 ---
 
-### **2.13 Callback Function Types**
+#### **2.13 Callback Function Types**
 
 ```js
 /**
