@@ -305,6 +305,8 @@ function processArray(arr, callback) {
 
 ---
 
+##
+
 ## Install and Configure
 
 To install and configure TypeScript in your project, you need to perform the following steps:
