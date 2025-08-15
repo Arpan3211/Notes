@@ -918,9 +918,7 @@ In **TypeScript**, `void` is a special type that means:
 
 It’s most commonly used as the **return type** of functions that don’t return anything.
 
----
-
-## 1. **Basic Usage**
+### 1. **Basic Usage**
 
 When a function doesn’t explicitly return a value, its return type is `void`:
 
@@ -937,9 +935,7 @@ Here:
 - `console.log` has no return value (technically returns `undefined`).
 - TypeScript enforces that you **don’t accidentally return** a value when `void` is the declared return type.
 
----
-
-## 2. **`void` vs `undefined`**
+### 2. **`void` vs `undefined`**
 
 - `void` means _“nothing returned”_, but technically in JavaScript, functions that return nothing actually return `undefined`.
 - The difference is in **intent**:
@@ -958,9 +954,7 @@ function doSomething(): void {
 let value: undefined = undefined; // fine
 ```
 
----
-
-## 3. **When `void` is useful**
+### 3. **When `void` is useful**
 
 - **Function signatures** where the callback’s result should be ignored:
 
@@ -982,9 +976,7 @@ document.addEventListener("click", (event): void => {
 });
 ```
 
----
-
-## 4. **Special Case: `void` in expressions**
+### 4. **Special Case: `void` in expressions**
 
 When you write `void <expression>`, it **evaluates the expression but discards the value**:
 
@@ -1002,16 +994,12 @@ void asyncFunction();
 
 - Avoid unhandled promise lint warnings.
 
----
-
-## 5. **Key Takeaways**
+### 5. **Key Takeaways**
 
 - `void` is a type, not a keyword for “empty” like in C/C++.
 - Primarily used for **functions that don’t return anything**.
 - Tells TypeScript: “Ignore the return value; not meant for use.”
 - Different from `undefined` in _meaning_, though both often end up being `undefined` in runtime.
-
----
 
 **`void`**, **`null`**, **`undefined`**, and **`never`** in TypeScript:
 
@@ -1021,8 +1009,6 @@ void asyncFunction();
 | **`null`**      | Intentional absence of any object value.                                                            | Represent “no value” explicitly.                                          | Only `null`.                                                 | `ts let data: null = null; `                               | Database results, optional config values.                      |
 | **`undefined`** | A variable has been declared but not assigned a value (default in JS).                              | Represent “value not assigned yet”.                                       | Only `undefined`.                                            | `ts let value: undefined = undefined; `                    | Optional parameters, default uninitialized variables.          |
 | **`never`**     | Represents a value that **can never exist**.                                                        | For functions that **never return** (e.g., throw error or infinite loop). | No value can be assigned.                                    | `ts function fail(): never { throw new Error("Error"); } ` | Exhaustive checks in `switch`, error throwing functions.       |
-
----
 
 ### **Quick Mnemonics**
 
