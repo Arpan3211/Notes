@@ -910,6 +910,96 @@ bun run file.ts
 
 ---
 
+### 1. **`boolean`**
+
+### Meaning
+
+Represents only **two possible values**: `true` or `false`.
+
+### Syntax
+
+```ts
+let isActive: boolean = true;
+let isCompleted: boolean = false;
+```
+
+### Notes
+
+- **Literal boolean types**: You can also have types that are specifically `true` or `false` (useful for narrowing).
+
+```ts
+let flag: true = true; // Only 'true' allowed
+```
+
+- Commonly used for flags, toggles, and conditions.
+
+### 2. **`string`**
+
+### Meaning
+
+Represents **textual data** (sequences of characters).
+
+### Syntax
+
+```ts
+let firstName: string = "Arpan";
+let greeting: string = `Hello, ${firstName}!`; // Template string
+```
+
+### Features
+
+- **Template Literals**:
+
+```ts
+let age: number = 22;
+let info: string = `Name: ${firstName}, Age: ${age}`;
+```
+
+- **String Literal Types**:
+
+```ts
+let direction: "left" | "right";
+direction = "left"; // ✅
+direction = "up"; // ❌ Error
+```
+
+- Used for messages, labels, and identifiers.
+
+---
+
+### 3. **`number`**
+
+### Meaning
+
+Represents **all numeric values** (integers, floats, hex, binary, octal).
+
+### Syntax
+
+```ts
+let count: number = 10;
+let price: number = 99.99;
+let hex: number = 0xff;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+```
+
+### Notes
+
+- JavaScript/TypeScript `number` is **always floating-point** (no separate `int` type).
+- For **big integers**, use `bigint` type (e.g., `123n`).
+
+### Quick Comparison Table
+
+| Type      | Example Values                           | Special Features                             |
+| --------- | ---------------------------------------- | -------------------------------------------- |
+| `boolean` | `true`, `false`                          | Used for logical conditions                  |
+| `string`  | `"hello"`, `'world'`, `` `Hi ${name}` `` | Supports template literals and literal types |
+| `number`  | `42`, `3.14`, `0xff`, `0b1010`           | All numbers are 64-bit floating point        |
+
+---
+
+---
+
 ## **void**
 
 In **TypeScript**, `void` is a special type that means:
@@ -1016,6 +1106,641 @@ void asyncFunction();
 - **`null`** → “I put nothing here, on purpose.”
 - **`undefined`** → “Nothing here… yet.”
 - **`never`** → “This will never happen.”
+
+---
+
+---
+
+## **`null`**
+
+### Meaning
+
+`null` is an **intentional absence** of any value.
+It’s like saying:
+
+> “This variable is empty on purpose.”
+
+### Example
+
+```ts
+let user: string | null = null; // Explicitly no value
+user = "Arpan"; // ✅ Can assign later
+```
+
+### Use Cases
+
+- Explicitly clearing a variable.
+- Representing "no object" or "empty" in APIs/DB results.
+
+```ts
+function findUser(id: number): string | null {
+  return id === 1 ? "Arpan" : null;
+}
+```
+
+---
+
+## **`undefined`**
+
+### Meaning
+
+`undefined` means:
+
+> “This variable has been declared but hasn’t been assigned a value yet.”
+
+It’s the **default value** for:
+
+- Uninitialized variables.
+- Missing object properties.
+- Missing function arguments.
+
+### Example
+
+```ts
+let age: number | undefined; // Not initialized → undefined
+console.log(age); // undefined
+
+function greet(name?: string) {
+  // name is string | undefined
+  console.log(`Hello, ${name}`);
+}
+greet(); // Hello, undefined
+```
+
+### **3. `null` vs `undefined` in TypeScript**
+
+| Feature          | `null`                            | `undefined`                     |
+| ---------------- | --------------------------------- | ------------------------------- |
+| **Meaning**      | Explicit "no value"               | Value is missing/unassigned     |
+| **Set by**       | Programmer                        | JavaScript engine by default    |
+| **Common usage** | Clear/reset variable; DB "empty"  | Default for missing values      |
+| **Type**         | `null`                            | `undefined`                     |
+| **Example**      | `let val: string \| null = null;` | `let val: string \| undefined;` |
+
+### **4. Interaction with `--strictNullChecks`**
+
+By default (`--strictNullChecks` **off**), `null` and `undefined` are considered part of **all types**, which can lead to bugs.
+
+With `--strictNullChecks` **on** (recommended):
+
+- You must **explicitly include** `null` or `undefined` in the type if you want them allowed.
+
+```ts
+let name: string = null; // ❌ Error (strict mode)
+let name2: string | null = null; // ✅ Allowed
+```
+
+### **5. Special Cases**
+
+- **Loose equality (`==`)** treats them as equal:
+
+```ts
+null == undefined; // true
+null === undefined; // false
+```
+
+- Function parameters:
+
+```ts
+function process(data: string | null | undefined) {}
+```
+
+- Default values often help avoid `undefined` issues:
+
+```ts
+function greet(name?: string) {
+  console.log(`Hello, ${name ?? "Guest"}`);
+}
+```
+
+---
+
+---
+
+## **`interface`**
+
+### **1. What is an Interface?**
+
+In TypeScript, an **interface** is a way to define the **shape** (structure) of an object.
+It tells the compiler:
+
+> “Any object of this type must have these properties/methods with these types.”
+
+It’s **only for type-checking** at compile time — it disappears in JavaScript after compilation.
+
+### **2. Basic Example**
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  isAdmin: boolean;
+}
+
+const user1: User = {
+  id: 1,
+  name: "Arpan",
+  isAdmin: true,
+};
+```
+
+Here:
+
+- `User` says any object of type `User` **must** have `id`, `name`, and `isAdmin` with specified types.
+- Missing or extra properties (not allowed unless using index signatures) cause compile-time errors.
+
+### **3. Optional Properties**
+
+Add `?` if a property may or may not exist.
+
+```ts
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Optional
+}
+
+const user2: User = { id: 2, name: "John" }; // ✅ email not required
+```
+
+### **4. Readonly Properties**
+
+Prevent modification after initialization.
+
+```ts
+interface Config {
+  readonly apiKey: string;
+}
+
+const config: Config = { apiKey: "123abc" };
+// config.apiKey = "456def"; ❌ Error
+```
+
+### **5. Methods in Interfaces**
+
+Interfaces can define function signatures.
+
+```ts
+interface Person {
+  name: string;
+  greet(message: string): void;
+}
+
+const person1: Person = {
+  name: "Arpan",
+  greet(msg) {
+    console.log(`${msg}, I'm ${this.name}`);
+  },
+};
+```
+
+### **6. Function Type Interfaces**
+
+An interface can describe a callable function’s signature.
+
+```ts
+interface Add {
+  (a: number, b: number): number;
+}
+
+const addNumbers: Add = (x, y) => x + y;
+```
+
+### **7. Extending Interfaces**
+
+One interface can **inherit** from another.
+
+```ts
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const dog: Dog = { name: "Buddy", breed: "Labrador" };
+```
+
+- Supports **multiple inheritance**:
+
+```ts
+interface A {
+  a: string;
+}
+interface B {
+  b: number;
+}
+interface C extends A, B {}
+```
+
+### **8. Index Signatures**
+
+For objects with dynamic property names.
+
+```ts
+interface Dictionary {
+  [key: string]: string;
+}
+
+const colors: Dictionary = {
+  red: "#ff0000",
+  green: "#00ff00",
+};
+```
+
+### **9. Interfaces vs. Types**
+
+| Feature              | Interface        | Type Alias (`type`)                        |
+| -------------------- | ---------------- | ------------------------------------------ |
+| Extendable later     | ✅ Yes           | ❌ No (but can combine with intersections) |
+| Multiple inheritance | ✅ Yes           | ✅ Yes (via intersections)                 |
+| Can describe unions  | ❌ No            | ✅ Yes                                     |
+| Best for             | Objects, classes | Anything (objects, unions, primitives)     |
+
+### **10. Interfaces with Classes**
+
+Interfaces are often used for **class contracts**.
+
+```ts
+interface Shape {
+  getArea(): number;
+}
+
+class Circle implements Shape {
+  constructor(public radius: number) {}
+  getArea(): number {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+```
+
+If `Circle` misses `getArea`, TypeScript will throw an error.
+
+### **Key Takeaways**
+
+- **Purpose**: Defines object/class shape for type-checking.
+- Supports **optional**, **readonly**, **methods**, and **index signatures**.
+- Extensible — great for designing APIs and contracts.
+- Disappears at runtime (only compile-time construct).
+
+---
+
+---
+
+## **`Class`**
+
+### **1. What is a Class in TypeScript?**
+
+A **class** in TypeScript is a blueprint for creating objects that bundle:
+
+- **Properties** (data/state)
+- **Methods** (behavior)
+
+It works like JavaScript’s ES6 classes, but **with type safety** and **extra features**.
+
+### **2. Basic Example**
+
+```ts
+class Person {
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet(): void {
+    console.log(
+      `Hello, my name is ${this.name} and I'm ${this.age} years old.`
+    );
+  }
+}
+
+const arpan = new Person("Arpan", 22);
+arpan.greet();
+```
+
+Here:
+
+- `constructor` runs when a new object is created.
+- `this` refers to the current instance.
+- TypeScript enforces that `name` is a `string` and `age` is a `number`.
+
+### **3. Access Modifiers**
+
+TypeScript has **3 main access modifiers** for encapsulation:
+
+| Modifier           | Scope                                       |
+| ------------------ | ------------------------------------------- |
+| `public` (default) | Accessible everywhere.                      |
+| `private`          | Accessible only inside the same class.      |
+| `protected`        | Accessible inside the class and subclasses. |
+
+Example:
+
+```ts
+class Employee {
+  public name: string; // Default
+  private salary: number;
+  protected department: string;
+
+  constructor(name: string, salary: number, department: string) {
+    this.name = name;
+    this.salary = salary;
+    this.department = department;
+  }
+}
+```
+
+### **4. Parameter Properties** (Shortcut)
+
+Instead of writing properties separately, you can declare and assign them in the constructor:
+
+```ts
+class Product {
+  constructor(public name: string, private price: number) {}
+}
+```
+
+### **5. Readonly Properties**
+
+Values that can only be set once (at declaration or in constructor).
+
+```ts
+class Config {
+  readonly apiKey: string;
+  constructor(apiKey: string) {
+    this.apiKey = apiKey;
+  }
+}
+```
+
+### **6. Inheritance**
+
+A class can **extend** another to reuse code.
+
+```ts
+class Animal {
+  move() {
+    console.log("Moving...");
+  }
+}
+
+class Dog extends Animal {
+  bark() {
+    console.log("Woof!");
+  }
+}
+
+const dog = new Dog();
+dog.move(); // From Animal
+dog.bark(); // From Dog
+```
+
+### **7. Method Overriding**
+
+Subclasses can replace a parent’s method:
+
+```ts
+class Parent {
+  greet() {
+    console.log("Hello from Parent");
+  }
+}
+
+class Child extends Parent {
+  greet() {
+    console.log("Hello from Child");
+  }
+}
+```
+
+### **8. `super` Keyword**
+
+Used to call parent class constructor or methods.
+
+```ts
+class Vehicle {
+  constructor(public brand: string) {}
+}
+
+class Car extends Vehicle {
+  constructor(brand: string, public model: string) {
+    super(brand); // Call Vehicle's constructor
+  }
+}
+```
+
+### **9. Getters and Setters**
+
+Control property access.
+
+```ts
+class User {
+  private _password: string = "";
+
+  get password(): string {
+    return "****"; // Masked
+  }
+
+  set password(newPassword: string) {
+    if (newPassword.length >= 6) {
+      this._password = newPassword;
+    }
+  }
+}
+```
+
+### **10. Static Members**
+
+Belong to the class itself, not instances.
+
+```ts
+class MathUtils {
+  static PI = 3.14;
+  static add(a: number, b: number) {
+    return a + b;
+  }
+}
+
+console.log(MathUtils.PI);
+console.log(MathUtils.add(2, 3));
+```
+
+### **11. Abstract Classes**
+
+Used as blueprints that cannot be instantiated directly.
+
+```ts
+abstract class Shape {
+  abstract getArea(): number; // Must be implemented
+}
+
+class Circle extends Shape {
+  constructor(public radius: number) {
+    super();
+  }
+  getArea() {
+    return Math.PI * this.radius * this.radius;
+  }
+}
+```
+
+### **Key Takeaways**
+
+- Classes in TypeScript are **ES6 classes + type safety**.
+- Support **access modifiers**, **readonly**, **get/set**, **static**, **abstract**.
+- Great for **OOP** patterns and large-scale application architecture.
+
+---
+
+---
+
+## **`enum`**
+
+### **1. What is an Enum?**
+
+An **`enum`** (short for _enumeration_) in TypeScript is a way to define a **set of named constants**.
+It makes your code more readable and type-safe compared to using plain strings or numbers.
+
+### **2. Basic Example – Numeric Enum**
+
+```ts
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+let move: Direction = Direction.Up;
+console.log(move); // 0  (default starts at 0)
+```
+
+- By default, the first member is `0`, and the rest are incremented by 1.
+- `Direction.Up` → `0`, `Direction.Down` → `1`, etc.
+
+### **3. Custom Values**
+
+```ts
+enum Status {
+  Success = 200,
+  NotFound = 404,
+  ServerError = 500,
+}
+
+console.log(Status.Success); // 200
+```
+
+You can set custom values, and following members will auto-increment unless explicitly set.
+
+### **4. String Enums**
+
+```ts
+enum Colors {
+  Red = "RED",
+  Green = "GREEN",
+  Blue = "BLUE",
+}
+
+let favorite: Colors = Colors.Green;
+console.log(favorite); // "GREEN"
+```
+
+- Values are always strings (no auto-increment here).
+- Good for logging, API responses, and human-readable code.
+
+### **5. Mixed Enums**
+
+You can mix strings and numbers, but **not recommended** for clarity.
+
+```ts
+enum Mixed {
+  No = 0,
+  Yes = "YES",
+}
+```
+
+### **6. Reverse Mapping (Only for Numeric Enums)**
+
+```ts
+enum Direction {
+  Up,
+  Down,
+}
+
+console.log(Direction[0]); // "Up"
+console.log(Direction["Up"]); // 0
+```
+
+- Works only for numeric enums, not string enums.
+
+### **7. `const enum`**
+
+- **Faster & smaller compiled JS**.
+- Completely inlined at compile time (no enum object generated).
+
+```ts
+const enum Direction {
+  Up,
+  Down,
+}
+
+let dir = Direction.Up;
+```
+
+- Compiles directly to:
+
+```js
+var dir = 0; // no extra enum object
+```
+
+### **8. Use Cases**
+
+- **Directions & navigation**
+- **Status codes**
+- **App modes (light/dark theme)**
+- **Form steps**
+- **Role-based access**
+
+Example:
+
+```ts
+enum Role {
+  Admin,
+  User,
+  Guest,
+}
+
+function hasAccess(role: Role) {
+  return role === Role.Admin;
+}
+
+console.log(hasAccess(Role.User)); // false
+```
+
+### **9. Enums vs Union Types**
+
+\| Feature | `enum` | Union type (`"UP" | "DOWN"`) |
+\|---------|--------|-------------------|
+\| Runtime existence | ✅ Yes | ❌ No (type-only) |
+\| Reverse mapping | ✅ Yes (numeric) | ❌ No |
+\| Readability in debugging | Medium | High (with strings) |
+\| Performance | `const enum` = high | High |
+
+✅ **Key Takeaway**:
+Use **`enum`** when:
+
+- You need a fixed set of related constants.
+- You want them to exist at runtime.
+- You may need reverse mapping (numeric).
+
+Use **union types** when:
+
+- You only need them for compile-time type safety.
+- You don’t need runtime objects.
 
 ---
 
