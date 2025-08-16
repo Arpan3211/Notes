@@ -1745,3 +1745,404 @@ Use **union types** when:
 ---
 
 ---
+
+## **`Arrays`**
+
+### **1. What is an Array?**
+
+An **array** in TypeScript is a data structure used to store **multiple values of the same type** in an ordered collection.
+
+Unlike plain JavaScript, TypeScript enforces **type safety** for array elements.
+
+### **2. Declaring Arrays**
+
+You can declare arrays in two ways:
+
+### **(a) Using `type[]` syntax**
+
+```ts
+let numbers: number[] = [1, 2, 3, 4];
+let names: string[] = ["Arpan", "John", "Sara"];
+```
+
+### **(b) Using `Array<type>` syntax**
+
+```ts
+let numbers: Array<number> = [1, 2, 3, 4];
+let names: Array<string> = ["Arpan", "John", "Sara"];
+```
+
+Both are equivalent — which one you use is personal preference.
+
+### **3. Mixed / Union Type Arrays**
+
+You can allow multiple types:
+
+```ts
+let mixed: (string | number)[] = ["Hello", 42, "World"];
+```
+
+### **4. Readonly Arrays**
+
+Prevents modification of elements.
+
+```ts
+let arr: readonly number[] = [10, 20, 30];
+// arr.push(40); ❌ Error
+```
+
+Or using `ReadonlyArray<T>`:
+
+```ts
+let arr: ReadonlyArray<string> = ["a", "b"];
+```
+
+### **5. Array Methods (Type-Safe)**
+
+TypeScript knows what type of values are inside, so methods are type-safe:
+
+```ts
+let numbers: number[] = [1, 2, 3];
+
+numbers.push(4); // ✅ OK
+// numbers.push("hi"); // ❌ Error (must be number)
+
+let doubled = numbers.map((num) => num * 2); // number[]
+```
+
+### **6. Tuple (Special Array)**
+
+Tuples are fixed-length arrays with defined types at each index.
+
+```ts
+let person: [string, number] = ["Arpan", 22];
+// person[0] must be string, person[1] must be number
+```
+
+Useful when you want **exact structure** (like database rows, key-value pairs).
+
+### **7. Multi-dimensional Arrays**
+
+You can define arrays of arrays:
+
+```ts
+let matrix: number[][] = [
+  [1, 2],
+  [3, 4],
+];
+```
+
+### **8. Spread & Rest with Arrays**
+
+```ts
+let arr1: number[] = [1, 2];
+let arr2: number[] = [...arr1, 3, 4]; // Spread
+
+function sum(...nums: number[]) {
+  return nums.reduce((a, b) => a + b, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
+```
+
+### **9. Arrays with Interfaces & Types**
+
+```ts
+interface User {
+  id: number;
+  name: string;
+}
+
+let users: User[] = [
+  { id: 1, name: "Arpan" },
+  { id: 2, name: "John" },
+];
+```
+
+### **10. Key Takeaways**
+
+- Arrays in TypeScript are **typed** — ensures no accidental wrong elements.
+- You can use `type[]` or `Array<type>` syntax.
+- Supports **readonly**, **union arrays**, **tuples**, **multi-dimensional arrays**.
+- Methods like `map`, `filter`, `reduce` are type-aware.
+
+---
+
+---
+
+## **`Tuple`**
+
+### **1. What is a Tuple?**
+
+A **tuple** is an array with:
+
+- A **fixed length**
+- A **specific type for each element**
+
+> Think of it as: _“An array with a strict structure.”_
+
+### **2. Basic Example**
+
+```ts
+let person: [string, number] = ["Arpan", 22];
+
+// person[0] → must be string
+// person[1] → must be number
+```
+
+If you try to swap:
+
+```ts
+// person = [22, "Arpan"]; ❌ Error
+```
+
+### **3. Tuple vs Array**
+
+| Feature | Array             | Tuple                             |
+| ------- | ----------------- | --------------------------------- |
+| Length  | Flexible          | Fixed (unless defined with `...`) |
+| Types   | All elements same | Each element has its own type     |
+| Example | `number[]`        | `[string, number]`                |
+
+### **4. Optional Elements in Tuples**
+
+You can make some positions optional:
+
+```ts
+let user: [string, number?];
+user = ["Arpan"]; // ✅ Allowed
+user = ["Arpan", 22]; // ✅ Allowed
+```
+
+### **5. Rest Elements in Tuples**
+
+Useful for variable-length tuples.
+
+```ts
+let fruits: [string, ...string[]];
+fruits = ["apple"];
+fruits = ["apple", "banana", "cherry"];
+```
+
+### **6. Readonly Tuples**
+
+Prevents modifying tuple values.
+
+```ts
+let point: readonly [number, number] = [10, 20];
+// point[0] = 30; ❌ Error
+```
+
+### **7. Destructuring Tuples**
+
+You can unpack tuple values easily.
+
+```ts
+let person: [string, number] = ["Arpan", 22];
+let [name, age] = person;
+
+console.log(name); // "Arpan"
+console.log(age); // 22
+```
+
+### **8. Practical Use Cases**
+
+- **Function return multiple values**:
+
+```ts
+function getUser(): [string, number] {
+  return ["Arpan", 22];
+}
+
+const [name, age] = getUser();
+```
+
+- **Key-value pairs**:
+
+```ts
+let entry: [string, number] = ["age", 22];
+```
+
+- **Database row representation**:
+
+```ts
+type Row = [id: number, name: string, active: boolean];
+const userRow: Row = [1, "Arpan", true];
+```
+
+### **9. Limitations**
+
+- Tuples are stricter than arrays — you **cannot** push new values beyond their defined structure unless you use `...rest`.
+- For flexible arrays, use `type[]` instead.
+
+### ✅ Key Takeaways
+
+- A **tuple** is a **fixed-size, ordered collection** with types known at each index.
+- Supports **optional elements**, **rest elements**, **readonly tuples**, and **destructuring**.
+- Best when you want to enforce a **structured set of values**.
+
+---
+
+---
+
+## Object Types in TypeScript
+
+### **1. What is an Object Type?**
+
+In TypeScript, an **object type** describes the **shape** of an object:
+
+- What **properties** it has.
+- What **types** those properties are.
+- What **methods** it may contain.
+
+Example:
+
+```ts
+let user: { id: number; name: string; isAdmin: boolean } = {
+  id: 1,
+  name: "Arpan",
+  isAdmin: true,
+};
+```
+
+Here:
+
+- `id` → must be `number`
+- `name` → must be `string`
+- `isAdmin` → must be `boolean`
+
+### **2. Optional Properties**
+
+Use `?` when a property may or may not exist.
+
+```ts
+let user: { id: number; name: string; email?: string } = {
+  id: 1,
+  name: "Arpan",
+};
+```
+
+### **3. Readonly Properties**
+
+Prevents changing values once assigned.
+
+```ts
+let config: { readonly apiKey: string } = { apiKey: "123" };
+// config.apiKey = "456"; ❌ Error
+```
+
+### **4. Object Methods**
+
+Object types can include function signatures.
+
+```ts
+let person: {
+  name: string;
+  greet: (msg: string) => void;
+} = {
+  name: "Arpan",
+  greet: (msg: string) => console.log(`${msg}, I'm ${person.name}`),
+};
+```
+
+### **5. Index Signatures**
+
+When you don’t know all property names in advance:
+
+```ts
+let dictionary: { [key: string]: string } = {
+  red: "#ff0000",
+  green: "#00ff00",
+};
+```
+
+- Key must be `string`
+- Value must be `string`
+
+### **6. Nested Object Types**
+
+Objects can contain other objects:
+
+```ts
+let employee: {
+  id: number;
+  name: string;
+  address: {
+    city: string;
+    zip: number;
+  };
+} = {
+  id: 1,
+  name: "Arpan",
+  address: {
+    city: "Nagpur",
+    zip: 440001,
+  },
+};
+```
+
+### **7. Type Aliases for Objects**
+
+Instead of repeating the same object type, create a `type`:
+
+```ts
+type User = {
+  id: number;
+  name: string;
+  isAdmin?: boolean;
+};
+
+let user1: User = { id: 1, name: "Arpan" };
+let user2: User = { id: 2, name: "John", isAdmin: true };
+```
+
+### **8. Interfaces for Objects**
+
+Another way (like `type`, but extendable):
+
+```ts
+interface User {
+  id: number;
+  name: string;
+}
+
+let user: User = { id: 1, name: "Arpan" };
+```
+
+### **9. Intersection Types (Combine Objects)**
+
+```ts
+type Address = { city: string; zip: number };
+type Employee = { id: number; name: string } & Address;
+
+let emp: Employee = {
+  id: 1,
+  name: "Arpan",
+  city: "Nagpur",
+  zip: 440001,
+};
+```
+
+### \*\*10. `object` vs `{}` vs `Object`
+
+- `object` → any non-primitive value (`{}`, arrays, functions, etc.).
+- `{}` → any value except `null` and `undefined`.
+- `Object` → the JS global `Object` type (very loose).
+
+Example:
+
+```ts
+let a: object; // any non-primitive
+let b: {}; // any value except null/undefined
+let c: Object; // very broad, includes primitives wrapped as objects
+```
+
+### ✅ Key Takeaways
+
+- Object types define the **shape** of objects.
+- Support **optional**, **readonly**, **methods**, **nested objects**, and **index signatures**.
+- Use **type aliases** or **interfaces** for reusable shapes.
+- Difference between `object`, `{}`, and `Object` is subtle but important.
+
+---
+
+---
