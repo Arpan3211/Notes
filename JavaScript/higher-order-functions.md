@@ -1,64 +1,43 @@
-# Higher order function
+# First-class and higher-order functions
 
+> Functions are values in JavaScript (**first-class**). A **higher-order function** takes a function as an argument, returns a function, or both.
 
-**Explanation:**
+## First-class: functions can be
 
-1. **Definition**: A higher-order function is a function that either takes one or more functions as arguments or returns a function as its result. Higher-order functions enable behavior parameterization and can be used to create more reusable and flexible code.
-2. **Usage**: Higher-order functions are used to abstract and encapsulate common patterns or behaviors, often by providing a level of indirection.
+```js
+const add = function (a, b) { return a + b; };   // stored in a variable
 
-```jsx
-function filterArray(array, filterFn) {
-  const filtered = [];
-  for (const item of array) {
-    if (filterFn(item)) {
-      filtered.push(item);
-    }
-  }
-  return filtered;
-}
-const numbers = [1, 2, 3, 4, 5, 6];
+const ops = { add, sub: (a, b) => a - b };       // stored in an object or array
+ops.sub(5, 2);                                   // 3
 
-const isEven = (num) => num % 2 === 0;
+function greet(name) { console.log("Hello, " + name); }
+function run(fn) { fn("John"); }                 // passed as an argument
+run(greet);                                      // Hello, John
 
-const evenNumbers = filterArray(numbers, isEven);
-console.log(evenNumbers); // Output: [2, 4, 6]
-
-//---------------------------------------------------------------
-
-// Higher-Order Function that returns a function
-function operationFactory(operation) {
-  // The returned function takes two numbers and performs the specified operation
-  return function (a, b) {
-    return operation(a, b);
-  };
-}
-
-// Define functions to perform specific mathematical operations
-function add(a, b) {
-  return a + b;
-}
-
-function subtract(a, b) {
-  return a - b;
-}
-
-function multiply(a, b) {
-  return a * b;
-}
-
-function divide(a, b) {
-  return a / b;
-}
-
-// Use the operationFactory HOF to create operation functions
-const addFunction = operationFactory(add);
-const subtractFunction = operationFactory(subtract);
-const multiplyFunction = operationFactory(multiply);
-const divideFunction = operationFactory(divide);
-
-// Now, you can use these generated functions to perform operations
-console.log(addFunction(5, 3)); // 8
-console.log(subtractFunction(10, 4)); // 6
-console.log(multiplyFunction(6, 7)); // 42
-console.log(divideFunction(100, 5)); // 20
+function multiplier(f) { return (n) => n * f; } // returned from a function
+multiplier(2)(5);                                // 10
 ```
+
+## Higher-order functions
+
+```js
+// takes a function
+const evens = [1, 2, 3, 4, 5, 6].filter((n) => n % 2 === 0);   // [2, 4, 6]
+
+// returns a function
+const operation = (op) => (a, b) => op(a, b);
+const add = operation((a, b) => a + b);
+add(5, 3);   // 8
+```
+
+Built-in examples: `map`, `filter`, `reduce`, `forEach`, `sort`, `setTimeout`, `addEventListener`.
+
+## Why they matter
+
+- Reuse logic and pass behaviour as data.
+- They power [callbacks](callbacks.md), [currying](currying.md), [closures](closures.md) and functional programming.
+
+## Remember
+
+- First-class = the language feature. Higher-order = a function that uses that feature.
+- A callback is a function passed to a higher-order function.

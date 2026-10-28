@@ -1,81 +1,37 @@
-# ?? (nullish coalescing) and || (logical OR) are used for fallback/default values, but they behave differently when dealing with falsy values
+# `??` vs `||`
 
+> Both give a fallback value. `||` replaces any falsy value, `??` only `null` and `undefined`.
 
----
-
-## Summary of Differences
-
-| Operator | Description        | Fallback when value is...  | Example                                                       |                                                        |           |     |                             |     |                         |
-| -------- | ------------------ | -------------------------- | ------------------------------------------------------------- | ------------------------------------------------------ | --------- | --- | --------------------------- | --- | ----------------------- |
-| \`       |                    | \`                         | Logical OR                                                    | Falsy (`false`, `0`, `''`, `null`, `undefined`, `NaN`) | \`'hello' |     | 'default'`→`'hello'`<br>`'' |     | 'default'`→`'default'\` |
-| `??`     | Nullish coalescing | Only `null` or `undefined` | `'' ?? 'default'` → `''`<br>`null ?? 'default'` → `'default'` |                                                        |           |     |                             |     |                         |
-
----
-
-## Key Concept
-
-- `||` treats **all falsy values** as needing a fallback.
-- `??` only treats **`null` and `undefined`** as needing a fallback.
-
----
-
-## Example to Demonstrate the Difference
+| Operator | Falls back when the left side is | Example |
+|---|---|---|
+| `\|\|` (logical OR) | any falsy: `false`, `0`, `""`, `null`, `undefined`, `NaN` | `"" \|\| "x"` is `"x"` |
+| `??` (nullish coalescing) | only `null` or `undefined` | `"" ?? "x"` is `""` |
 
 ```js
-let title1 = "" || "Untitled";
-console.log(title1); // 'Untitled'  because '' is falsy
-
-let title2 = "" ?? "Untitled";
-console.log(title2); // ''  because '' is NOT null/undefined
+0 || 10;        // 10
+0 ?? 10;        // 0
+false || "a";   // "a"
+false ?? "a";   // false
+null ?? "Guest"; // "Guest"
 ```
 
----
-
-## Another Comparison
+## Real example
 
 ```js
-console.log(false || "fallback"); // 'fallback' 
-console.log(false ?? "fallback"); // false 
+const user = { name: "", age: 0, nickname: null };
 
-console.log(0 || 10); // 10 
-console.log(0 ?? 10); // 0 
+user.name || "Anonymous";   // "Anonymous"  (empty string lost)
+user.name ?? "Anonymous";   // ""           (kept)
+user.age ?? 18;             // 0            (kept)
+user.nickname ?? "Guest";   // "Guest"
 ```
 
----
+## Which to use
 
-## When to Use What?
+- `??`: `0`, `""` and `false` are valid values (counts, text, flags).
+- `||`: any falsy value should be replaced.
 
-| Situation                                                                                      | Use  |     |     |
-| ---------------------------------------------------------------------------------------------- | ---- | --- | --- |
-| You want to use a fallback for `null` or `undefined` only (and allow `false`, `0`, `''`, etc.) | `??` |     |     |
-| You want to fallback for **any falsy value** (like `0`, `''`, `false`, etc.)                   | \`   |     | \`  |
+## Remember
 
----
-
-## Real-world Example
-
-```js
-const user = {
-  name: "",
-  age: 0,
-  isActive: false,
-  nickname: null,
-};
-
-console.log(user.name || "Anonymous"); // 'Anonymous'  (bad default)
-console.log(user.name ?? "Anonymous"); // ''  (respects empty string)
-
-console.log(user.age || 18); // 18  (bad default)
-console.log(user.age ?? 18); // 0 
-
-console.log(user.nickname ?? "Guest"); // 'Guest' 
-```
-
----
-
-## Quick Rule to Remember:
-
-> Use `??` if you want to **preserve falsy but meaningful values** (`false`, `0`, `''`).
-> Use `||` if you want to replace **any falsy value**.
-
-Let me know if you want an interactive playground-like example or want to go deeper into short-circuit evaluation.
+- Mixing `??` with `||` or `&&` without parentheses is a `SyntaxError`.
+- Related: optional chaining `a?.b ?? "default"`.

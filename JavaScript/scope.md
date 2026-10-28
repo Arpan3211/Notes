@@ -1,47 +1,54 @@
-# Explain scope in javascript
+# Scope
 
+> Scope decides where a variable can be used. JavaScript has global, function and block scope, and uses lexical (written-position) scoping.
 
-**Explanation:**
+## Kinds of scope
 
-```jsx
-let globalScope = "Global scope";
-function varScopeExample() {
+| Scope | Created by | Variables |
+|---|---|---|
+| Global | the top level of a script | `var`, `let`, `const`, functions |
+| Function | a function body | `var` (and everything inside) |
+| Block | `{ }` of `if`, `for`, `while`, a bare block | `let`, `const` (not `var`) |
+
+## `var` vs `let` vs `const`
+
+| | `var` | `let` | `const` |
+|---|---|---|---|
+| Scope | function | block | block |
+| Reassign | yes | yes | no |
+| Redeclare in same scope | yes | no | no |
+| Hoisting | hoisted, value `undefined` | hoisted, in TDZ | hoisted, in TDZ |
+
+```js
+function demo() {
   if (true) {
-    if (true) {
-      if (true) {
-        var functionalScope = "functionalScope";
-        let BlocalScope = "Block scope";
-        console.log(BlocalScope);
-        console.log(functionalScope);
-        console.log(globalScope);
-      }
-      console.log(functionalScope);
-    }
-    console.log(functionalScope);
+    var a = "function scope";
+    let b = "block scope";
   }
-  console.log(functionalScope);
+  console.log(a);  // "function scope"
+  console.log(b);  // ReferenceError: b is not defined
 }
-console.log(globalScope);
-varScopeExample();
 ```
 
-**Understanding the Difference Between let, const, and var in JavaScript!**
+## Scope chain
 
-#### **var**
+When a variable is used, the engine looks in the current scope, then each outer scope, up to global. The first match wins (inner names shadow outer ones).
 
-**Scope**: Function-scoped.  
-**Hoisting**: Variables declared with var are hoisted to the top of their scope, but not initialized.  
-**Usage**: Generally considered outdated due to its tendency to cause bugs. Use with caution!
+```js
+const x = "global";
+function outer() {
+  const y = "outer";
+  function inner() {
+    const z = "inner";
+    console.log(x, y, z);   // all found through the scope chain
+  }
+  inner();
+}
+outer();
+```
 
-#### **let**
+## Remember
 
-**Scope**: Block-scoped.  
-**Hoisting**: Variables declared with let are hoisted to the top of their block scope, but are not initialized.  
-**Usage**: Ideal for variables that will be reassigned or have limited block scope.
-
-#### **const**
-
-**Scope**: Block-scoped.  
-**Hoisting**: Similar to let, const is also block-scoped and not initialized during hoisting.  
-**Usage**: Best for variables that will not be reassigned (though their properties can still be mutated).  
-Key Takeaway:
+- Scope is fixed where the code is **written** (lexical), not where it is called.
+- Prefer `const`, then `let`. Avoid `var`.
+- A function remembers its scope: that is a [closure](closures.md). See also [hoisting and TDZ](hoisting-and-tdz.md).

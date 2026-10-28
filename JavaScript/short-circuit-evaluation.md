@@ -1,24 +1,29 @@
-# What is short-circuit evaluation in Javascript
+# Short-circuit evaluation
 
+> `&&`, `||` and `??` stop as soon as the result is known, and return one of the operands (not a boolean).
 
-**Explanation**:
+| Operator | Returns |
+|---|---|
+| `a && b` | `a` if `a` is falsy, otherwise `b` |
+| `a \|\| b` | `a` if `a` is truthy, otherwise `b` |
+| `a ?? b` | `a` unless it is `null` or `undefined`, then `b` |
 
-Short-circuit evaluation is a feature in JavaScript where logical operators like **`&&`** and **`||`** can skip evaluating the second operand if the result is already known from the first operand.
-
-Let's take the **`&&`** operator as an example. It's often used for "and" conditions. If the left operand is **`false`**, the result is guaranteed to be **`false`**, so JavaScript doesn't bother checking the right operand. Here's a simple example using the console:
-
-```jsx
-console.log(true && "Hello"); // Output: "Hello" (Both operands are evaluated)
-console.log(false && "World"); // Output: false (Right operand is skipped because the left one is false)
+```js
+true && "Hello";    // "Hello"   (both evaluated)
+false && "World";   // false     (right side skipped)
+true || "Hello";    // true      (right side skipped)
+false || "World";   // "World"   (both evaluated)
 ```
 
-In the first example, both operands are evaluated, and we get "Hello" because both are truthy. In the second example, the left operand is **`false`**, so JavaScript doesn't need to check the right operand, and the result is **`false`**
+## Common uses
 
-Certainly! The **`||`** operator is often used for "or" conditions. If the left operand is **`true`**, the result is guaranteed to be **`true`**, so JavaScript skips evaluating the right operand. Here's an example:
-
-```jsx
-console.log(true || "Hello"); // Output: true (Right operand is skipped because the left one is true)
-console.log(false || "World"); // Output: "World" (Both operands are evaluated)
+```js
+const name = user.name || "Guest";          // default value
+isLoggedIn && showProfile();                // run only when true
+user && user.address && user.address.city;  // guard (optional chaining `?.` is cleaner)
 ```
 
-In the first example, the left operand is **`true`**, so JavaScript doesn't need to check the right operand, and the result is **`true`**. In the second example, both operands are evaluated, and we get "World" because the left operand is falsy, and the right operand is used to determine the result.
+## Remember
+
+- Falsy values: `false`, `0`, `""`, `null`, `undefined`, `NaN`, `0n`.
+- `||` treats `0` and `""` as missing. Use `??` when those are valid (see [`??` vs `||`](nullish-coalescing-vs-or.md)).

@@ -1,61 +1,51 @@
 # Closures
 
+> A closure is a function that remembers the variables of the scope where it was created, even after that scope has finished. Full detail: [revision sheet](../../Revision/JavaScript/closures.md).
 
-**Explanation:**
-
-- A **closure** is a feature in JavaScript where an inner function has access to the outer (enclosing) function's variables. This concept is critical to understanding JavaScript's execution context and function scoping. Closures provide a way to access and manipulate variables outside of their current scope, enabling powerful and flexible patterns in coding.
-
-A **closure** is formed when:
-
-1. **A function is declared inside another function.**
-2. **The inner function maintains access to the outer function's variables even after the outer function has returned.**
-
-A closure gives the inner function access to three levels of scope:
-
-1. Its own scope (local variables).
-2. The scope of the outer function.
-3. The global scope.
-
-   ```jsx
-   function Counter() {
-     let count = 0; // Private variable encapsulated in the closure
-
-     return {
-       increment: function () {
-         count++;
-       },
-       getCount: function () {
-         return count;
-       },
-     };
-   }
-
-   const counter = Counter();
-   counter.increment();
-   console.log(counter.getCount()); // Outputs 1
-   ```
-
-```javascript
-function outerFunction() {
-  let outerVariable = "I am from the outer scope";
-
-  function innerFunction() {
-    console.log(outerVariable); // Accessing a variable from the outer function
-  }
-
-  return innerFunction;
+```js
+function outer() {
+  let count = 0;           // private variable
+  return function inner() {
+    count++;
+    return count;
+  };
 }
 
-const myClosure = outerFunction(); // The outerFunction returns innerFunction
-myClosure(); // Output: "I am from the outer scope"
+const counter = outer();
+counter();   // 1
+counter();   // 2   (count survives after outer() returned)
 ```
 
-- **Creation of Closure:** When `outerFunction` is called, it creates a local variable `outerVariable` and defines `innerFunction` inside of it. The `innerFunction` has access to `outerVariable` due to lexical scoping.
-- **Returning a Function:** The `outerFunction` returns the `innerFunction` to the variable `myClosure`. At this point, the `outerFunction` has completed its execution and its execution context is removed from the stack, but its scope is not destroyed.
-- **Preservation of Scope:** The `innerFunction`, now stored in `myClosure`, still retains access to `outerVariable` from the `outerFunction` even though `outerFunction` has finished executing. This is because the `innerFunction` forms a closure over `outerVariable`.
+## How it works
 
-#### Common Pitfalls and Considerations
+- Every function keeps a reference to the scope it was **created** in (lexical scope).
+- That scope is not garbage collected while the function can still be called.
+- The closure holds a live reference to the variable, not a copy of the value.
 
-1. **Memory Leaks:** Since closures keep references to variables in their scope chain, they can potentially cause memory leaks if not handled properly. Functions holding onto unused references can prevent garbage collection.
-2. **Overuse of Closures:** While closures are powerful, overusing them can lead to complex and less readable code. It is essential to balance the use of closures with maintainability.
-3. **Performance Concerns:** Closures can have performance implications due to the way JavaScript engines need to maintain references to the variables they capture. In hot code paths, this might affect performance.
+## Uses
+
+| Use | Example |
+|---|---|
+| Private data | counters, modules (`Counter()` returning `increment` and `getCount`) |
+| Function factories | `const double = multiplier(2)` |
+| Currying and memoization | the inner function remembers earlier arguments or a cache |
+| Debounce and throttle | the timer id lives in the closure |
+| Callbacks and event handlers | they remember the surrounding variables |
+
+## Loop trap
+
+```js
+for (var i = 1; i <= 3; i++) setTimeout(() => console.log(i), 0);   // 4 4 4
+for (let i = 1; i <= 3; i++) setTimeout(() => console.log(i), 0);   // 1 2 3
+```
+
+`var` shares one `i`. `let` creates a new `i` per iteration.
+
+## Pitfalls
+
+- Memory leaks: a closure keeps its captured data alive (clear timers and listeners).
+- Stale values: the closure sees the variable's latest value, which is a common React bug ("stale closure").
+
+## Interview answer
+
+A closure is an inner function that has access to its outer function's variables even after the outer function has returned, because of lexical scoping.

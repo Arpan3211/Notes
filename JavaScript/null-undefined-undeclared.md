@@ -1,63 +1,48 @@
-# Differentiate between a variable that is null, undefined, or undeclared
+# null vs undefined vs undeclared
 
+> `undefined` = declared but no value. `null` = intentionally empty. Undeclared = does not exist.
 
-**Explanation**:
+| | `undefined` | `null` | Undeclared |
+|---|---|---|---|
+| Meaning | no value assigned yet | intentional "no value" | variable was never declared |
+| `typeof` | `"undefined"` | `"object"` (historic bug) | `"undefined"` (no error) |
+| Reading it | no error | no error | `ReferenceError` |
+| Example | `let a;` | `let a = null;` | `console.log(b);` |
 
-#### 1. `undefined`
+## How `undefined` appears
 
-- **Definition**: A variable that has been declared but has not been assigned any value yet is `undefined`.
-- **Type**: It is a primitive value in JavaScript and has its own type, `"undefined"`.
-- **How It Occurs**:
-  - When a variable is declared but not assigned any value.
-  - When a function does not explicitly return a value.
-  - When accessing a property that does not exist on an object.
-- **Example**:
+```js
+let x;                // declared, not assigned
+x;                    // undefined
+(function () {})();   // a function with no return gives undefined
+({}).missing;         // a missing property gives undefined
+```
 
-  ```javascript
-  let x;
-  console.log(x); // Output: undefined
+## `null`
 
-  function myFunction() {}
-  console.log(myFunction()); // Output: undefined
+```js
+let user = null;             // "no user yet"
+typeof null;                 // "object"
+```
 
-  const obj = {};
-  console.log(obj.missingProperty); // Output: undefined
-  ```
+## Undeclared
 
-#### 2. `null`
+```js
+console.log(z);              // ReferenceError: z is not defined
+typeof z;                    // "undefined" (typeof is safe here)
+```
 
-- **Definition**: A variable that is explicitly assigned the value `null` represents the intentional absence of any object value.
-- **Type**: `null` is a primitive value, but its type is `"object"`. This is considered a bug in JavaScript's type system, but it has been retained for compatibility.
-- **How It Occurs**:
-  - When a developer intentionally assigns `null` to a variable to indicate "no value" or "empty."
-  - It is often used as a placeholder for objects that will be assigned later.
-- **Example**:
+## Checking
 
-  ```javascript
-  let y = null;
-  console.log(y); // Output: null
+```js
+x === undefined;
+x === null;
+x == null;          // true for both null and undefined
+x ?? "default";     // fallback for null or undefined
+```
 
-  const person = { name: null }; // The person has no name currently.
-  console.log(person.name); // Output: null
-  ```
+## Remember
 
-#### 3. Undeclared
-
-- **Definition**: A variable that has not been declared at all in the current scope (i.e., does not exist).
-- **Type**: Trying to access an undeclared variable throws a `ReferenceError`.
-- **How It Occurs**:
-  - When a variable is used without being declared (i.e., without `var`, `let`, or `const`).
-- **Example**:
-  ```javascript
-  console.log(z); // Output: ReferenceError: z is not defined
-  ```
-
-#### Summary of Differences
-
-| Aspect              | `undefined`                                        | `null`                                     | **Undeclared** |
-| ------------------- | -------------------------------------------------- | ------------------------------------------ | --------------------------------------------- |
-| **Definition** | A variable declared but not assigned a value       | A variable explicitly set to "no value"    | A variable that hasn't been declared          |
-| **Type** | `"undefined"`                                      | `"object"` (due to historical reasons)     | No type (throws `ReferenceError` if accessed) |
-| **Usage Scenario** | Default state of declared variables without values | Represents an intentional absence of value | A variable that does not exist in any scope   |
-| **Error on Access** | No                                                 | No                                         | Yes (`ReferenceError`)                        |
-| **Example** | `let a;`                                           | `let a = null;`                            | `console.log(b); // ReferenceError`           |
+- `null == undefined` is `true`, `null === undefined` is `false`.
+- Assigning to an undeclared name in sloppy mode creates a global. Strict mode throws instead (see [strict mode](strict-mode.md)).
+- `let` variables in the TDZ also throw (see [hoisting and TDZ](hoisting-and-tdz.md)).

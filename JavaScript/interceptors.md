@@ -1,109 +1,61 @@
-# What are interceptors
+# Interceptors
 
+> A hook that runs **before** a request is sent or **after** a response arrives, so cross-cutting logic lives in one place.
 
-In programming, particularly in the context of JavaScript and frameworks, **interceptors** are mechanisms that allow you to define custom behavior that gets executed before or after certain operations or method calls. They act as middlemen between the operation and its execution, enabling developers to add additional functionality, modify inputs or outputs, or handle cross-cutting concerns like logging, validation, or error handling.
+## Axios
 
-#### Key Concepts of Interceptors
+```js
+import axios from "axios";
+const api = axios.create({ baseURL: "https://api.example.com" });
 
-1. **Purpose**: Interceptors are typically used to intercept and manipulate the behavior of functions, methods, or requests. They can be applied to various contexts, such as HTTP requests, database queries, and method calls.
+api.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = `Bearer ${getToken()}`;   // add auth to every request
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-2. **Implementation**: Interceptors can be implemented in various ways, depending on the framework or library being used. Common patterns include:
+api.interceptors.response.use(
+  (response) => response,                                     // 2xx
+  async (error) => {
+    if (error.response?.status === 401) await refreshToken(); // e.g. refresh and retry, or logout
+    return Promise.reject(error);
+  }
+);
+```
 
-   - **Aspect-Oriented Programming (AOP)**: A programming paradigm that separates cross-cutting concerns (like logging or authentication) from the business logic of an application.
-   - **Middleware**: Functions that have access to the request and response objects in a web application, often used in frameworks like Express.js.
+## Uses
 
-3. **Usage Scenarios**: Interceptors can be useful for:
-   - **Logging**: Capturing input/output data for debugging and auditing purposes.
-   - **Error Handling**: Catching and processing errors that occur during function execution.
-   - **Authorization**: Checking user permissions before allowing access to certain functions or data.
-   - **Transforming Data**: Modifying the input data before it reaches the target function or the output data before it’s returned to the caller.
+| Use | Where |
+|---|---|
+| Attach auth tokens and common headers | request |
+| Show and hide a loading spinner | request and response |
+| Global error handling (401, 500, toasts) | response |
+| Retry, refresh a token | response |
+| Log or transform data | both |
 
-#### Example of Interceptors in JavaScript
+This answers "I have 20 APIs, how do I add headers in one place?": one Axios instance with a request interceptor.
 
-Here's an example of how interceptors might be implemented in JavaScript using a simple function decorator pattern:
+## Other places
 
-#### Example: Method Interceptor
+- Angular `HttpInterceptor`, `fetch` wrappers, Express middleware (same idea on the server).
+- Method wrapper (decorator) as a plain-JavaScript pattern:
 
-```javascript
-function intercept(target, methodName, interceptor) {
-  const originalMethod = target[methodName];
-
-  target[methodName] = function (...args) {
-    // Pre-processing: Before the method execution
-    interceptor.before && interceptor.before.apply(this, args);
-
-    const result = originalMethod.apply(this, args);
-
-    // Post-processing: After the method execution
-    interceptor.after && interceptor.after.call(this, result);
-
+```js
+function intercept(obj, method, { before, after }) {
+  const original = obj[method];
+  obj[method] = function (...args) {
+    before?.(...args);
+    const result = original.apply(this, args);
+    after?.(result);
     return result;
   };
 }
-
-// Usage
-const myObject = {
-  greet(name) {
-    console.log(`Hello, ${name}!`);
-  },
-};
-
-const interceptor = {
-  before(name) {
-    console.log(`About to greet: ${name}`);
-  },
-  after(result) {
-    console.log("Greeting finished.");
-  },
-};
-
-// Apply interceptor
-intercept(myObject, "greet", interceptor);
-
-// Call the method
-myObject.greet("Alice");
 ```
 
-**Output**:
+## Remember
 
-```
-About to greet: Alice
-Hello, Alice!
-Greeting finished.
-```
-
-#### Interceptors in Frameworks
-
-In popular JavaScript frameworks and libraries, interceptors are often built-in features:
-
-- **Axios**: In Axios (a popular HTTP client), you can define interceptors for requests and responses:
-
-  ```javascript
-  axios.interceptors.request.use(
-    (config) => {
-      // Do something before request is sent
-      return config;
-    },
-    (error) => {
-      // Do something with request error
-      return Promise.reject(error);
-    }
-  );
-
-  axios.interceptors.response.use(
-    (response) => {
-      // Any status code that lies within the range of 2xx cause this function to trigger
-      return response;
-    },
-    (error) => {
-      // Any status codes that falls outside the range of 2xx cause this function to trigger
-      return Promise.reject(error);
-    }
-  );
-  ```
-
-- **Vue.js**: In Vue, you can use global mixins to apply interceptors to component lifecycle hooks.
-
-#### Conclusion
-
-Interceptors provide a powerful way to enhance the behavior of functions or methods without modifying their core implementation. They allow developers to add functionality, handle cross-cutting concerns, and manage complex workflows more effectively. By using interceptors, you can create cleaner, more maintainable, and more flexible code in your applications.
+- `fetch` has no built-in interceptors: wrap it, or use Axios.
+- Always return the `config` (request) or `response` (response), or `Promise.reject(error)`.
+- In Axios, request interceptors run in reverse order of registration (last added first), response interceptors in the order added.

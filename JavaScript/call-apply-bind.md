@@ -1,58 +1,42 @@
-# What is the difference between Call, Apply and Bind
+# call, apply and bind
 
+> All three set the value of `this` for a function. `call` and `apply` run it now, `bind` returns a new function to run later.
 
-**Explanation:**
+| Method | Runs the function? | Arguments |
+|---|---|---|
+| `fn.call(thisArg, a, b)` | immediately | one by one (comma) |
+| `fn.apply(thisArg, [a, b])` | immediately | as an array |
+| `fn.bind(thisArg, a)` | no, returns a new function | one by one (can be pre-filled) |
 
-- **Call:** The call() method invokes a function with a given `this` value and arguments provided one by one
+Memory trick: **C**all = **C**omma, **A**pply = **A**rray.
 
-```jsx
-var employee1 = { firstName: "John", lastName: "Rodson" };
-var employee2 = { firstName: "Jimmy", lastName: "Baily" };
+```js
+const emp1 = { firstName: "John", lastName: "Rodson" };
+const emp2 = { firstName: "Jimmy", lastName: "Baily" };
 
-function invite(greeting1, greeting2) {
-  console.log(
-    greeting1 + " " + this.firstName + " " + this.lastName + ", " + greeting2
-  );
+function invite(greeting, question) {
+  console.log(`${greeting} ${this.firstName} ${this.lastName}, ${question}`);
 }
 
-invite.call(employee1, "Hello", "How are you?"); // Hello John Rodson, How are you?
-invite.call(employee2, "Hello", "How are you?"); // Hello Jimmy Baily, How are you?
+invite.call(emp1, "Hello", "How are you?");     // Hello John Rodson, How are you?
+invite.apply(emp2, ["Hello", "How are you?"]);  // Hello Jimmy Baily, How are you?
+
+const inviteJohn = invite.bind(emp1);
+inviteJohn("Hi", "All good?");                  // Hi John Rodson, All good?
 ```
 
-- **Apply:** Invokes the function with a given `this` value and allows you to pass in arguments as an array
+## Common uses
 
-```jsx
-var employee1 = { firstName: "John", lastName: "Rodson" };
-var employee2 = { firstName: "Jimmy", lastName: "Baily" };
-
-function invite(greeting1, greeting2) {
-  console.log(
-    greeting1 + " " + this.firstName + " " + this.lastName + ", " + greeting2
-  );
-}
-
-invite.apply(employee1, ["Hello", "How are you?"]); // Hello John Rodson, How are you?
-invite.apply(employee2, ["Hello", "How are you?"]); // Hello Jimmy Baily, How are you?
+```js
+Math.max.apply(null, [1, 5, 3]);        // 5   (today: Math.max(...arr))
+const log = console.log.bind(console);  // keep `this`
+const add5 = ((a, b) => a + b).bind(null, 5);   // partial application: add5(3) is 8
+Array.prototype.slice.call(arguments);  // array-like to array
 ```
 
-- **bind:** returns a new function, allowing you to pass any number of arguments
+## Remember
 
-```jsx
-var employee1 = { firstName: "John", lastName: "Rodson" };
-var employee2 = { firstName: "Jimmy", lastName: "Baily" };
-
-function invite(greeting1, greeting2) {
-  console.log(
-    greeting1 + " " + this.firstName + " " + this.lastName + ", " + greeting2
-  );
-}
-
-var inviteEmployee1 = invite.bind(employee1);
-var inviteEmployee2 = invite.bind(employee2);
-inviteEmployee1("Hello", "How are you?"); // Hello John Rodson, How are you?
-inviteEmployee2("Hello", "How are you?"); // Hello Jimmy Baily, How are you?
-```
-
-Call and apply are pretty interchangeable. Both execute the current function immediately. You need to decide whether it’s easier to send in an array or a comma separated list of arguments. You can remember by treating Call is for **comma** (separated list) and Apply is for **Array**.
-
-Whereas Bind creates a new function that will have `this` set to the first parameter passed to bind().
+- `bind` never changes the original function. A bound function cannot be re-bound.
+- Arrow functions ignore `call`, `apply` and `bind` for `this` (see [arrow functions](arrow-functions.md)).
+- Losing `this` in callbacks (`setTimeout(obj.method)`) is fixed with `bind` or an arrow function (see [this keyword](this-keyword.md)).
+- Polyfills: [call, apply, bind polyfills](Polyfills/function-polyfills.md).

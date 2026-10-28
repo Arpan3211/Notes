@@ -1,249 +1,94 @@
-# DOM manipulation (end to end)
+# DOM: select, change, traverse and handle events
 
-Here’s an **end-to-end DOM Manipulation notes document** that covers everything from the basics to advanced operations using JavaScript.
-
----
-
-# DOM Manipulation in JavaScript (End-to-End Notes)
-
----
-
-## 1. What is the DOM?
-
-**DOM (Document Object Model)** is a programming interface for web documents. It represents the structure of an HTML page as a tree of objects.
+> The DOM (Document Object Model) is the page as a tree of objects. JavaScript reads and changes the page through it.
 
 ```html
-<!-- HTML -->
-<html>
-  <body>
-    <p id="demo">Hello World</p>
-  </body>
-</html>
+<div id="parent">
+  <p class="child">Child 1</p>
+  <p class="child">Child 2</p>
+</div>
 ```
 
+## Select elements
+
+| Method | Returns |
+|---|---|
+| `getElementById("id")` | one element or `null` |
+| `querySelector(css)` | first match or `null` |
+| `querySelectorAll(css)` | static `NodeList` (supports `forEach`) |
+| `getElementsByClassName` / `getElementsByTagName` | live `HTMLCollection` |
+
+## Change content, attributes, classes, styles
+
 ```js
-// JS
-document.getElementById("demo").innerText; // Accessing text
+el.textContent = "Safe text";         // plain text (fast, safe)
+el.innerHTML = "<b>Bold</b>";         // parses HTML (XSS risk with user input)
+el.setAttribute("href", "https://example.com");   el.getAttribute("href");   el.removeAttribute("href");
+el.dataset.userId;                    // reads data-user-id
+
+el.classList.add("a");  el.classList.remove("a");  el.classList.toggle("dark");  el.classList.contains("a");
+el.style.color = "red";               // inline style (camelCase: fontSize)
+getComputedStyle(el).fontSize;        // the final computed value
 ```
 
----
+`innerText` is aware of CSS visibility and slower. `textContent` is the safe default.
 
-## 2. Accessing DOM Elements
+## Create, insert, remove
 
-### By ID
 ```js
-document.getElementById("id");
+const li = document.createElement("li");
+li.textContent = "Hello";
+list.appendChild(li);            // or list.append(li, "text")
+list.prepend(li);
+parent.insertBefore(li, ref);
+ref.after(li);   ref.before(li);
+li.remove();                     // modern way
+const copy = li.cloneNode(true); // true = deep copy
 ```
 
-### By Class
-```js
-document.getElementsByClassName("className");
-```
+For many inserts use a `DocumentFragment` and append it once.
 
-### By Tag
-```js
-document.getElementsByTagName("tagName");
-```
+## Traverse
 
-### Query Selectors
-```js
-document.querySelector("selector");         // Returns first match
-document.querySelectorAll("selector");      // Returns NodeList
-```
+| Need | Property |
+|---|---|
+| parent | `parentElement` |
+| children | `children`, `firstElementChild`, `lastElementChild` |
+| siblings | `nextElementSibling`, `previousElementSibling` |
+| nearest ancestor | `el.closest(selector)` |
+| selector check | `el.matches(selector)` |
 
----
+The `...Node` versions (`childNodes`, `firstChild`, `nextSibling`) also include text and whitespace nodes, so prefer the `...Element` ones.
 
-## 3. Changing Content
-
-### Inner Text & HTML
-```js
-element.innerText = "New Text";
-element.innerHTML = "<b>Bold Text</b>";
-```
-
-### Text Content
-```js
-element.textContent; // More consistent across browsers
-```
-
----
-
-## 4. Changing Attributes
+## Events
 
 ```js
-element.setAttribute("href", "https://google.com");
-element.getAttribute("href");
-element.removeAttribute("href");
-```
+function onClick(event) { console.log(event.target); }
+btn.addEventListener("click", onClick);
+btn.addEventListener("click", onClick, { once: true });   // run one time
+btn.removeEventListener("click", onClick);                // needs the same function reference
+btn.dispatchEvent(new Event("click"));                    // trigger it from code
+btn.dispatchEvent(new CustomEvent("saved", { detail: { id: 1 } }));
 
----
-
-## 5. Working with Classes
-
-```js
-element.classList.add("new-class");
-element.classList.remove("old-class");
-element.classList.toggle("dark-theme");
-element.classList.contains("active"); // true or false
-```
-
----
-
-## 6. Styling Elements
-
-```js
-element.style.color = "red";
-element.style.fontSize = "20px";
-element.style.backgroundColor = "#f0f0f0";
-```
-
----
-
-## 7. Creating & Appending Elements
-
-```js
-let div = document.createElement("div");
-div.innerText = "Hello";
-document.body.appendChild(div);
-```
-
-### Insert Before
-```js
-parent.insertBefore(newNode, referenceNode);
-```
-
----
-
-## 8. Removing Elements
-
-```js
-element.remove(); // Modern way
-```
-
-Or the old way:
-
-```js
-element.parentNode.removeChild(element);
-```
-
----
-
-## 9. Event Handling
-
-### Basic Events
-```js
-element.onclick = function() {
-  alert("Clicked!");
-};
-```
-
-### Using addEventListener
-```js
-element.addEventListener("click", function() {
-  alert("Clicked!");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();                  // stop the page reload
+  console.log(new FormData(form).get("name"));
 });
 ```
 
-### Removing Event Listeners
-```js
-function handler() {}
-element.addEventListener("click", handler);
-element.removeEventListener("click", handler);
-```
+Common events: `click`, `dblclick`, `mouseover`, `keydown`, `input` (every change), `change` (on blur), `submit`, `focus`, `scroll`, `resize`.
 
----
+Event flow and delegation: [event propagation](event-propagation.md), [event delegation](event-delegation.md).
 
-## 10. Common Events
+## Performance
 
-| Event | Description |
-|-------|-------------|
-| `click` | Mouse click |
-| `mouseover` / `mouseout` | Hovering |
-| `keydown` / `keyup` | Keyboard events |
-| `submit` | Form submission |
-| `input` | Real-time input |
-| `change` | Change in input field |
+- Cache selectors in variables.
+- Batch DOM writes (DocumentFragment, build a string once).
+- Do not read layout (`offsetHeight`) between writes: it forces reflow.
+- Animate with `requestAnimationFrame` and CSS transforms.
 
----
+## Remember
 
-## 11. Event Object
-
-```js
-element.addEventListener("click", function(event) {
-  console.log(event.target); // The element clicked
-});
-```
-
----
-
-## 12. Form Handling
-
-```js
-form.addEventListener("submit", function(e) {
-  e.preventDefault(); // Prevent page reload
-  const name = document.querySelector("#name").value;
-  console.log(name);
-});
-```
-
----
-
-## 13. Traversing the DOM
-
-```js
-element.parentElement;
-element.children;
-element.firstElementChild;
-element.lastElementChild;
-element.nextElementSibling;
-element.previousElementSibling;
-```
-
----
-
-## 14. Performance Tips
-
-- Cache DOM selectors
-- Use `documentFragment` for bulk updates
-- Minimize direct DOM manipulation
-- Use `requestAnimationFrame()` for animations
-
----
-
-## 15. Useful Shortcuts
-
-```js
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
-```
-
----
-
-## 16. Modern DOM APIs
-
-- `element.closest(selector)` → Finds closest ancestor
-- `element.matches(selector)` → Checks if it matches
-- `element.dataset` → Access `data-*` attributes
-
----
-
-## 17. Sample Mini Project Snippet
-
-```html
-<input id="input" type="text" />
-<button id="btn">Add</button>
-<ul id="list"></ul>
-```
-
-```js
-document.getElementById("btn").addEventListener("click", () => {
-  const val = document.getElementById("input").value;
-  const li = document.createElement("li");
-  li.innerText = val;
-  document.getElementById("list").appendChild(li);
-});
-```
-
----
-
-Would you like me to export this as a **PDF or Markdown file** for easier offline reading?
+- `NodeList` from `querySelectorAll` is static, `HTMLCollection` is live.
+- Never put user input in `innerHTML`.
+- Add listeners after the DOM is ready (see [page lifecycle events](page-lifecycle-events.md)).

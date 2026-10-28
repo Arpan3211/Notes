@@ -1,127 +1,57 @@
-# LRU Cache Implementation
+# LRU cache
 
+> A cache with a fixed size that removes the **Least Recently Used** item when it is full. `get` and `put` should both be O(1).
 
-An LRU (Least Recently Used) cache is a data structure that evicts the least recently used item when the cache reaches its capacity. It helps optimize the use of limited space by keeping frequently accessed items readily available while discarding less frequently used ones.
+## Simple implementation with `Map`
 
-#### LRU Cache Implementation
+A `Map` remembers insertion order, so the first key is always the oldest. Re-inserting a key on every use moves it to the "newest" end.
 
-To implement an LRU Cache, you typically use a combination of a doubly linked list and a hash map (or dictionary). The hash map provides fast access to cache items, and the doubly linked list maintains the order of usage.
-
-Here's a simple implementation of an LRU Cache in JavaScript:
-
-```javascript
+```js
 class LRUCache {
   constructor(capacity) {
     this.capacity = capacity;
-    this.cache = new Map(); // Hash map for fast access
-    this.order = new DoublyLinkedList(); // Doubly linked list for ordering
+    this.cache = new Map();
   }
 
   get(key) {
-    if (this.cache.has(key)) {
-      // Move the accessed node to the front (most recently used)
-      const node = this.cache.get(key);
-      this.order.moveToFront(node);
-      return node.value;
-    }
-    return -1; // Key not found
+    if (!this.cache.has(key)) return -1;
+    const value = this.cache.get(key);
+    this.cache.delete(key);        // refresh: remove and re-insert
+    this.cache.set(key, value);
+    return value;
   }
 
   put(key, value) {
-    if (this.cache.has(key)) {
-      // Update the value and move the node to the front
-      const node = this.cache.get(key);
-      node.value = value;
-      this.order.moveToFront(node);
-    } else {
-      if (this.cache.size === this.capacity) {
-        // Remove the least recently used node
-        const nodeToRemove = this.order.removeLast();
-        this.cache.delete(nodeToRemove.key);
-      }
-      // Add the new node to the cache and linked list
-      const newNode = this.order.addFirst(key, value);
-      this.cache.set(key, newNode);
+    if (this.cache.has(key)) this.cache.delete(key);
+    else if (this.cache.size === this.capacity) {
+      const oldest = this.cache.keys().next().value;   // first key = least recently used
+      this.cache.delete(oldest);
     }
+    this.cache.set(key, value);
   }
 }
 
-class DoublyLinkedList {
-  constructor() {
-    this.head = new Node(null, null); // Dummy head
-    this.tail = new Node(null, null); // Dummy tail
-    this.head.next = this.tail;
-    this.tail.prev = this.head;
-  }
-
-  addFirst(key, value) {
-    const newNode = new Node(key, value);
-    newNode.next = this.head.next;
-    newNode.prev = this.head;
-    this.head.next.prev = newNode;
-    this.head.next = newNode;
-    return newNode;
-  }
-
-  removeLast() {
-    if (this.head.next === this.tail) {
-      return null; // Empty list
-    }
-    const lastNode = this.tail.prev;
-    this.tail.prev = lastNode.prev;
-    lastNode.prev.next = this.tail;
-    return lastNode;
-  }
-
-  moveToFront(node) {
-    // Remove the node from its current position
-    node.prev.next = node.next;
-    node.next.prev = node.prev;
-    // Add the node to the front
-    this.addFirst(node.key, node.value);
-  }
-}
-
-class Node {
-  constructor(key, value) {
-    this.key = key;
-    this.value = value;
-    this.prev = null;
-    this.next = null;
-  }
-}
-
-// Example usage:
-const lruCache = new LRUCache(2);
-lruCache.put(1, 1);
-lruCache.put(2, 2);
-console.log(lruCache.get(1)); // returns 1
-lruCache.put(3, 3); // evicts key 2
-console.log(lruCache.get(2)); // returns -1 (not found)
-lruCache.put(4, 4); // evicts key 1
-console.log(lruCache.get(1)); // returns -1 (not found)
-console.log(lruCache.get(3)); // returns 3
-console.log(lruCache.get(4)); // returns 4
+const lru = new LRUCache(2);
+lru.put(1, 1);
+lru.put(2, 2);
+lru.get(1);      // 1
+lru.put(3, 3);   // evicts key 2
+lru.get(2);      // -1
+lru.put(4, 4);   // evicts key 1
+lru.get(1);      // -1
+lru.get(3);      // 3
+lru.get(4);      // 4
 ```
 
-#### Explanation
+## Classic approach (interviews)
 
-1. **LRUCache Class:**
+- **Hash map**: key -> node, for O(1) lookup.
+- **Doubly linked list**: nodes ordered from most to least recently used. Moving or removing a node is O(1) because you hold the node and its neighbours.
+- On `get`/`put`: move the node to the head. When full: drop the node at the tail and delete its key from the map.
+- Use dummy head and tail nodes to avoid edge cases, and **move the existing node** instead of creating a new one.
 
-   - **Constructor:** Initializes cache capacity, hash map (`this.cache`), and doubly linked list (`this.order`).
-   - **get(key):** Retrieves the value for the given key if it exists, and moves the node to the front of the list.
-   - **put(key, value):** Updates the value if the key exists; otherwise, adds the new key-value pair. Evicts the least recently used item if the cache is full.
+## Remember
 
-2. **DoublyLinkedList Class:**
-
-   - Manages the order of nodes. It has methods to add nodes to the front, remove nodes from the end, and move nodes to the front.
-
-3. **Node Class:**
-   - Represents an individual node in the doubly linked list with key, value, and pointers to the previous and next nodes.
-
-#### Usage
-
-- **`put(key, value)`**: Adds a key-value pair to the cache. If the cache is full, it evicts the least recently used item.
-- **`get(key)`**: Retrieves the value for the given key if it exists, and updates its usage position.
-
-This implementation provides O(1) time complexity for both `get` and `put` operations, making it efficient for use in scenarios where frequent access and updates to a limited set of items are required.
+- Both operations are O(1).
+- Used for browser caches, memoization with a limit (see [memoization](memoization.md)), and database buffers.
+- Related policies: LFU (least frequently used), FIFO.

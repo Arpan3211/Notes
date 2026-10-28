@@ -1,69 +1,38 @@
-# Types of loop in Javascript
+# Loops
 
+> Ways to repeat code in JavaScript.
 
-**Explanation:**
+| Loop | Use it for |
+|---|---|
+| `for` | known number of iterations |
+| `while` | repeat while a condition is true |
+| `do...while` | run at least once, then check the condition |
+| `for...of` | values of an iterable (array, string, Set, Map) |
+| `for...in` | keys (property names) of an object |
+| `for await...of` | values of async iterables |
+| `forEach()` | array elements, no `break`, returns `undefined` |
 
-1. **for Loop:** The **`for`** loop is used for iterating over a range of values a specified number of times.
+```js
+for (let i = 0; i < 5; i++) { /* runs 5 times */ }
 
-   ```jsx
-   for (let i = 0; i < 5; i++) {
-     // Code to be executed 5 times
-   }
-   ```
+let n = 0;
+while (n < 5) n++;
 
-2. **do...while Loop:** Similar to the **`while`** loop, but it guarantees that the code block is executed at least once, as the condition is checked after the loop body.
+do { n--; } while (n > 0);   // body runs once even if the condition is false
 
-   ```jsx
-   let i = 0;
-   do {
-     // Code to be executed at least once
-     i++;
-   } while (i < 5);
-   ```
+for (const fruit of ["apple", "banana"]) console.log(fruit);
 
-3. **for...of Loop:** The **`for...of`** loop is used to iterate over the values of iterable objects like arrays, strings, and more.
+for (const key in { name: "John", age: 30 }) console.log(key);
 
-   ```jsx
-   const fruits = ["apple", "banana", "cherry"];
-   for (const fruit of fruits) {
-     console.log(fruit);
-   }
-   ```
+async function run() {
+  for await (const result of asyncIterable) console.log(result);
+}
 
-4. **for...await...of Loop (Asynchronous Iteration):** Used for asynchronous iteration over the values of asynchronous iterable objects, like Promises.
+[1, 2, 3].forEach((n) => console.log(n));
+```
 
-   ```jsx
-   async function asyncFunction() {
-     for await (const result of asyncIterable) {
-       console.log(result);
-     }
-   }
-   ```
+## Remember
 
-5. **while Loop:** The **`while`** loop repeatedly executes a block of code as long as a specified condition is true.
-
-   ```jsx
-   let i = 0;
-   while (i < 5) {
-     // Code to be executed as long as i is less than 5
-     i++;
-   }
-   ```
-
-6. **for...in Loop:** The **`for...in`** loop is used to iterate over the properties of an object.
-
-   ```jsx
-   const person = { name: "John", age: 30 };
-   for (let key in person) {
-     console.log(key, person[key]);
-   }
-   ```
-
-7. **forEach() Method:** Arrays have a **`forEach()`** method that allows you to iterate over their elements.
-
-   ```jsx
-   const numbers = [1, 2, 3, 4, 5];
-   numbers.forEach(function (number) {
-     console.log(number);
-   });
-   ```
+- `for...of` gives **values**, `for...in` gives **keys** (avoid `for...in` on arrays).
+- `break` and `continue` work in `for`, `while` and `for...of`, but not in `forEach`.
+- `forEach` does not wait for `async` callbacks. Use `for...of` with `await` instead.

@@ -1,35 +1,70 @@
-# What is a promise
+# Promises
 
+> A promise is an object for a value that will be available later: either a result (fulfilled) or a reason for failure (rejected).
 
-**Explanation:**
+## States
 
-A promise is an object that may gives us a value after some time in the future with either a resolved value or a reason that it’s not resolved(for example, network error). It will be in one of the 3 possible states: fulfilled, rejected, or pending.
+| State | Meaning |
+|---|---|
+| **pending** | the operation has not finished |
+| **fulfilled** | finished with a value (`resolve`) |
+| **rejected** | failed with an error (`reject`) |
 
-The syntax of Promise creation looks like below,
+Fulfilled and rejected are **settled**. A settled promise never changes again.
 
-```jsx
+## Create and use
+
+```js
 function fetchData() {
   return new Promise((resolve, reject) => {
-    // Simulate an asynchronous operation (e.g., fetching data from a server)
     setTimeout(() => {
-      const data = "This is the fetched data.";
-      const error = false; // Change to true to simulate an error
-
-      if (!error) {
-        resolve(data); // Resolve the Promise with the data
-      } else {
-        reject("An error occurred"); // Reject the Promise with an error message
-      }
-    }, 2000); // Simulating a 2-second delay
+      const ok = true;
+      ok ? resolve("data") : reject(new Error("failed"));
+    }, 1000);
   });
 }
 
-// Using the Promise
 fetchData()
-  .then((data) => {
-    console.log("Data received:", data);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+  .then((data) => console.log("Got", data))
+  .catch((err) => console.error(err))
+  .finally(() => console.log("done"));   // runs either way
 ```
+
+## Chaining
+
+Each `.then` returns a **new promise**, so tasks run one after another. The returned value is passed to the next step.
+
+```js
+new Promise((resolve) => setTimeout(() => resolve(1), 1000))
+  .then((r) => r * 2)     // 2
+  .then((r) => r * 3)     // 6
+  .then((r) => console.log(r));   // 6
+```
+
+- Return a promise from `.then` and the chain waits for it.
+- An error (`throw` or rejection) skips to the next `.catch`.
+- A `.catch` that returns normally makes the chain continue as fulfilled.
+
+## Combinators
+
+| Method | Result | Fails when |
+|---|---|---|
+| `Promise.all([...])` | array of results, in input order | **any** rejects (fails fast) |
+| `Promise.allSettled([...])` | array of `{status, value/reason}` | never |
+| `Promise.race([...])` | the first promise to **settle** (value or error) | the first one rejects |
+| `Promise.any([...])` | the first **fulfilled** value | **all** reject (`AggregateError`) |
+| `Promise.resolve(x)` / `Promise.reject(e)` | an already settled promise | |
+
+```js
+await Promise.all([fetch(a), fetch(b)]);        // parallel, all needed
+await Promise.allSettled([p1, p2]);             // want every outcome
+await Promise.race([fetch(url), timeout(3000)]);   // timeout pattern
+await Promise.any([mirror1(), mirror2()]);      // fastest success
+```
+
+## Remember
+
+- `.then` callbacks run as **microtasks**, before timers (see [event loop](event-loop.md)).
+- Always handle errors (`.catch` or `try/catch` with `await`), or you get an unhandled rejection.
+- The executor function runs immediately (synchronously), the `.then` callbacks run later.
+- Use [async/await](async-await.md) for cleaner code.

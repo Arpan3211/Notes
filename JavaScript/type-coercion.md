@@ -1,22 +1,40 @@
-# Explains Implicit type coercion in Javascript
+# Type coercion
 
+> JavaScript automatically converts a value from one type to another during an operation or comparison.
 
-**Explanation**:
+## Rules to remember
 
-- Implicit type coercion in JavaScript refers to the automatic conversion of one data type to another by the JavaScript engine when performing operations or comparisons. This can sometimes lead to unexpected or counterintuitive results if you're not aware of how type coercion works.
+| Situation | What happens | Example |
+|---|---|---|
+| `+` with a string | other side becomes a string | `5 + "10"` is `"510"` |
+| `- * /` | both sides become numbers | `"10" - 5` is `5` |
+| `==` | operands converted to a common type | `5 == "5"` is `true` |
+| `===` | no conversion | `5 === "5"` is `false` |
+| Boolean context (`if`, `!`, `&&`) | value becomes truthy or falsy | `if ("")` is false |
 
-```jsx
-var x = 5; // x is a number
-var y = "10"; // y is a string
-
-var result = x + y; // JavaScript implicitly converts x to a string and then performs string concatenation
-console.log(result); // Output: "510"
+```js
+var x = 5, y = "10";
+x + y;           // "510"
+y - x;           // 5
+"5" * "2";       // 10
+true + 1;        // 2
+[] + {};         // "[object Object]"
+null == undefined;  // true
+null === undefined; // false
 ```
 
-1. **String and Number Interactions**:
-   - When you use the **`+`** operator to combine a string and a number, the number is converted to a string, and the two strings are concatenated.
-2. **Comparison Operators**:
-   - When you use comparison operators like **`==`** or **`!=`**, JavaScript tries to convert operands to a common type before making the comparison. This can lead to unexpected results.
-   - For example, **`5 == "5"`** will evaluate to **`true`** because the string **`"5"`** is implicitly converted to the number **`5`** for the comparison.
-3. **Truthy and Falsy Values**:
-   - JavaScript has truthy and falsy values. When you use values in a boolean context (e.g., in an **`if`** statement), JavaScript will implicitly convert values to **`true`** or **`false`** based on whether they are truthy or falsy.
+## Falsy values (everything else is truthy)
+
+`false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`.
+
+Note that `"0"`, `[]` and `{}` are **truthy**.
+
+## Implicit vs explicit
+
+- **Implicit**: done by the engine (`"5" * 2`).
+- **Explicit**: you convert it yourself: `Number("5")`, `String(5)`, `Boolean(1)`, `parseInt("5px")`.
+
+## Remember
+
+- Use `===` to avoid surprises.
+- `NaN` is never equal to anything, including itself.

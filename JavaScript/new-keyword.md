@@ -1,78 +1,58 @@
-# What is the new keyword used for
+# The `new` keyword
 
+> `new` creates an object from a constructor function or class, and links it to the constructor's prototype.
 
-The `new` keyword in JavaScript is used to create an instance of a constructor function or a class. When you use `new`, it does the following:
+## What `new` does (4 steps)
 
-#### 1. **Creates a New Object**
+1. Creates a new empty object.
+2. Links its `[[Prototype]]` to `Constructor.prototype`.
+3. Runs the constructor with `this` set to the new object.
+4. Returns the object (unless the constructor returns another **object**, then that is returned).
 
-When `new` is called, it creates a new, empty object. This object is then linked to the constructor's prototype.
-
-#### 2. **Sets the `this` Context**
-
-Inside the constructor function or class, `this` is set to the new object being created. This allows you to assign properties and methods to the new object.
-
-#### 3. **Executes the Constructor Function**
-
-The constructor function or class is invoked, allowing you to initialize the new object. If the constructor function returns a non-primitive value (like an object), that value is returned instead of the new object.
-
-#### 4. **Returns the New Object**
-
-The new object is returned automatically, even if the constructor does not explicitly return anything.
-
-#### Example of Using the `new` Keyword
-
-Here’s a simple example to illustrate the use of the `new` keyword:
-
-#### Constructor Function Example:
-
-```javascript
+```js
 function Person(name, age) {
-  this.name = name; // Assign name property
-  this.age = age; // Assign age property
+  this.name = name;
+  this.age = age;
 }
+Person.prototype.hello = function () { return "Hi " + this.name; };
 
-// Create a new instance of Person
 const alice = new Person("Alice", 30);
-
-console.log(alice.name); // Outputs: Alice
-console.log(alice.age); // Outputs: 30
+alice.hello();                       // "Hi Alice"
+alice.__proto__ === Person.prototype;  // true
 ```
 
-#### Class Example:
-
-With ES6 classes, you can also use the `new` keyword to create instances:
-
-```javascript
+```js
 class Animal {
-  constructor(name) {
-    this.name = name; // Assign name property
-  }
-
-  speak() {
-    console.log(`${this.name} makes a noise.`);
-  }
+  constructor(name) { this.name = name; }
+  speak() { console.log(`${this.name} makes a noise.`); }
 }
-
-// Create a new instance of Animal
-const dog = new Animal("Dog");
-
-console.log(dog.name); // Outputs: Dog
-dog.speak(); // Outputs: Dog makes a noise.
+new Animal("Dog").speak();   // Dog makes a noise.
 ```
 
-#### Summary of What `new` Does
+## `function User(){}` vs `User()` vs `new User()`
 
-1. **Creates a new object**.
-2. **Sets the `this` context** in the constructor to the new object.
-3. **Executes the constructor function** or class.
-4. **Returns the new object** (or the explicitly returned object if applicable).
+| | `function User() {}` | `var user = User()` | `var user = new User()` |
+|---|---|---|---|
+| What it is | function declaration | normal call | constructor call |
+| `this` | n/a | global object (`undefined` in strict mode) | the new object |
+| Creates a new object | no | no | yes |
+| Result | a reusable function | return value (or `undefined`) | the new instance |
+| Prototype link | no | no | yes |
 
-#### Important Notes
+```js
+function User() { this.name = "John"; }
 
-- **Prototypes**: The newly created object has its internal `[[Prototype]]` property set to the constructor’s prototype, which allows it to inherit methods and properties defined on the prototype.
-- **Constructor Functions**: If the constructor function does not explicitly return an object, the newly created object is returned automatically.
-- **Cannot be used with non-constructor functions**: If you try to use `new` with a regular function that is not meant to be a constructor, it can lead to unexpected results. For example, calling `new` on an arrow function will throw an error, as arrow functions do not have a `[[Construct]]` method.
+const a = User();       // undefined, and `name` leaks to the global object (sloppy mode)
+const b = new User();   // { name: "John" }
+```
 
-#### Conclusion
+## Rules
 
-The `new` keyword is a fundamental part of object-oriented programming in JavaScript, allowing you to create instances of objects based on constructor functions or classes. Understanding how it works is crucial for effective use of JavaScript's prototypal inheritance and object creation.
+- Arrow functions cannot be used with `new` (`TypeError: is not a constructor`).
+- Calling a class without `new` throws a `TypeError`.
+- Name constructors in PascalCase. Inside a constructor you can check `new.target` to see if `new` was used.
+- Returning a primitive from a constructor is ignored. Returning an object replaces the instance.
+
+## Remember
+
+- See [prototypes](prototypal-inheritance.md) for how the link works and [classes](classes.md) for the class syntax.

@@ -1,73 +1,76 @@
 # Operators
 
+> Arithmetic, assignment, comparison, logical, nullish and ternary operators.
 
-**Logical OR**
+## Arithmetic
 
-```jsx
-true || false; // true
-10 > 5 || 10 > 20; // true
-false || false; // false
-10 > 100 || 10 > 20; // false
+`+  -  *  /  %  **` (and `++`, `--`)
+
+```js
+7 % 3;   // 1  (remainder)
+2 ** 3;  // 8  (power)
 ```
 
-**Logical AND**
+## Assignment
 
-```jsx
-true && true; // true
-1 > 2 && 2 > 1; // false
-true && false; // false
-4 === 4 && 3 > 1; // true
+`=  +=  -=  *=  /=  %=  **=`
+
+```js
+let y = 5;
+y += 3;   // y = y + 3 -> 8
+let d = 2;
+d **= 3;  // d = d ** 3 -> 8
 ```
 
-**Comparison Operators**
+## Comparison
 
-```jsx
-1 > 3; // false
-3 > 1; // true
-250 >= 250; // true
-1 === 1; // true
-1 === 2; // false
-1 === "1"; // false
+| Operator | Meaning | Example |
+|---|---|---|
+| `==` | equal after type coercion | `1 == "1"` is `true` |
+| `===` | strictly equal (value and type) | `1 === "1"` is `false` |
+| `!=` / `!==` | not equal / strictly not equal | |
+| `> >= < <=` | greater / less | `250 >= 250` is `true` |
+
+Prefer `===`. See [type coercion](type-coercion.md).
+
+## Logical
+
+```js
+true || false;    // true   (OR: first truthy value)
+1 > 2 && 2 > 1;   // false  (AND: first falsy value)
+!true;            // false  (NOT)
 ```
 
-**Logical Operator !**
+`||` and `&&` return one of their operands, not just `true`/`false`. See [short-circuit evaluation](short-circuit-evaluation.md).
 
-```jsx
-let lateToWork = true;
-let oppositeValue = !lateToWork;
+## Nullish coalescing `??`
 
-// => false
-console.log(oppositeValue);
+Returns the right side only when the left is `null` or `undefined`. See [`??` vs `||`](nullish-coalescing-vs-or.md).
+
+```js
+null ?? "I win";   // "I win"
+0 ?? "x";          // 0   (0 is not nullish)
+"" ?? "x";         // ""
 ```
 
-**Nullish coalescing operator ??**
+## Ternary `condition ? a : b`
 
-```jsx
-null ?? "I win"; //  'I win'
-undefined ?? "Me too"; //  'Me too'
-
-false ?? "I lose"; //  false
-0 ?? "I lose again"; //  0
-"" ?? "Damn it"; //  ''
+```js
+const result = x == 1 ? "one" : "other";
 ```
 
-**BigInt addition**
+## BigInt
 
-**`BigInt`** is a built-in data type in JavaScript that allows you to represent and work with integers larger than the maximum safe integer limit for the `Number` data type.
+Integers beyond `Number.MAX_SAFE_INTEGER` (2^53 - 1 = 9,007,199,254,740,991).
 
-In JavaScript, the `Number` type can only safely represent integers between `-(2^53 - 1)` and `2^53 - 1` (i.e., from `-9,007,199,254,740,991` to `9,007,199,254,740,991`). This range is defined by the `Number.MAX_SAFE_INTEGER` and `Number.MIN_SAFE_INTEGER` constants.
-
-```jsx
-const big1 = 12345678901234567890n;
-const big2 = 98765432109876543210n;
-const sum = big1 + big2; // Addition
-const difference = big1 - big2; // Subtraction
-const product = big1 * big2; // Multiplication
-const quotient = big2 / big1; // Division (result will be a BigInt)
-
-const num = 5;
-const bigIntNum = 10n;
-const result = num + bigIntNum; // TypeError: Cannot mix BigInt and other type
-
-const result = bigIntNum + BigInt(num); // Convert Number to BigInt
+```js
+const sum = 12345678901234567890n + 98765432109876543210n;
+5 + 10n;          // TypeError: cannot mix BigInt and Number
+BigInt(5) + 10n;  // 15n
 ```
+
+## Remember
+
+- `**` is power, `%` is remainder (not modulo for negatives).
+- `+` with a string concatenates: `5 + "10"` is `"510"`.
+- BigInt and Number cannot be mixed without converting.

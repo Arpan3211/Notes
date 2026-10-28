@@ -1,67 +1,47 @@
-# Data types in JS
+# Data types
 
+> JavaScript has 7 primitive types and one non-primitive type (object).
 
-**Explanation**:
+## Primitive types
 
-- **String** :Primitive Data Types typeof is string
-- **Number** :Primitive Data Types typeof is number
-- **Boolean** :Primitive Data Types typeof is boolean
-- **undefined** :Primitive Data Types typeof is undefined
-- **null** :Primitive Data Types typeof is object
-- **bigint** :Primitive Data Types typeof is bigint
-- **object** typeof is object
-- **Array** typeof is object
+| Type | Example | `typeof` |
+|---|---|---|
+| String | `"hi"` | `"string"` |
+| Number | `42`, `3.14`, `NaN` | `"number"` |
+| Boolean | `true` | `"boolean"` |
+| undefined | `let x;` | `"undefined"` |
+| null | `null` | `"object"` (old bug) |
+| BigInt | `10n` | `"bigint"` |
+| Symbol | `Symbol("id")` | `"symbol"` |
 
-```jsx
-//Symbol
-let uniqueID = Symbol("id"); // Symbol     :Primitive Data Types
+## Non-primitive (object)
+
+Array, Function, Date, RegExp, Set, Map and plain objects. All of them have `typeof` `"object"`, except functions (`"function"`).
+
+```js
+typeof [];            // "object"  -> use Array.isArray([])
+typeof function(){};  // "function"
+typeof null;          // "object"
 ```
 
-**Arrays in JavaScript:**
+## Primitive vs non-primitive
 
-- An array in JavaScript is a list-like object used to store multiple values in a single variable.
-- Arrays can hold values of any type, such as numbers, strings, objects, other arrays, etc.
-- Arrays have a `typeof` operator that returns `"object"`,
-- For example, arrays have a `length` property, which gives the number of elements in the array, and methods like `push()`, `pop()`, `map()`, `filter()`, etc.
+| | Primitive | Non-primitive |
+|---|---|---|
+| Stored as | Value | Reference (address) |
+| Mutable | No (immutable) | Yes |
+| Compared by | Value | Reference |
+| Memory | Stack | Heap |
 
-**Common Examples of Non-Primitive Types:**
+```js
+const a = { x: 1 };
+const b = { x: 1 };
+a === b;  // false (different references)
+a.x = 2;  // allowed even with const (the reference does not change)
+```
 
-- **`Array`**: Special type of object used to store ordered collections.
+## Remember
 
-  `let fruits = ['apple', 'banana', 'cherry']; // Array`
-
-- **`Function`**: A block of code designed to perform a particular task. Functions are also objects in JavaScript.
-  `` function greet(name) {   return `Hello, ${name}!`; } ``
-- **`Date`**: An object representing a date and time.
-
-  `let currentDate = new Date(); // Date`
-
-- **`RegExp`**: Represents regular expressions, which are patterns used to match character combinations in strings.
-
-  `let regex = /hello/; // RegExp`
-
-- **`Set`**: Represents a collection of unique values.
-  `let uniqueNumbers = new Set([1, 2, 3]); // Set`
-- **`Map`**: Represents a collection of key-value pairs where keys can be of any data type.
-  `let map = new Map(); map.set('name', 'Alice'); map.set('age', 25);`
-
-#### **Key Characteristics of Non-Primitive Data Types:**
-
-- **Mutability:** Objects are mutable, meaning their properties can be changed even if the object itself is `const`.
-- **Stored by Reference:** Non-primitive values are stored as references. When you assign an object to a variable, you are assigning the reference (or memory address) to the variable, not the object itself.
-- **Comparisons:** When comparing two objects (including arrays and functions), they are considered equal only if they reference the same object in memory.
-
-#### **Difference Between Primitive and Non-Primitive Data Types:**
-
-| Feature               | Primitive Data Types                                     | Non-Primitive Data Types                      |
-| --------------------- | -------------------------------------------------------- | --------------------------------------------- |
-| **Types** | Number, String, Boolean, Symbol, Null, Undefined, BigInt | Object (includes Array, Function, Date, etc.) |
-| **Mutability** | Immutable                                                | Mutable                                       |
-| **Stored by** | Value                                                    | Reference                                     |
-| **Comparison** | Compared by value                                        | Compared by reference                         |
-| **Memory Allocation** | Stored in the stack                                      | Stored in the heap                            |
-
-#### **Summary:**
-
-- **Primitive data types** are basic types that represent single values and are immutable.
-- **Non-primitive data types** (Objects) can hold collections of values or more complex entities, are mutable, and are compared by reference.
+- `const` stops reassignment, not mutation of an object.
+- Assigning an object copies the **reference**, not the object (see [shallow vs deep copy](shallow-vs-deep-copy.md)).
+- Check arrays with `Array.isArray`, and `null` with `=== null`.

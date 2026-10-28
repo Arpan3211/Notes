@@ -1,29 +1,34 @@
-# Is javascript a statically typed or a dynamically typed language
+# Static vs dynamic typing
 
+> JavaScript is **dynamically typed**: a variable has no fixed type, the value does, and types are checked at run time.
 
-**Explanation:**
+## What that means
 
-- JavaScript is a multi-paradigm, **dynamic** language with types and operators, standard built-in objects, and methods. Its syntax is based on the Java and C languages — many structures from those languages apply to JavaScript as well. JavaScript supports object-oriented programming with [object prototypes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) and classes.
+- No type is declared, and a variable can hold any type over time.
+- Types are checked while the code runs, not before.
+- JavaScript converts types automatically in some operations (coercion).
 
-1. **Type Determination at Runtime**: In JavaScript, you don't need to explicitly declare the data type of a variable. The type of a variable is determined when the program is executed. For example:
+```js
+let x = 5;        // number
+x = "Hello";      // now a string
+x = true;         // now a boolean
 
-   ```jsx
-   let x = 5; // x is a number
-   x = "Hello"; // x is now a string
-   x = true; // x is now a boolean
-   ```
+5 + "10";         // "510"  (number converted to string)
+```
 
-   The variable `x` starts as a number, changes to a string, and then changes to a boolean, all within the same code block. JavaScript doesn't require you to specify the type when declaring the variable.
+## Static vs dynamic
 
-2. **Dynamic Type Checking**: JavaScript will automatically perform type conversions when you perform operations on variables of different types. For example:
+| | Static (Java, C++, TypeScript) | Dynamic (JavaScript, Python) |
+|---|---|---|
+| Type checking | At compile time | At run time |
+| Declare types | Required | Not required |
+| Type errors found | Before running | While running |
 
-   ```jsx
-   let num = 5;
-   let str = "10";
-   let result = num + str; // JavaScript converts num to a string and performs string concatenation
-   ```
+## Pros and cons
 
-   In this case, JavaScript will convert the number `5` to a string and concatenate it with the string `"10"`, resulting in the string `"510"`.
+- Pros: flexible, fast to write.
+- Cons: type bugs show up at run time. TypeScript adds static types to fix this.
 
-3. **No Static Type Checking**: Unlike statically typed languages (e.g., Java or C++), JavaScript does not perform type checking at compile time. There is no strict enforcement of data types for variables before running the code.
-4. **Pros and Cons**: Dynamic typing provides flexibility and ease of use, making it suitable for rapid development. However, it can also lead to runtime errors if not used carefully. Developers need to be cautious about variable types when writing JavaScript code to avoid unexpected behavior.
+## Interview answer
+
+JavaScript is dynamically typed (and weakly typed because of coercion). It does no type checking at compile time.

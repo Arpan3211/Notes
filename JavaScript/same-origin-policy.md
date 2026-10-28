@@ -1,33 +1,56 @@
-# Discuss the same-origin policy's implications for JavaScript
+# Same-origin policy and CORS
 
+> The browser lets a page read data only from its **own origin**. CORS is how a server opts in to sharing with other origins.
 
-The **Same-Origin Policy (SOP)** is a critical security feature implemented by web browsers to restrict how documents or scripts loaded from one origin can interact with resources from another origin. This policy is essential for protecting user data and maintaining the security and privacy of web applications.
+## Origin = protocol + host + port
 
-##### Definition of Same-Origin Policy
+| URL compared with `https://example.com` | Same origin? |
+|---|---|
+| `https://example.com/page` | yes |
+| `http://example.com` | no (protocol) |
+| `https://api.example.com` | no (host) |
+| `https://example.com:3000` | no (port) |
 
-The Same-Origin Policy dictates that web pages can only make requests to the same origin (protocol, domain, and port) that served the web page. This means that scripts on a web page can only interact with content from the same origin unless explicitly allowed otherwise.
+## What the policy blocks
 
-**Origin** is defined by the combination of:
+- Reading responses from another origin with `fetch` / `XMLHttpRequest` (the request is sent, the browser blocks reading the response).
+- Reading another origin's DOM in an `<iframe>`, and its cookies and `localStorage`.
 
-- **Protocol** (e.g., `http` vs. `https`)
-- **Domain** (e.g., `example.com` vs. `api.example.com`)
-- **Port** (e.g., `80`, `443`, `3000`)
+Allowed without CORS: loading `<img>`, `<script>`, `<link>`, `<video>` from other origins, and form posts.
 
-##### Implications for JavaScript
+## CORS (Cross-Origin Resource Sharing)
 
-1. **Cross-Origin Requests**:
+The server sends headers that say who may read its response.
 
-   - **Restrictions**: JavaScript running on a web page is restricted from making requests to a different origin. This prevents a script from making an HTTP request to a domain other than the one that served the web page.
-   - **Example**: A script from `https://example.com` cannot make an XMLHttpRequest to `https://api.otherdomain.com` without proper authorization.
+| Header | Meaning |
+|---|---|
+| `Access-Control-Allow-Origin` | allowed origin (`https://app.com` or `*`) |
+| `Access-Control-Allow-Methods` | allowed methods (`GET, POST, PUT, DELETE`) |
+| `Access-Control-Allow-Headers` | allowed request headers |
+| `Access-Control-Allow-Credentials: true` | allow cookies (then `*` is not allowed as the origin) |
+| `Access-Control-Max-Age` | how long the preflight result is cached |
 
-   ```javascript
-   // This will fail if 'api.otherdomain.com' is a different origin
-   fetch("https://api.otherdomain.com/data")
-     .then((response) => response.json())
-     .then((data) => console.log(data))
-     .catch((error) => console.error("Error:", error));
-   ```
+### Preflight
 
-2. **Cross-Origin Resource Sharing (CORS)**:
-   - **Solution**: To enable cross-origin requests, servers must implement CORS. CORS is a mechanism that allows servers to specify who can access their resources using specific HTTP headers.
-   - **Configuration**: Server responses include headers like `Access-Control-Allow-Origin`, which indicate which origins are permitted to access the resources.
+For "non-simple" requests (methods like `PUT` / `DELETE`, JSON `Content-Type`, custom headers, credentials) the browser first sends an `OPTIONS` request. If the server approves, the real request follows.
+
+```js
+// frontend
+fetch("https://api.example.com/data", { headers: { "Content-Type": "application/json" } });
+
+// backend (Express)
+const cors = require("cors");
+app.use(cors({ origin: "https://myapp.com", credentials: true }));
+```
+
+## Fixing CORS errors
+
+- Configure the **server** to send the headers (the real fix).
+- In development, use a dev-server proxy (Vite / CRA `proxy`) so requests look same-origin.
+- Do not "fix" it with `mode: "no-cors"`: you get an unreadable (opaque) response.
+
+## Remember
+
+- CORS is enforced by the **browser**, not by the server or tools like Postman and curl.
+- It protects users' data from other sites, not your API from clients. Use authentication for that.
+- Networking details: [Notes/Networking/cors.md](../Networking/cors.md).

@@ -1,38 +1,44 @@
-# What is Callback in JavaScript
+# Callbacks
 
+> A callback is a function passed to another function, to be called later (after an async task or an event).
 
-**Explanation:**
-
-1. **Definition**: A callback function is a function passed as an argument to another function. It is typically used to be executed later, after an asynchronous operation or upon an event.
-2. **Usage**: Callbacks are often used for handling asynchronous operations like data fetching, timers, or event handling.
-
-**Example**:
-
-```jsx
+```js
 function fetchData(url, callback) {
-  // Simulated data fetching
-  setTimeout(() => {
-    const data = "Some data from the server";
-    callback(data);
-  }, 1000);
+  setTimeout(() => callback("data from " + url), 1000);   // simulated request
 }
 
-function handleData(data) {
+fetchData("/api/user", (data) => console.log(data));
+```
+
+## Types
+
+- **Synchronous**: called immediately, e.g. `[1, 2, 3].map((n) => n * 2)`.
+- **Asynchronous**: called later, e.g. `setTimeout`, event listeners, file or network I/O.
+
+## Error-first convention (Node.js)
+
+```js
+fs.readFile("a.txt", (err, data) => {
+  if (err) return console.error(err);
   console.log(data);
-}
-
-fetchData("<https://example.com/api>", handleData);
+});
 ```
 
-```jsx
-function isEven(num) {
-  if (num % 2 === 0) {
-    return num;
-  }
-}
+## Callback hell
 
-function printMag(callback, mag) {
-  console.log(`${mag}: ${callback}`);
-}
-printMag(isEven(3), "Massage");
+Nested callbacks become hard to read and handle errors in.
+
+```js
+getUser(id, (user) => {
+  getOrders(user, (orders) => {
+    getItems(orders[0], (items) => { /* ... */ });
+  });
+});
 ```
+
+Fix with [promises](promises.md) and `async/await`, or by naming and splitting the functions.
+
+## Remember
+
+- Pass the function itself (`fn`), do not call it (`fn()`).
+- Callbacks are possible because functions are values (see [higher-order functions](higher-order-functions.md)).

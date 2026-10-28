@@ -1,76 +1,62 @@
-# Execution Context in JavaScript
+# Execution context
 
+> The environment in which JavaScript code runs: it holds variables, functions, the scope chain and `this`.
 
-The **execution context** is an abstract concept that holds information about the environment in which the JavaScript code is evaluated and executed. It contains information about variables, functions, the value of `this`, and more.
+## Types
 
-#### Types of Execution Contexts
+| Type | Created when |
+|---|---|
+| Global (GEC) | the script starts (only one). `this` is `window` / `globalThis` |
+| Function (FEC) | every time a function is called |
+| Eval | inside `eval()` (avoid) |
 
-There are primarily three types of execution contexts in JavaScript:
+## What each context holds
 
-- **Global Execution Context (GEC):**
-  - This is the default execution context.
-  - Created when the JavaScript script starts to run.
-  - In this context, the global object (`window` in browsers, `global` in Node.js) and the special variable `this` point to the global object.
-- **Function Execution Context (FEC):**
-  - Created whenever a function is invoked.
-  - Each function has its own execution context, which is created when the function is called.
-  - The `this` value, variables, and functions declared inside the function are contained in this context.
-- **Eval Execution Context:**
-  - Created inside the `eval()` function if it is invoked.
-  - Rarely used and not recommended due to security and performance issues.
+1. **Variable environment**: variables, function declarations, arguments.
+2. **Lexical environment**: link to the outer environment (the scope chain).
+3. **`this` binding**.
 
-Every execution context consists of three main components:
+## Two phases
 
-1. **Variable Environment:**
+1. **Creation phase** (memory setup)
+   - `var` variables are created with `undefined`.
+   - Function declarations are stored completely.
+   - `let` / `const` are created but uninitialised (TDZ).
+   - This is why [hoisting](hoisting-and-tdz.md) happens.
+2. **Execution phase**: code runs line by line, values are assigned and functions are called.
 
-   - Contains variable declarations, function declarations, and arguments for the function context.
+## Call stack
 
-2. **Lexical Environment:**
+A stack of execution contexts (LIFO): the global context is at the bottom. Calling a function pushes a new context, and returning pops it.
 
-   - Holds the reference to the environment where the code is physically written (its parent environment). It's the scope chain that determines which variables are accessible.
-
-3. **`this` Binding:**
-
-   - Refers to the object that the function is executed on.
-
-#### Execution Context Lifecycle
-
-The execution context has two phases:
-
-1. **Creation Phase:**
-
-   - The JavaScript engine parses the code and sets up memory space for variables and functions.
-   - It creates a global execution context (GEC) when the script begins to run.
-   - During this phase, all variable and function declarations are stored in memory:
-     - Variables are initialized with `undefined`.
-     - Functions are stored in their entirety.
-   - The lexical environment and variable environment are also created in this phase.
-
-2. **Execution Phase:**
-
-   - The JavaScript engine executes the code line by line.
-   - Variables are assigned values, and functions are executed.
-   - The engine keeps track of the current execution context using the **execution stack**.
-
-#### Execution Stack (Call Stack)
-
-- The **execution stack** (or call stack) is a stack structure that keeps track of all execution contexts created during the execution of a script.
-- When the JavaScript engine first encounters the code, it creates a global execution context and pushes it to the stack.
-- When a function is invoked, a new function execution context is created and pushed onto the stack.
-- When a function completes, its execution context is popped from the stack, and control returns to the previous context.
-
-```jsx
-|       Function Execution Context (FEC)       | <--- Current execution context
-|  -----------------------------------------   |
-|  Variable Environment: { a: 2, b: 3, result: 6 } |
-|  Lexical Environment: { ... }                |
-|  this: global/window                         |
-|--------------------------------------------- |
-|       Global Execution Context (GEC)         |
-|  -----------------------------------------   |
-|  Variable Environment: { x: 10, multiply: f } |
-|  Lexical Environment: { ... }                |
-|  this: global/window                         |
------------------------------------------------
-
+```js
+function multiply(a, b) { return a * b; }
+function calc() { return multiply(2, 3); }
+calc();
 ```
+
+```text
+multiply()  <- top (running)
+calc()
+Global
+```
+
+Too many nested calls without returning cause `RangeError: Maximum call stack size exceeded` (stack overflow).
+
+## Global vs script context (browser)
+
+- The global context is created **once** when the page starts. `window` is the global object.
+- Every `<script>` (inline or external) runs inside that same global context, so its `var` variables and function declarations become properties of `window`.
+- `let` / `const` at the top level are global too, but they are **not** properties of `window`.
+- `<script type="module">` has its own private scope: nothing leaks to `window`.
+
+```html
+<script>      var a = 1; </script>
+<script>      console.log(window.a); /* 1 */ </script>
+<script type="module"> let b = 2; console.log(window.b); /* undefined */ </script>
+```
+
+## Remember
+
+- One call stack means one thing runs at a time (see [event loop](event-loop.md)).
+- A closure keeps its lexical environment alive after the function's context is popped.

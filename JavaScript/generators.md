@@ -1,123 +1,59 @@
-# Generator Functions
+# Generator functions
 
+> A function declared with `function*` that can pause at `yield` and resume later. It returns an iterator.
 
-Generator functions in JavaScript are a special type of function that allows you to pause and resume execution. They are useful for handling asynchronous operations, managing complex state, and creating iterators.
-
-##### Key Features of Generator Functions
-
-1. **Yielding Values:**
-
-   - Generator functions use the `yield` keyword to produce a sequence of values. Each time `yield` is encountered, the function's execution is paused, and the value is returned to the caller.
-   - The function can be resumed later from where it was paused.
-
-2. **Iterating Values:**
-
-   - Generators are iterable, meaning you can use them in a `for...of` loop or any other construct that works with iterables.
-
-3. **Control Flow:**
-   - Generators allow you to control the execution flow by pausing and resuming.
-
-##### Creating a Generator Function
-
-You define a generator function using the `function*` syntax. Here’s a simple example:
-
-```javascript
-function* numberGenerator() {
+```js
+function* numbers() {
   yield 1;
   yield 2;
   yield 3;
 }
+
+const gen = numbers();      // nothing runs yet
+gen.next();   // { value: 1, done: false }
+gen.next();   // { value: 2, done: false }
+gen.next();   // { value: 3, done: false }
+gen.next();   // { value: undefined, done: true }
+
+[...numbers()];            // [1, 2, 3]  (generators are iterable)
+for (const n of numbers()) console.log(n);
 ```
 
-##### Using a Generator Function
+## Key points
 
-You create a generator object by calling the generator function. You can then use the generator's `next()` method to retrieve values one at a time.
+- Calling the function returns a **generator object**, the body runs step by step on each `next()`.
+- `yield value` pauses and sends `value` out. `next(x)` can send a value **in** (it becomes the result of `yield`).
+- `return` ends it (`done: true`). `gen.return()` and `gen.throw()` stop it early or inject an error.
+- They are **lazy**: values are produced only when asked, so infinite sequences are fine.
+- `yield*` delegates to another iterable or generator.
 
-**Example:**
+## Examples
 
-```javascript
-const generator = numberGenerator();
-
-console.log(generator.next()); // { value: 1, done: false }
-console.log(generator.next()); // { value: 2, done: false }
-console.log(generator.next()); // { value: 3, done: false }
-console.log(generator.next()); // { value: undefined, done: true }
-```
-
-- `value` is the value yielded by the generator.
-- `done` is a boolean indicating whether the generator has completed its execution.
-
-##### Example: Generator Function with Infinite Sequence
-
-You can also create generators that produce an infinite sequence of values:
-
-```javascript
-function* infiniteNumbers() {
-  let i = 0;
-  while (true) {
-    yield i++;
-  }
+```js
+function* idMaker(start = 0) {        // infinite sequence
+  while (true) yield start++;
 }
+const ids = idMaker(5);
+ids.next().value;   // 5
+ids.next().value;   // 6
 
-const generator = infiniteNumbers();
-
-console.log(generator.next().value); // 0
-console.log(generator.next().value); // 1
-console.log(generator.next().value); // 2
-// and so on...
+function* talk() {                    // two-way
+  const name = yield "What is your name?";
+  yield `Hello ${name}`;
+}
+const t = talk();
+t.next();          // { value: "What is your name?" }
+t.next("Ann");     // { value: "Hello Ann" }
 ```
 
-##### Generator Function with Parameters
+## Uses
 
-Generators can also accept parameters, which can be used in conjunction with the `yield` keyword:
+- Custom iterators and lazy lists.
+- Generating IDs and ranges, paginating data.
+- State machines.
+- `async/await` is built on the same idea (older libraries like `co` and redux-saga run generators with promises).
 
-```javascript
-function* countFrom(start) {
-  let count = start;
-  while (true) {
-    yield count++;
-  }
-}
+## Remember
 
-const counter = countFrom(5);
-
-console.log(counter.next().value); // 5
-console.log(counter.next().value); // 6
-console.log(counter.next().value); // 7
-```
-
-##### Using Generators for Asynchronous Operations
-
-Generators are often used with Promises to handle asynchronous operations:
-
-```javascript
-function* fetchData() {
-  const data1 = yield fetch("https://api.example.com/data1").then((response) =>
-    response.json()
-  );
-  const data2 = yield fetch("https://api.example.com/data2").then((response) =>
-    response.json()
-  );
-  return [data1, data2];
-}
-
-const generator = fetchData();
-
-function handle(generator, value) {
-  const result = generator.next(value);
-  if (result.done) {
-    return Promise.resolve(result.value);
-  }
-  return Promise.resolve(result.value).then((val) => handle(generator, val));
-}
-
-handle(generator).then((result) => console.log(result));
-```
-
-##### Summary
-
-- **Definition**: Generator functions are defined using `function*` and use `yield` to pause and resume execution.
-- **Iterables**: Generators are iterable, which means you can use them with loops and other iterable-based constructs.
-- **Control Flow**: They allow for complex control flows and can manage asynchronous operations effectively.
-
-Generator functions are powerful tools for managing state and handling complex control flows in JavaScript applications.
+- A generator can be used once. Create a new one to restart.
+- Arrow functions cannot be generators.
